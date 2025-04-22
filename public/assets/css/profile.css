@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+/*------------
+Resset Css
+------------*/
+*, ::after, ::before, h1, h2, h3, h4, h5, h6, p {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.wrapperProfile {
+  display: flex;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.wrapperProfile .labelProfile {
+  color: #32D18B;
+  margin-bottom: .5rem;
+}
+
+.wrapperProfile .profile-detail {
+  width: 30%;
+}
+
+.wrapperProfile .profile-detail .card .card-body {
+  padding: 2rem;
+}
+
+.wrapperProfile .profile-detail .card .card-body .profile-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.wrapperProfile .profile-detail .card .card-body .profile-image img {
+  width: 100%;
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 50%;
+}
+
+.wrapperProfile .profile-detail .card .card-body .nameUser {
+  margin-bottom: .5rem;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.wrapperProfile .profile-detail .card .card-body .emailUser {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.wrapperProfile .setting-profile {
+  width: 80%;
+}
+
+.wrapperProfile .setting-profile .card:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.wrapperProfile .setting-profile .card .card-body form .wrapperInput {
+  display: flex;
+}
+
+.wrapperProfile .setting-profile .card .card-body form .wrapperInput:first-child {
+  margin-bottom: 1.2rem;
+}
+
+.wrapperProfile .setting-profile .card .card-body form .wrapperInput .input-group {
+  flex-direction: column;
+}
+
+.wrapperProfile .setting-profile .card .card-body form .wrapperInput .input-group:first-child {
+  margin-right: 1rem;
+}
+
+.wrapperProfile .setting-profile .card .card-body form .wrapperInput .input-group .form-control {
+  width: 100% !important;
+}
+
+.wrapperProfile .setting-profile .card .card-body form .input-group .form-control {
+  width: 100% !important;
+}
+
+@media screen and (min-width: 1200px) {
+  .wrapperProfile .profile-detail {
+    margin-right: 2rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .wrapperProfile {
+    flex-direction: column;
+  }
+  .wrapperProfile .profile-detail {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  .wrapperProfile .setting-profile {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .wrapperInput {
+    flex-direction: column;
+    margin-bottom: 0 !important;
+  }
+  .wrapperInput .input-group {
+    margin-bottom: .5rem;
+    margin-right: 0 !important;
+  }
+}

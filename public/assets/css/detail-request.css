@@ -1,0 +1,246 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+/*------------
+Resset Css
+------------*/
+*, ::after, ::before, h1, h2, h3, h4, h5, h6, p {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.wrapperDetailRequest {
+  padding: 2rem 0;
+}
+
+.wrapperDetailRequest .card .card-body .table-responsive table tbody tr td {
+  padding: .3rem 1rem;
+}
+
+.wrapperDetailRequest .card .card-body .table-responsive table tbody tr .labelNameDetail {
+  font-weight: 600;
+  color: #535353;
+}
+
+.wrapperTimeLine {
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapperTimeLine .headTimeline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapperTimeLine .headTimeline h2 {
+  position: relative;
+  color: #535353;
+}
+
+.wrapperTimeLine .headTimeline h2::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -90px;
+  display: block;
+  width: 70px;
+  height: 4px;
+  border-radius: 5px;
+  background-color: #32D18B;
+}
+
+.wrapperTimeLine .headTimeline h2::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -90px;
+  display: block;
+  width: 70px;
+  height: 4px;
+  border-radius: 5px;
+  background-color: #32D18B;
+}
+
+.wrapperTimeLine .bodyTimeLine {
+  width: 100%;
+  padding: 2.5rem 0;
+}
+
+.wrapperTimeLine .bodyTimeLine .timelineWrapper {
+  list-style: none;
+  margin: 0;
+  position: relative;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapperTimeLine .bodyTimeLine .timelineWrapper::before {
+  content: '';
+  display: block;
+  width: 5px;
+  position: absolute;
+  border-radius: 5px;
+  height: 100%;
+  background-color: #535353;
+}
+
+.wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline {
+  display: flex;
+}
+
+.wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 36px 80px rgba(0, 0, 0, 0.02), 0px 4.50776px 10.0172px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .titleTimeline {
+  color: #535353;
+  margin-bottom: .7rem;
+}
+
+.wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .descriptionTimeline {
+  font-weight: 300;
+}
+
+.wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .badge-timeline {
+  border-radius: 50%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+}
+
+.wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .badge-timeline ion-icon {
+  color: #fff;
+  font-weight: 800;
+}
+
+.wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .badge-timeline.success {
+  background-color: #32D18B;
+}
+
+.wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .badge-timeline.decline {
+  background-color: #DC3545;
+}
+
+.wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .badge-timeline.process {
+  background-color: #535353;
+}
+
+@media screen and (max-width: 1200px) {
+  .wrapperTimeLine .headTimeline h2::before {
+    width: 70px;
+  }
+  .wrapperTimeLine .headTimeline h2::after {
+    width: 70px;
+  }
+  .wrapperTimeLine .bodyTimeLine {
+    width: 100%;
+    max-width: none;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper::before {
+    left: 15px;
+    transform: translateX(-50%);
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline {
+    padding-left: 3rem;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline {
+    max-width: none;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .titleTimeline {
+    font-size: 18px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .descriptionTimeline {
+    font-size: 12px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .badge-timeline {
+    padding: .5rem;
+    top: 0;
+    left: -51px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .badge-timeline ion-icon {
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .wrapperTimeLine .bodyTimeLine {
+    max-width: 780px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper::before {
+    content: '';
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline:nth-child(odd) .body-timeline .badge-timeline {
+    right: -68px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline:nth-child(even) {
+    justify-content: flex-end;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline:nth-child(even) .body-timeline .badge-timeline {
+    left: -67px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline {
+    max-width: 350px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .titleTimeline {
+    font-size: 22px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .descriptionTimeline {
+    font-size: 14px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .badge-timeline ion-icon {
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .wrapperTimeLine .bodyTimeLine {
+    max-width: 900px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper::before {
+    content: '';
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline:nth-child(odd) .body-timeline .badge-timeline {
+    right: -78px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline:nth-child(even) {
+    justify-content: flex-end;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline:nth-child(even) .body-timeline .badge-timeline {
+    left: -76px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline {
+    max-width: 400px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .titleTimeline {
+    font-size: 26px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .descriptionTimeline {
+    font-size: 14px;
+  }
+  .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .badge-timeline ion-icon {
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,1161 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+/*------------
+Resset Css
+------------*/
+*,
+::after,
+::before,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+    position: sticky;
+    overflow: hidden;
+    top: 0;
+    z-index: 99999;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0px 52px 80px rgba(0, 0, 0, 0.0139364), 0px 15.6765px 24.1177px rgba(0, 0, 0, 0.02), 0px 6.51121px 10.0172px rgba(0, 0, 0, 0.0260636), 0px 2.35498px 3.62304px rgba(0, 0, 0, 0.04);
+}
+
+.navbar .container .navbar-brand img {
+    width: 100%;
+    max-width: 68px;
+    transition: .5s;
+}
+
+.navbar .container .navbar-toggler {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .container .navbar-toggler:focus {
+    border-color: #32D18B;
+    box-shadow: 0 0 0 0.25rem rgba(83, 187, 139, 0.4);
+}
+
+.navbar .container .navbar-toggler ion-icon {
+    font-size: 38px;
+}
+
+.navbar .container .navbar-collapse .navbar-nav {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navbar .container .navbar-collapse .navbar-nav .menu {
+    display: flex;
+    position: relative;
+    z-index: 20000;
+}
+
+.navbar .container .navbar-collapse .navbar-nav .menu .nav-link {
+    font-weight: 400;
+}
+
+.navbar .container .navbar-collapse .navbar-nav .getStarted .nav-link {
+    font-weight: 400;
+}
+
+@media screen and (max-width: 991px) {
+    .navbar .container .navbar-brand img {
+        max-width: 62px;
+        transition: .5s;
+    }
+
+    .navbar .container .navbar-collapse {
+        position: fixed;
+        z-index: 100;
+        background-color: #fff;
+        box-shadow: 0px -70px 80px rgba(0, 0, 0, 0.0243888), 0px -21.103px 24.1177px rgba(0, 0, 0, 0.035), 0px -8.76509px 10.0172px rgba(0, 0, 0, 0.0456112), 0px -3.17016px 3.62304px rgba(0, 0, 0, 0.07);
+        top: 0;
+        width: 0%;
+        left: -350px;
+        height: 100%;
+        transition: 1s ease;
+        max-width: 350px;
+        padding: 2rem;
+        opacity: .4;
+    }
+
+    .navbar .container .navbar-collapse.showNavbar {
+        width: 75%;
+        left: 0px;
+        transition: 1s ease;
+        opacity: 1;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav {
+        width: 100%;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .menu {
+        flex-direction: column;
+        opacity: 1;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .menu .nav-link {
+        padding: .7rem 0;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .menu .nav-link.active {
+        color: #32D18B;
+        font-weight: 500;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted .buttonWrapper{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted .buttonWrapper .wrapperLanguage{
+        display: flex;
+        margin-top: 2rem;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted .buttonWrapper .wrapperLanguage .language{
+        display: flex;
+        align-items: center;
+        color: rgba(0,0,0,.55);
+        font-weight: 400;
+        text-decoration: none;
+    }
+    .navbar .container .navbar-collapse .navbar-nav .getStarted .buttonWrapper .wrapperLanguage .language:first-child{
+        margin-right: 1rem;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted .buttonWrapper .wrapperLanguage .language img {
+        width: 100%;
+        max-width: 24px;
+        margin-right: .5rem;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .navbar .container .navbar-toggler {
+        display: none;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .menu .nav-link {
+        padding: 0;
+        margin: .5rem 1.3rem;
+        position: relative;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .menu .nav-link.active {
+        color: #32D18B;
+        font-weight: 600;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .menu .nav-link::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 2px;
+        position: absolute;
+        bottom: -5px;
+        transform: translateX(50%);
+        background-color: #32D18B;
+        transition: .3s ease;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .menu .nav-link:hover::after {
+        width: 50%;
+        transition: .3s ease;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted {
+        display: flex;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted .polygon {
+        position: relative;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted .polygon .clipath {
+        display: block;
+        background-color: #fff;
+        height: 100%;
+        position: absolute;
+        width: 130px;
+        top: -29px;
+        overflow: hidden;
+        left: -65px;
+        z-index: 1000;
+        height: 238%;
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted::after {
+        content: '';
+        display: block;
+        background-color: #32D18B;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted .buttonWrapper {
+        position: relative;
+        z-index: 20000;
+        padding-left: 5rem;
+        display: flex;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted .buttonWrapper .wrapperLanguage {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted .buttonWrapper .wrapperLanguage .language {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #fff;
+        margin: 0 .5rem;
+        font-weight: 500;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted .buttonWrapper .wrapperLanguage .language img {
+        width: 100%;
+        max-width: 22px;
+        margin-right: .3rem;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted .buttonWrapper .nav-link {
+        background-color: #fff;
+        border-radius: 6px;
+        color: #32D18B;
+        font-weight: 500;
+        padding: .5rem 1.4rem;
+        margin-left: 1.5rem;
+    }
+
+    .navbar .container .navbar-collapse .navbar-nav .getStarted .buttonWrapper .nav-link:hover {
+        background-color: #f2f2f2;
+    }
+}
+
+.wrapperJumbotron {
+    background: url(../img/jumbotronImages.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.wrapperJumbotron .container .content .text {
+    color: #fff;
+    margin-bottom: 3rem;
+}
+
+.wrapperJumbotron .container .content .text h1 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 52px;
+    transition: .5s;
+}
+
+.wrapperJumbotron .container .content .text p {
+    font-weight: 400;
+    font-size: 22px;
+    transition: .5s;
+}
+
+.wrapperJumbotron .container .content .text p .brand {
+    font-weight: 600;
+}
+
+.wrapperJumbotron .container .content .getStartedButton a {
+    text-decoration: none;
+    color: #fff;
+    background: #32D18B;
+    padding: .7rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background .3s;
+}
+
+.wrapperJumbotron .container .content .getStartedButton a:hover {
+    background: #29a96d;
+    transition: background .3s;
+}
+
+@media screen and (max-width: 991px) {
+    .wrapperJumbotron .container .content .text h1 {
+        font-size: 48px;
+    }
+
+    .wrapperJumbotron .container .content .text p {
+        font-size: 18px;
+    }
+
+    .wrapperJumbotron .container .content .getStartedButton a {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .wrapperJumbotron .container .content .text h1 {
+        font-size: 42px;
+    }
+
+    .wrapperJumbotron .container .content .text p {
+        font-size: 16px;
+    }
+
+    .wrapperJumbotron .container .content .getStartedButton a {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .wrapperJumbotron .container .content .text h1 {
+        font-size: 36px;
+    }
+
+    .wrapperJumbotron .container .content .text p {
+        font-size: 14px;
+    }
+}
+
+.mainContent {
+    padding: 0 0 5rem 0;
+}
+
+.mainContent::before {
+    content: '';
+    background: url(../img/vector-landingpage.svg);
+    display: block;
+    height: 900px;
+    width: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 2502px;
+    z-index: 2;
+}
+
+.mainContent .container .aboutPlantsasri {
+    display: flex;
+    align-items: center;
+    padding-top: 7rem;
+}
+
+.mainContent .container .aboutPlantsasri .imagesWrapper img {
+    width: 100%;
+}
+
+.mainContent .container .aboutPlantsasri .about {
+    padding: 1rem 0 1rem 2rem;
+    color: #535353;
+}
+
+.mainContent .container .aboutPlantsasri .about h1 {
+    margin-bottom: 1rem;
+}
+
+.mainContent .container .aboutPlantsasri .about .statisticAbout {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mainContent .container .aboutPlantsasri .about .statisticAbout .statistic {
+    text-align: center;
+}
+
+.mainContent .container .aboutPlantsasri .about .statisticAbout .statistic span {
+    font-size: 26px;
+}
+
+@media screen and (max-width: 991px) {
+    .mainContent .container .aboutPlantsasri {
+        flex-direction: column-reverse;
+    }
+
+    .mainContent .container .aboutPlantsasri .about {
+        padding: 1.2rem 0;
+    }
+
+    .mainContent .container .aboutPlantsasri .about .statisticAbout .statistic span {
+        font-size: 28px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .mainContent .container .aboutPlantsasri .about {
+        padding: 1rem 0;
+    }
+
+    .mainContent .container .aboutPlantsasri .about p {
+        font-size: 16px;
+    }
+
+    .mainContent .container .aboutPlantsasri .about .statisticAbout .statistic span {
+        font-size: 22px;
+    }
+
+    .mainContent .container .aboutPlantsasri .about .statisticAbout .statistic p {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .mainContent .container .aboutPlantsasri .about p {
+        font-size: 14px;
+    }
+
+    .mainContent .container .aboutPlantsasri .about .statisticAbout .statistic span {
+        font-size: 22px;
+    }
+
+    .mainContent .container .aboutPlantsasri .about .statisticAbout .statistic p {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 474px) {
+    .mainContent .container .aboutPlantsasri .about p {
+        font-size: 14px;
+    }
+
+    .mainContent .container .aboutPlantsasri .about .statisticAbout {
+        flex-direction: column;
+        margin: 1rem 0;
+    }
+
+    .mainContent .container .aboutPlantsasri .about .statisticAbout .statistic {
+        margin: 1rem 0;
+    }
+
+    .mainContent .container .aboutPlantsasri .about .statisticAbout .statistic span {
+        font-size: 24px;
+    }
+
+    .mainContent .container .aboutPlantsasri .about .statisticAbout .statistic p {
+        font-size: 14px;
+    }
+}
+
+.mainContent .container .servicePlantsasri {
+    text-align: center;
+    padding-top: 7rem;
+}
+
+.mainContent .container .servicePlantsasri h1 {
+    margin-bottom: 2rem;
+    color: #535353;
+}
+
+.mainContent .container .servicePlantsasri .wrapperService {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mainContent .container .servicePlantsasri .wrapperService .service {
+    background: #fff;
+    box-shadow: 0px 7px 36px rgba(0, 0, 0, 0.12), 0px 0.87651px 4.50776px rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    padding: 4rem 2rem 8rem 2rem;
+    color: #535353;
+    width: 100%;
+}
+
+.mainContent .container .servicePlantsasri .wrapperService .service:not(:last-child) {
+    margin-right: 2rem;
+}
+
+.mainContent .container .servicePlantsasri .wrapperService .service .iconService {
+    margin-bottom: 2rem;
+}
+
+.mainContent .container .servicePlantsasri .wrapperService .service .iconService img {
+    width: 100%;
+    max-width: 100px;
+}
+
+.mainContent .container .servicePlantsasri .wrapperService .service h4 {
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+}
+
+.mainContent .container .servicePlantsasri .wrapperService .service p {
+    font-weight: 400;
+}
+
+.mainContent .container .servicePlantsasri .wrapperService .service p .brand {
+    font-weight: 600;
+}
+
+@media screen and (max-width: 991px) {
+    .mainContent .container .servicePlantsasri .wrapperService .service {
+        padding: 3rem 2rem;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService .service .iconService img {
+        max-width: 74px;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService .service h4 {
+        font-size: 22px;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService .service p {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .mainContent .container .servicePlantsasri h1 {
+        margin-bottom: 1.5rem;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService .service {
+        width: 43%;
+        margin: 1rem !important;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService .service:not(:last-child) {
+        margin-right: 0;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService .service .iconService img {
+        max-width: 42px;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService .service h4 {
+        font-size: 18px;
+        margin-bottom: 1rem;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService .service p {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .mainContent .container .servicePlantsasri .wrapperService {
+        flex-direction: column;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService .service {
+        width: 100%;
+        margin: 0 !important;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService .service:not(:last-child) {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService .service .iconService img {
+        max-width: 62px;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService .service h4 {
+        font-size: 22px;
+        margin-bottom: 1rem;
+    }
+
+    .mainContent .container .servicePlantsasri .wrapperService .service p {
+        font-size: 14px;
+    }
+}
+
+.mainContent .container .bannerPlantsasri {
+    position: relative;
+    z-index: 3;
+    padding-top: 7rem;
+}
+
+.mainContent .container .bannerPlantsasri .wrapperBannerPlantsasri {
+    background: url(../img/bannerBackground_landingpage.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 5rem;
+}
+
+.mainContent .container .bannerPlantsasri .wrapperBannerPlantsasri .phonePreview {
+    position: relative;
+    width: 40%;
+    top: -80px;
+    transition: .5s;
+}
+
+.mainContent .container .bannerPlantsasri .wrapperBannerPlantsasri .phonePreview img {
+    width: 100%;
+    transition: .5s;
+}
+
+.mainContent .container .bannerPlantsasri .wrapperBannerPlantsasri .textBanner {
+    padding: 0 4rem;
+    color: #fff;
+    transition: .5s;
+}
+
+.mainContent .container .bannerPlantsasri .wrapperBannerPlantsasri .textBanner h1 {
+    font-weight: 600;
+    margin: 1rem 0;
+}
+
+@media screen and (max-width: 991px) {
+    .mainContent .container .bannerPlantsasri .wrapperBannerPlantsasri {
+        background-size: cover;
+        border-radius: 25px;
+        padding: 3rem;
+        flex-direction: column;
+    }
+
+    .mainContent .container .bannerPlantsasri .wrapperBannerPlantsasri .phonePreview {
+        width: 100%;
+        top: 0px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 3rem;
+    }
+
+    .mainContent .container .bannerPlantsasri .wrapperBannerPlantsasri .phonePreview img {
+        max-width: 200px;
+    }
+
+    .mainContent .container .bannerPlantsasri .wrapperBannerPlantsasri .textBanner {
+        padding: 0;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .mainContent .container .bannerPlantsasri .wrapperBannerPlantsasri {
+        padding: 2rem;
+    }
+
+    .mainContent .container .bannerPlantsasri .wrapperBannerPlantsasri .textBanner h3 {
+        font-size: 20px;
+    }
+
+    .mainContent .container .bannerPlantsasri .wrapperBannerPlantsasri .textBanner p {
+        font-size: 14px;
+    }
+}
+
+.mainContent .container .wrapperCountryAvaialble {
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+    padding-top: 7rem;
+}
+
+.mainContent .container .wrapperCountryAvaialble .content {
+    display: flex;
+    align-items: center;
+}
+
+.mainContent .container .wrapperCountryAvaialble .content .text {
+    width: 50%;
+    margin-right: 2rem;
+}
+
+.mainContent .container .wrapperCountryAvaialble .content .text h1 {
+    color: #535353;
+}
+
+.mainContent .container .wrapperCountryAvaialble .content .wrapperImagesCountry {
+    position: relative;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainContent .container .wrapperCountryAvaialble .content .wrapperImagesCountry .lineCountry {
+    display: flex;
+}
+
+.mainContent .container .wrapperCountryAvaialble .content .wrapperImagesCountry .lineCountry .country {
+    margin: .2rem;
+}
+
+.mainContent .container .wrapperCountryAvaialble .content .wrapperImagesCountry .lineCountry .country img {
+    width: 100%;
+    max-width: 300px;
+}
+
+@media screen and (max-width: 767px) {
+    .mainContent .container .wrapperCountryAvaialble .content {
+        flex-direction: column;
+    }
+
+    .mainContent .container .wrapperCountryAvaialble .content .text {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .mainContent .container .wrapperCountryAvaialble .content .wrapperImagesCountry {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mainContent .container .wrapperCountryAvaialble .content .wrapperImagesCountry .lineCountry {
+        display: flex;
+    }
+
+    .mainContent .container .wrapperCountryAvaialble .content .wrapperImagesCountry .lineCountry .country {
+        margin: .2rem;
+    }
+
+    .mainContent .container .wrapperCountryAvaialble .content .wrapperImagesCountry .lineCountry .country img {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+.mainContent .container .testimoniSection {
+    position: relative;
+    z-index: 3;
+    padding-top: 7rem;
+}
+
+.mainContent .container .testimoniSection h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #535353;
+}
+
+.mainContent .container .testimoniSection .wrapperTestimoni {
+    display: flex;
+}
+
+.mainContent .container .testimoniSection .wrapperTestimoni .testimoniList {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    margin: 0 1.5rem;
+}
+
+.mainContent .container .testimoniSection .wrapperTestimoni .testimoniList .profileImages img {
+    width: 100%;
+    max-width: 54px;
+    border-radius: 50%;
+}
+
+.mainContent .container .testimoniSection .wrapperTestimoni .testimoniList .comment {
+    margin: 1rem 0;
+    color: #535353;
+    font-size: 16px;
+}
+
+.mainContent .container .testimoniSection .wrapperTestimoni .testimoniList .nameUser {
+    color: #32D18B;
+}
+
+.mainContent .container .testimoniSection .wrapperTestimoni .slick-dots {
+    bottom: -50px;
+}
+
+.mainContent .container .testimoniSection .wrapperTestimoni .slick-dots li.slick-active button::before {
+    color: #32D18B;
+}
+
+.mainContent .container .testimoniSection .wrapperTestimoni .slick-dots li button::before {
+    font-size: 14px;
+}
+
+@media screen and (max-width: 767px) {
+    .mainContent .container .testimoniSection .wrapperTestimoni .slick-dots li button::before {
+        font-size: 12px;
+    }
+}
+
+
+
+
+.mainContent .container .partnership {
+    padding-top: 7rem;
+}
+
+.mainContent .container .partnership h1 {
+    color: #535353;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.mainContent .container .partnership .wrapperPartnership {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.mainContent .container .partnership .wrapperPartnership .partnership-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 16px;
+    padding: 1.2rem 1.5rem;
+    margin: .7rem 1rem;
+}
+
+.mainContent .container .partnership .wrapperPartnership .partnership-item img {
+    width: 100%;
+    max-width: 62px;
+    max-height: 62px;
+}
+
+.mainContent .container .contactSection {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+    padding-top: 7rem;
+}
+
+.mainContent .container .contactSection .contact {
+    color: #535353;
+    padding-right: 3rem;
+    width: 70%;
+}
+
+.mainContent .container .contactSection .contact h1 {
+    margin-bottom: .5rem;
+}
+
+.mainContent .container .contactSection .contact p {
+    margin-bottom: 2.5rem;
+}
+
+.mainContent .container .contactSection .contact .form-group .form-control {
+    border-color: rgba(0, 0, 0, 0.25) !important;
+}
+
+.mainContent .container .contactSection .contact .form-group .form-control,
+.mainContent .container .contactSection .contact .form-group .form-select {
+    border-radius: 6px !important;
+}
+
+.mainContent .container .contactSection .contact .form-group .form-control:focus,
+.mainContent .container .contactSection .contact .form-group .form-select:focus {
+    border-color: #32D18B;
+    box-shadow: 0 0 0 0.25rem rgba(83, 187, 139, 0.4);
+}
+
+.mainContent .container .contactSection .contact .buttonSubmit {
+    width: 100%;
+    background: #32D18B;
+    color: #fff;
+    padding: .7rem 1rem;
+    font-weight: 500;
+}
+
+.mainContent .container .contactSection .contact .buttonSubmit:hover {
+    background: #29a96d;
+}
+
+.mainContent .container .contactSection #wrapperMaps {
+    width: 30%;
+}
+
+.mainContent .container .contactSection #wrapperMaps #maps {
+    width: 100%;
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 991px) {
+    .mainContent .container .contactSection {
+        flex-direction: column;
+    }
+
+    .mainContent .container .contactSection .contact {
+        padding-right: 0;
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+
+    .mainContent .container .contactSection #wrapperMaps {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .mainContent .container .contactSection .contact p {
+        font-size: 14px;
+    }
+
+    .mainContent .container .contactSection .contact .form-group .form-label {
+        font-size: 14px;
+    }
+
+    .mainContent .container .contactSection .contact .form-group .form-control {
+        font-size: 14px;
+    }
+
+    .mainContent .container .contactSection .contact .buttonSubmit {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .mainContent::before {
+        display: none;
+    }
+}
+
+footer {
+    background: #464A4E;
+}
+
+footer .container .contentFooter {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    align-items: flex-start;
+    border-bottom: 1px solid #fff;
+    padding: 4rem 0;
+    transition: .5s;
+}
+
+footer .container .contentFooter .line {
+    width: 100%;
+    transition: .5s;
+}
+
+footer .container .contentFooter .line .brand {
+    margin-bottom: 2rem;
+}
+
+footer .container .contentFooter .line .brand img {
+    width: 100%;
+    max-width: 440px;
+}
+
+footer .container .contentFooter .line p {
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+footer .container .contentFooter .line .socialMedia {
+    display: flex;
+}
+
+footer .container .contentFooter .line .socialMedia .social {
+    padding: .7rem;
+    border-radius: 50%;
+    background: #32D18B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer .container .contentFooter .line .socialMedia .social:not(:last-child) {
+    margin-right: .6rem;
+}
+
+footer .container .contentFooter .line .socialMedia .social ion-icon {
+    color: #fff;
+    font-size: 28px;
+}
+
+footer .container .contentFooter .line p {
+    font-size: 16px;
+}
+
+footer .container .contentFooter .line:not(:last-child) {
+    margin-right: 5rem;
+}
+
+footer .container .contentFooter .line h1,
+footer .container .contentFooter .line h3 {
+    margin-bottom: 1rem;
+}
+
+footer .container .contentFooter .line h3 {
+    font-size: 18px;
+}
+
+footer .container .contentFooter .line .linkToPages {
+    display: flex;
+    flex-direction: column;
+}
+
+footer .container .contentFooter .line .linkToPages a,
+footer .container .contentFooter .line .linkToPages p {
+    text-decoration: none;
+    padding: .4rem 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+}
+
+footer .container .contentFooter .line .phone {
+    margin-bottom: .5rem;
+}
+
+footer .container .copyright {
+    text-align: center;
+    font-weight: 400;
+    color: #fff;
+    padding: 2rem 1rem;
+}
+
+@media screen and (max-width: 1199px) {
+    footer .container .contentFooter {
+        display: flex;
+    }
+
+    footer .container .contentFooter .line .brand {
+        font-size: 38px;
+    }
+
+    footer .container .contentFooter .line .socialMedia .social ion-icon {
+        font-size: 28px;
+    }
+
+    footer .container .contentFooter .line p {
+        font-size: 14px;
+    }
+
+    footer .container .contentFooter .line:not(:last-child) {
+        margin-right: 3rem;
+    }
+
+    footer .container .contentFooter .line h3 {
+        font-size: 16px;
+    }
+
+    footer .container .contentFooter .line .linkToPages a,
+    footer .container .contentFooter .line .linkToPages p {
+        font-size: 14px;
+    }
+
+    footer .container .contentFooter .line .phone {
+        font-size: 24px;
+    }
+
+    footer .container .copyright {
+        text-align: center;
+        font-weight: 400;
+        color: #fff;
+        padding: 2rem 1rem;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    footer .container .contentFooter {
+        display: flex;
+        flex-direction: column;
+        padding: 3rem 0 1.5rem 0;
+    }
+
+    footer .container .contentFooter .line {
+        margin-bottom: 2.5rem;
+    }
+
+    footer .container .contentFooter .line .brand {
+        font-size: 46px;
+    }
+
+    footer .container .contentFooter .line p {
+        font-size: 18px !important;
+        margin-bottom: 1rem;
+    }
+
+    footer .container .contentFooter .line .socialMedia .social ion-icon {
+        font-size: 28px;
+    }
+
+    footer .container .contentFooter .line p {
+        font-size: 14px;
+    }
+
+    footer .container .contentFooter .line:not(:last-child) {
+        margin-right: 0;
+    }
+
+    footer .container .contentFooter .line h3 {
+        font-size: 22px;
+    }
+
+    footer .container .contentFooter .line .linkToPages a,
+    footer .container .contentFooter .line .linkToPages p {
+        font-size: 16px !important;
+    }
+
+    footer .container .contentFooter .line .phone {
+        font-size: 28px;
+    }
+
+    footer .container .copyright {
+        text-align: center;
+        font-weight: 400;
+        color: #fff;
+        padding: 1.5rem 1rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    footer .container .contentFooter .line .brand {
+        font-size: 36px;
+    }
+
+    footer .container .contentFooter .line p {
+        font-size: 14px !important;
+    }
+
+    footer .container .contentFooter .line .socialMedia .social ion-icon {
+        font-size: 24px;
+    }
+
+    footer .container .contentFooter .line h3 {
+        font-size: 20px;
+    }
+
+    footer .container .contentFooter .line .linkToPages a,
+    footer .container .contentFooter .line .linkToPages p {
+        font-size: 16px !important;
+    }
+
+    footer .container .contentFooter .line .phone {
+        font-size: 22px;
+    }
+
+    footer .container .copyright {
+        text-align: center;
+        font-weight: 400;
+        color: #fff;
+        padding: 1.5rem 1rem;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+/*------------
+Resset Css
+------------*/
+*, ::after, ::before, h1, h2, h3, h4, h5, h6, p {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-check {
+  padding-left: 0 !important;
+}
+
+.form-check .form-check-input {
+  font-size: 18px;
+  margin-left: 0 !important;
+  transition: box-shadow .2s ease;
+}
+
+.form-check .form-check-input:checked {
+  background-color: #32D18B;
+  border: #32D18B;
+}
+
+.form-check .form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(45, 184, 120, 0.5);
+  transition: box-shadow .2s ease;
+}

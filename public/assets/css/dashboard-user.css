@@ -1,0 +1,219 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+/*------------
+Resset Css
+------------*/
+*, ::after, ::before, h1, h2, h3, h4, h5, h6, p {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contentMain .wrapper-statistic-card {
+  display: flex;
+}
+
+.contentMain .wrapper-statistic-card .statistic-card {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0px 36px 80px rgba(0, 0, 0, 0.02), 0px 4.50776px 10.0172px rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.contentMain .wrapper-statistic-card .statistic-card:nth-child(1) .icon-statistic-card {
+  background-color: #6610F2;
+}
+
+.contentMain .wrapper-statistic-card .statistic-card:nth-child(2) .icon-statistic-card {
+  background-color: #0D6EFD;
+}
+
+.contentMain .wrapper-statistic-card .statistic-card:nth-child(3) .icon-statistic-card {
+  background-color: #FFA117;
+}
+
+.contentMain .wrapper-statistic-card .statistic-card:nth-child(4) .icon-statistic-card {
+  background-color: #32D18B;
+}
+
+.contentMain .wrapper-statistic-card .statistic-card .icon-statistic-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.contentMain .wrapper-statistic-card .statistic-card .icon-statistic-card img {
+  width: 100%;
+  max-width: 36px;
+}
+
+.contentMain .wrapper-statistic-card .statistic-card .statistic-info .label-statistic {
+  font-weight: 400;
+}
+
+.contentMain .wrapper-statistic-card .statistic-card .statistic-info .value-statistic {
+  font-weight: 500;
+}
+
+@media screen and (min-width: 0px) {
+  .contentMain .wrapper-statistic-card {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card {
+    padding: 1rem;
+    width: 45%;
+    margin: .3rem;
+    flex-direction: column;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .icon-statistic-card {
+    margin-bottom: .7rem;
+    padding: 1rem;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .statistic-info {
+    text-align: center;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .statistic-info .label-statistic {
+    font-size: 12px;
+    margin-bottom: .4rem;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .statistic-info .value-statistic {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .contentMain .wrapper-statistic-card .statistic-card {
+    padding: 1.4rem;
+    width: 47.8%;
+    margin: .5rem;
+    flex-direction: row;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .icon-statistic-card {
+    margin-bottom: 0;
+    padding: 1.2rem;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .statistic-info {
+    padding-left: 1rem;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .statistic-info .label-statistic {
+    font-size: 16px;
+    margin-bottom: .5rem;
+    text-align: start;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .statistic-info .value-statistic {
+    font-size: 18px;
+    text-align: start;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .contentMain .wrapper-statistic-card {
+    flex-wrap: nowrap;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card {
+    padding: 1rem;
+    width: 100%;
+    margin: 0;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card:not(:last-child) {
+    margin-right: 1.5rem;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .statistic-info .label-statistic {
+    font-size: 14px;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .statistic-info .value-statistic {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .contentMain .wrapper-statistic-card .statistic-card {
+    padding: 1.4rem;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .statistic-info .label-statistic {
+    font-size: 16px;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .statistic-info .value-statistic {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .contentMain .wrapper-statistic-card .statistic-card {
+    padding: 1.4rem;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .statistic-info .label-statistic {
+    font-size: 18px;
+  }
+  .contentMain .wrapper-statistic-card .statistic-card .statistic-info .value-statistic {
+    font-size: 22px;
+  }
+}
+
+.contentMain .wrapperListRequest {
+  padding: 4rem 0;
+}
+
+.contentMain .wrapperFilter {
+  padding: 1rem 0;
+}
+
+.contentMain .wrapperFilter .card .card-body form {
+  display: flex;
+  align-items: center;
+}
+
+.contentMain .wrapperFilter .card .card-body form .input-form {
+  width: 100%;
+  margin-right: 1rem;
+}
+
+.contentMain .wrapperAddRequest .card .card-body form .wrapperInputAddRequst {
+  display: flex;
+}
+
+.contentMain .wrapperAddRequest .card .card-body form .wrapperInputAddRequst .column {
+  width: 100%;
+}
+
+.contentMain .wrapperAddRequest .card .card-body form .wrapperInputAddRequst .column:first-child {
+  margin-right: 1.5rem;
+}
+
+.contentMain .wrapperAddRequest .card .card-body form .wrapperInputAddRequst .column .input-form {
+  margin-bottom: 1.2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .contentMain .wrapperFilter .card .card-body form {
+    flex-direction: column;
+  }
+  .contentMain .wrapperFilter .card .card-body form .input-form {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  .contentMain .wrapperFilter .card .card-body form .filterButton {
+    width: 100%;
+  }
+  .contentMain .wrapperFilter .card .card-body form .filterButton .btn {
+    font-size: 12px;
+  }
+  .contentMain .wrapperAddRequest .card .card-body form .wrapperInputAddRequst {
+    display: flex;
+    flex-direction: column;
+  }
+  .contentMain .wrapperAddRequest .card .card-body form .wrapperInputAddRequst .column {
+    width: 100%;
+  }
+  .contentMain .wrapperAddRequest .card .card-body form .wrapperInputAddRequst .column:first-child {
+    margin-right: 0;
+  }
+  .contentMain .wrapperAddRequest .card .card-body form .wrapperInputAddRequst .column .input-form {
+    margin-bottom: .8rem !important;
+  }
+}

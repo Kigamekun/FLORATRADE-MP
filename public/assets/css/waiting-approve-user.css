@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+/*------------
+Resset Css
+------------*/
+*, ::after, ::before, h1, h2, h3, h4, h5, h6, p {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.waitingPage {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.waitingPage .backMenu {
+  margin-bottom: 0 !important;
+  position: absolute;
+}
+
+.waitingPage .contentWaiting {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.waitingPage .contentWaiting .iconWaiting img {
+  width: 100%;
+  max-width: 500px;
+}
+
+.waitingPage .contentWaiting .text {
+  color: #535353;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 0px) {
+  .waitingPage {
+    padding: 2rem 1rem;
+    transition: .3s;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .waitingPage {
+    padding: 4rem 3rem;
+    transition: .3s;
+  }
+}
