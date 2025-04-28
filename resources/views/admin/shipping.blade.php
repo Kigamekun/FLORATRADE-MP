@@ -43,6 +43,7 @@
                 </div>
             </div>
 
+            <div class="card-body">
             <table id="countryList" class="table table-hover">
                     <thead class="table-light">
                         <tr>
@@ -76,6 +77,7 @@
                         @endforeach
                     </tbody>
             </table>
+            </div>
         </div>
     </div>
 
