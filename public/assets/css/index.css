@@ -36,7 +36,7 @@ Resset Css
 }
 
 .contentMain .wrapper-statistic-card .statistic-card:nth-child(4) .icon-statistic-card {
-  background-color: #32D18B;
+  background-color: #2DB878;
 }
 
 .contentMain .wrapper-statistic-card .statistic-card .icon-statistic-card {
@@ -161,7 +161,7 @@ Resset Css
 }
 
 .clearfix .card .card-body .clearfix .detail .nav-tabs {
-  border-bottom: 1px solid #32D18B;
+  border-bottom: 1px solid #2DB878;
 }
 
 .clearfix .card .card-body .clearfix .detail .nav-tabs .nav-link {
@@ -171,8 +171,8 @@ Resset Css
 }
 
 .clearfix .card .card-body .clearfix .detail .nav-tabs .nav-link.active {
-  color: #32D18B;
-  border-bottom: 3px solid #32D18B;
+  color: #2DB878;
+  border-bottom: 3px solid #2DB878;
   font-weight: 500;
 }
 
@@ -244,7 +244,7 @@ Resset Css
   position: absolute;
   left: 10px;
   border-radius: 3px;
-  background: #32D18B;
+  background: #2DB878;
   padding: 3px;
   color: white;
   cursor: pointer;

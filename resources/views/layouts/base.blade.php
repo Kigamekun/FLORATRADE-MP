@@ -10,13 +10,17 @@
     <!--Bootstrap Assets-->
     <link rel="stylesheet" href="{{ url('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url('assets/vendor/bootstrap/icons-1.7.2/font/bootstrap-icons.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css">
+    <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 
     <!--CSS Component For Layouting-->
     <link rel="stylesheet" href="{{ url('assets/css/app.css') }}">
     <link rel="stylesheet" href="{{ url('assets/css/preloader.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    @stack('styles')
 
     <!--Styling Custom admin blade-->
     <style>
@@ -24,10 +28,6 @@
             .alert {
                 margin: 0 1rem;
             }
-        }
-
-        body {
-            background: #F5F5F5;
         }
 
         @media screen and (min-width : 1200px) {
@@ -60,7 +60,7 @@
                         <h5 class="nameUser">{{ Auth::user()->name }}</h5>
                     </div>
                 </a>
-                @yield('menu')
+                @include('layouts.sidebar')
             </div>
         </div>
         <div id="main">
@@ -82,9 +82,7 @@
                         </button>
                         <ul class="dropdown-menu notificationList" aria-labelledby="notificationButton">
                             {{-- @if (Auth::user()->role == 0)
-                                @foreach (DB::table('notification')->where('for', 0)->orderBy('created_at', 'DESC')->limit(3)->get()
-    as $item)
-
+                                @foreach (DB::table('notification')->where('for', 0)->orderBy('created_at', 'DESC')->limit(3)->get() as $item)
                                     <li class="dropdown-item notification-item">
                                         <div class="icon">
                                             <ion-icon name="mail"></ion-icon>
@@ -98,8 +96,7 @@
                                 @endforeach
 
                             @else
-                                @foreach (DB::table('notification')->where('for', Auth::id())->orderBy('created_at', 'DESC')->limit(3)->get()
-    as $item)
+                                @foreach (DB::table('notification')->where('for', Auth::id())->orderBy('created_at', 'DESC')->limit(3)->get() as $item)
 
                                     <li class="dropdown-item notification-item">
                                         <div class="icon">
@@ -146,7 +143,7 @@
                 </div>
             @endif
 
-                    @yield('content')
+            @yield('content')
         </div>
     </div>
 

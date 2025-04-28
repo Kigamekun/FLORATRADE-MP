@@ -50,7 +50,7 @@ Resset Css
   width: 70px;
   height: 4px;
   border-radius: 5px;
-  background-color: #32D18B;
+  background-color: #2DB878;
 }
 
 .wrapperTimeLine .headTimeline h2::after {
@@ -62,7 +62,7 @@ Resset Css
   width: 70px;
   height: 4px;
   border-radius: 5px;
-  background-color: #32D18B;
+  background-color: #2DB878;
 }
 
 .wrapperTimeLine .bodyTimeLine {
@@ -130,7 +130,7 @@ Resset Css
 }
 
 .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .badge-timeline.success {
-  background-color: #32D18B;
+  background-color: #2DB878;
 }
 
 .wrapperTimeLine .bodyTimeLine .timelineWrapper .list-timeline .body-timeline .badge-timeline.decline {

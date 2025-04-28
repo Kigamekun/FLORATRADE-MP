@@ -84,19 +84,19 @@ body {
 }
 
 .paymentConfirmation .shipping-methode .wrapper-select-methode .methode input:checked ~ label {
-  border-color: #32D18B;
+  border-color: #2DB878;
 }
 
 .paymentConfirmation .shipping-methode .wrapper-select-methode .methode input:checked ~ label .name-shipping-methode ion-icon {
-  color: #32D18B;
+  color: #2DB878;
 }
 
 .paymentConfirmation .shipping-methode .wrapper-select-methode .methode input:checked ~ label .name-shipping-methode h6 {
-  color: #32D18B;
+  color: #2DB878;
 }
 
 .paymentConfirmation .shipping-methode .wrapper-select-methode .methode input:checked ~ label .price-methode {
-  color: #32D18B;
+  color: #2DB878;
 }
 
 .paymentConfirmation .shipping-methode .wrapper-select-methode .methode label {
@@ -231,7 +231,7 @@ body {
   bottom: -10px;
   left: 50%;
   border-radius: 10px;
-  background-color: #32D18B;
+  background-color: #2DB878;
   height: 2px;
   -webkit-transform: translate(-50%, 50%);
           transform: translate(-50%, 50%);
@@ -353,7 +353,7 @@ body {
 }
 
 .nextStepModalManualPayment .modal-body .card .card-body ul li::marker {
-  color: #32D18B;
+  color: #2DB878;
 }
 
 .nextStepModalManualPayment .modal-body .proof-payment p {

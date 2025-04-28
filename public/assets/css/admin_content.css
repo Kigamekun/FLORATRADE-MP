@@ -1,0 +1,63 @@
+    .btn-create-add {
+        background-color: #33B87D;
+        color: white;
+        border: none;
+    }
+
+    .btn-create-add:hover {
+        background-color: #2ea470; /* Mengubah warna saat hover */
+        color: white;
+    }
+
+    .btn-create-add:active {
+        background-color: #2a9c63; /* Mengubah warna saat klik */
+        color: white;
+    }
+
+    /* Tombol hijau solid untuk "Save/Submit" */
+    .btn-submit-save {
+        background-color: #33B87D;
+        color: white;
+        border: none;
+    }
+
+    .btn-submit-save:hover {
+        background-color: #2ea470; /* Mengubah warna saat hover */
+        color: white;
+    }
+
+    .btn-submit-save:active {
+        background-color: #2a9c63; /* Mengubah warna saat klik */
+        color: white;
+    }
+
+    /* Tombol outline putih untuk "Cancel" */
+    .btn-cancel {
+        background-color: white;
+        color: #33B87D;
+        font-weight: bold;
+        border: 1px solid #33B87D;
+    }
+
+    .btn-cancel:hover {
+        background-color: #33B87D; /* Mengubah warna latar belakang saat hover */
+        color: white;
+    }
+
+    .btn-cancel:active {
+        background-color: #2ea470; /* Mengubah warna saat klik */
+        color: white;
+    }
+
+    .title-table{
+        font-weight: bold;
+    }
+
+    .modal-title{
+        color: #33B87D;
+    }
+
+    
+
+
+

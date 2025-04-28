@@ -1,12 +1,12 @@
 @extends('layouts.base')
 
+
 @section('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css"
         integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
 @endsection
-
 
 
 @section('menu')
@@ -20,7 +20,7 @@
         </div>
         <a href="/admin" class="sidebar-menu">Dashboard Admin</a>
     </li>
-    <li class="list-menu ">
+    <li class="list-menu active">
         <div class="icon">
             <ion-icon name="folder-open"></ion-icon>
         </div>
@@ -63,9 +63,27 @@
     </li>
     <li class="list-menu">
         <div class="icon">
+            <ion-icon name="easel"></ion-icon>
+        </div>
+        <a href="{{ route('admin.banner.index') }}" class="sidebar-menu">Manage Banner</a>
+    </li>
+    <li class="list-menu">
+        <div class="icon">
+            <ion-icon name="reader"></ion-icon>
+        </div>
+        <a href="{{ route('admin.terms.index') }}" class="sidebar-menu">Manage Terms</a>
+    </li>
+    <li class="list-menu">
+        <div class="icon">
             <ion-icon name="person"></ion-icon>
         </div>
         <a href="{{ route('admin.user.index') }}" class="sidebar-menu">Manage User</a>
+    </li>
+    <li class="list-menu">
+        <div class="icon">
+            <ion-icon name="receipt"></ion-icon>
+        </div>
+        <a href="{{ route('admin.invoice.index') }}" class="sidebar-menu">Manage Invoice</a>
     </li>
     <li class="list-menu">
         <div class="icon">
@@ -81,51 +99,50 @@
         .dropify-wrapper .dropify-message p {
             font-size: 14px;
         }
+        
 
     </style>
     <div class="contentMain">
-        <h2 class="pageNameContent">Manage Banner</h2>
+        <h2 class="pageNameContent">Manage Plants</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active">Manage Banner</li>
+            <li class="breadcrumb-item active">Manage Plants</li>
         </ol>
-
         <div class="wrapperTable table-responsive">
-
             <div class="d-flex justify-content-end">
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createData">
-                    Create Banner
-
+                    Create Plants
                 </button>
-
             </div>
             <br>
-            <table id="voucherTable" class="tables" style="width:100%">
+            <table id="plantsTable" class="tables" style="width:100%">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Gambar</th>
-
+                        <th>Nama Latin</th>
+                        <th>Nama Indonesia</th>
                         <th>Action</th>
-
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $key => $item)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $item->gambar }}</td>
+                            <td>{{ $item->name_latin }}</td>
+                            <td>{{ $item->name_indonesia }}</td>
                             <td style="width: 20%">
+
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#updateData" data-id="{{ $item->id }}"
-                                    data-gambar="{{ url('banner/' . $item->gambar) }}"
-                                    data-url="{{ route('admin.banner.update', ['id' => $item->id]) }}">
+                                    data-name_latin="{{ $item->name_latin }}"
+                                    data-name_indonesia="{{ $item->name_indonesia }}" data-url="{{ route('admin.plants.update', ['id'=>$item->id]) }}">
                                     <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
                                         alt="">
                                 </button>
-                                <a class="btn btn-danger"
-                                    href="{{ route('admin.banner.delete', ['id' => $item->id]) }}"><img width="20"
-                                        height="20" src="{{ url('assets/img/trash-outline 1.svg') }}" alt=""></a>
+                                <a class="btn btn-sm btn-outline-danger delete-btn"
+                                    href="{{ route('admin.plants.delete', ['id' => $item->id]) }}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
@@ -157,23 +174,35 @@
         aria-labelledby="createDataLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div id="modal-content" class="modal-content">
+
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Create Banner</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Plants</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.banner.store') }}" method="post" enctype="multipart/form-data">
+
+                <form action="{{ route('admin.plants.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="gambar" class="form-label">Gambar Banner</label>
-                            <input type="file" class="form-control dropify" id="gambar" name="gambar"
-                                placeholder="isi gambar">
+                            <label for="name_indonesia" class="form-label">Nama Indonesia</label>
+                            <input type="text" class="form-control" id="name_indonesia" name="name_indonesia"
+                                placeholder="Masukan nama indonesia">
                         </div>
+
+                        <div class="mb-3">
+                            <label for="name_latin" class="form-label">Nama Latin</label>
+                            <input type="text" class="form-control" id="name_latin" name="name_latin"
+                                placeholder="Masukan nama latin">
+                        </div>
+
                     </div>
+
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
+
                 </form>
             </div>
         </div>
@@ -193,7 +222,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#voucherTable').DataTable({});
+            $('#plantsTable').DataTable({
+
+            });
         });
     </script>
 
@@ -201,22 +232,32 @@
     <script>
         $('#updateData').on('shown.bs.modal', function(e) {
             var html = `
+
+
+
             <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Banner</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Plants</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="${$(e.relatedTarget).data('url')}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                            <label for="gambar" class="form-label">Gambar Banner</label>
-                            <input type="file" class="form-control dropify" data-default-file="${$(e.relatedTarget).data('gambar')}" id="gambar" name="gambar" placeholder="isi gambar">
+                        <label for="name_indonesia" class="form-label">Nama Indonesia</label>
+                        <input type="text" class="form-control" id="name_indonesia" name="name_indonesia" placeholder="Masukan nama indonesia" value="${$(e.relatedTarget).data('name_indonesia')}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="name_latin" class="form-label">Nama Latin</label>
+                        <input type="text" class="form-control" id="name_latin" name="name_latin" placeholder="Masukan nama latin" value="${$(e.relatedTarget).data('name_latin')}"
+                        >
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
+
             </form>
 `;
 

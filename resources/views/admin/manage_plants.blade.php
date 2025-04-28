@@ -1,6 +1,5 @@
 @extends('layouts.base')
 
-
 @section('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css"
@@ -8,75 +7,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer">
 @endsection
 
+@push('styles')
+<link href="{{ asset('assets/css/admin_content.css') }}" rel="stylesheet">
+@endpush
 
-
-@section('menu')
-<div class="sidebar-menu-wrapper">
-    <li class="listMenuName">
-        <p>Admin Menu</p>
-    </li>
-    <li class="list-menu ">
-        <div class="icon">
-            <ion-icon name="grid"></ion-icon>
-        </div>
-        <a href="/admin" class="sidebar-menu">Dashboard Admin</a>
-    </li>
-    <li class="list-menu active">
-        <div class="icon">
-            <ion-icon name="folder-open"></ion-icon>
-        </div>
-        <a href="{{ route('admin.plants.index') }}" class="sidebar-menu">Manage Marga (Plants)</a>
-    </li>
-
-    <li class="list-menu ">
-        <div class="icon">
-            <ion-icon name="leaf"></ion-icon>
-        </div>
-        <a href="{{ route('admin.plant.index') }}" class="sidebar-menu">Manage Plant</a>
-    </li>
-
-    <li class="list-menu ">
-        <div class="icon">
-            <ion-icon name="card"></ion-icon>
-        </div>
-        <a href="{{ route('admin.voucher.index') }}" class="sidebar-menu">Manage Voucher</a>
-    </li>
-
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="airplane"></ion-icon>
-        </div>
-        <a href="{{ route('admin.shipping.index') }}" class="sidebar-menu">Manage Shipping</a>
-    </li>
-
-    <li class="list-menu ">
-        <div class="icon">
-            <ion-icon name="cart"></ion-icon>
-        </div>
-        <a href="{{ route('admin.order.index') }}" class="sidebar-menu">Manage Transaction</a>
-    </li>
-
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="cash"></ion-icon>
-        </div>
-        <a href="{{ route('admin.pricing.index') }}" class="sidebar-menu">Manage Pricing</a>
-    </li>
-
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="person"></ion-icon>
-        </div>
-        <a href="{{ route('admin.user.index') }}" class="sidebar-menu">Manage User</a>
-    </li>
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="receipt"></ion-icon>
-        </div>
-        <a href="{{ route('admin.faq.index') }}" class="sidebar-menu">Manage Faq</a>
-    </li>
-</div>
-@endsection
 
 @section('content')
     <style>
@@ -84,61 +18,66 @@
             font-size: 14px;
         }
 
+        div.dataTables_wrapper div.dataTables_length,
+        div.dataTables_wrapper div.dataTables_filter {
+            margin-bottom: 1rem; /* atau ubah sesuai kebutuhan */
+        }
+
     </style>
     <div class="contentMain">
-        <h2 class="pageNameContent">Manage Plants</h2>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active">Manage Plants</li>
+        <h1 class="pageNameContent">Manage Plant Categories</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">User</li>
+            <li class="breadcrumb-item active">Manage Plant Categories</li>
         </ol>
-                <div class="wrapperTable table-responsive">
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createData">
-                            Create Plants
-                        </button>
-                    </div>
-                    <br>
-                    <table id="plantsTable" class="tables" style="width:100%">
-                        <thead>
+
+        <div class="card mb-4">
+            <div class="wrapperTable table-responsive">
+                    <div class="card-header mx-1 bg-white d-flex justify-content-between align-items-center">
+                    <span class="fw-normal fs-4 my-3 d-block">
+                        Plant Categories Data
+                    </span>
+                    <button type="button" class="btn btn-create-add" data-bs-toggle="modal" data-bs-target="#createData">
+                        + Add Categories
+                    </button>
+            </div>
+
+            <div class="card-body">
+
+                <table id="plantsTable" class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="text-center">No</th>
+                            <th>Nama Latin</th>
+                            <th>Nama Indonesia</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $key => $item)
                             <tr>
-                                <th>#</th>
-                                <th>Nama Latin</th>
-                                <th>Nama Indonesia</th>
-                                <th>Action</th>
+                                <td class="text-center">{{ $key + 1 }}</td>
+                                <td>{{ $item->name_latin }}</td>
+                                <td>{{ $item->name_indonesia }}</td>
+                                <td style="width: 20%" class="text-center">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#updateData" data-id="{{ $item->id }}"
+                                    data-name_latin="{{ $item->name_latin }}"
+                                    data-name_indonesia="{{ $item->name_indonesia }}" data-url="{{ route('admin.plants.update', ['id'=>$item->id]) }}">
+                                    <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
+                                        alt="">
+                                </button>
+                                <a class="btn btn-danger"
+                                        href="{{ route('admin.plants.delete', ['id' => $item->id]) }}"><img width="20"
+                                            height="20" src="{{ url('assets/img/trash-outline 1.svg') }}" alt=""></a>
+                            </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data as $key => $item)
-                                <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td>{{ $item->name_latin }}</td>
-                                    <td>{{ $item->name_indonesia }}</td>
-                                    <td style="width: 20%">
-
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#updateData" data-id="{{ $item->id }}"
-                                            data-name_latin="{{ $item->name_latin }}"
-                                            data-name_indonesia="{{ $item->name_indonesia }}" data-url="{{ route('admin.plants.update', ['id'=>$item->id]) }}">
-                                            <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
-                                                alt="">
-                                        </button>
-                                        <a class="btn btn-danger"
-                                            href="{{ route('admin.plants.delete', ['id' => $item->id]) }}"><img width="20"
-                                                height="20" src="{{ url('assets/img/trash-outline 1.svg') }}" alt=""></a>
-
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
-
-
-
-
 
     <!-- Modal -->
     <div class="modal fade" id="updateData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -160,7 +99,7 @@
             <div id="modal-content" class="modal-content">
 
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Plants</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Add Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -215,39 +154,36 @@
 
     <script>
         $('#updateData').on('shown.bs.modal', function(e) {
-            var html = `
+            let id = $(e.relatedTarget).data('id');
+            let nameLatin = $(e.relatedTarget).data('name_latin');
+            let nameIndonesia = $(e.relatedTarget).data('name_indonesia');
+            let url = $(e.relatedTarget).data('url'); // Pastikan ini adalah URL dengan metode PUT
 
-
-
-            <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Plants</h5>
+            let html = `
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="${$(e.relatedTarget).data('url')}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="name_indonesia" class="form-label">Nama Indonesia</label>
-                        <input type="text" class="form-control" id="name_indonesia" name="name_indonesia" placeholder="Masukan nama indonesia" value="${$(e.relatedTarget).data('name_indonesia')}">
+                <form action="${url}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="edit_name_indonesia" class="form-label">Nama Indonesia</label>
+                            <input type="text" class="form-control" id="edit_name_indonesia" name="name_indonesia" value="${nameIndonesia}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit_name_latin" class="form-label">Nama Latin</label>
+                            <input type="text" class="form-control" id="edit_name_latin" name="name_latin" value="${nameLatin}">
+                        </div>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="name_latin" class="form-label">Nama Latin</label>
-                        <input type="text" class="form-control" id="name_latin" name="name_latin" placeholder="Masukan nama latin" value="${$(e.relatedTarget).data('name_latin')}"
-                        >
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-
-            </form>
-`;
-
-            $('#modal-content').html(html);
-            $('.dropify').dropify();
-
+                </form>
+            `;
+            $(this).find('.modal-content').html(html);
         });
     </script>
 @endsection

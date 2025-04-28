@@ -44,7 +44,7 @@ p {
 }
 
 .navbar .container .navbar-toggler:focus {
-    border-color: #32D18B;
+    border-color: #2db878;
     box-shadow: 0 0 0 0.25rem rgba(83, 187, 139, 0.4);
 }
 
@@ -113,7 +113,7 @@ p {
     }
 
     .navbar .container .navbar-collapse .navbar-nav .menu .nav-link.active {
-        color: #32D18B;
+        color: #2DB878;
         font-weight: 500;
     }
 
@@ -157,7 +157,7 @@ p {
     }
 
     .navbar .container .navbar-collapse .navbar-nav .menu .nav-link.active {
-        color: #32D18B;
+        color: #2DB878;
         font-weight: 600;
     }
 
@@ -169,7 +169,7 @@ p {
         position: absolute;
         bottom: -5px;
         transform: translateX(50%);
-        background-color: #32D18B;
+        background-color: #2DB878;
         transition: .3s ease;
     }
 
@@ -203,7 +203,7 @@ p {
     .navbar .container .navbar-collapse .navbar-nav .getStarted::after {
         content: '';
         display: block;
-        background-color: #32D18B;
+        background-color: #2DB878;
         height: 100%;
         position: absolute;
         top: 0;
@@ -240,7 +240,7 @@ p {
     .navbar .container .navbar-collapse .navbar-nav .getStarted .buttonWrapper .nav-link {
         background-color: #fff;
         border-radius: 6px;
-        color: #32D18B;
+        color: #2DB878;
         font-weight: 500;
         padding: .5rem 1.4rem;
         margin-left: 1.5rem;
@@ -288,7 +288,7 @@ p {
 .wrapperJumbotron .container .content .getStartedButton a {
     text-decoration: none;
     color: #fff;
-    background: #32D18B;
+    background: #2DB878;
     padding: .7rem 2rem;
     border-radius: 6px;
     font-weight: 600;
@@ -777,7 +777,7 @@ p {
 }
 
 .mainContent .container .testimoniSection .wrapperTestimoni .testimoniList .nameUser {
-    color: #32D18B;
+    color: #2DB878;
 }
 
 .mainContent .container .testimoniSection .wrapperTestimoni .slick-dots {
@@ -785,7 +785,7 @@ p {
 }
 
 .mainContent .container .testimoniSection .wrapperTestimoni .slick-dots li.slick-active button::before {
-    color: #32D18B;
+    color: #2DB878;
 }
 
 .mainContent .container .testimoniSection .wrapperTestimoni .slick-dots li button::before {
@@ -867,13 +867,13 @@ p {
 
 .mainContent .container .contactSection .contact .form-group .form-control:focus,
 .mainContent .container .contactSection .contact .form-group .form-select:focus {
-    border-color: #32D18B;
+    border-color: #2db878;
     box-shadow: 0 0 0 0.25rem rgba(83, 187, 139, 0.4);
 }
 
 .mainContent .container .contactSection .contact .buttonSubmit {
     width: 100%;
-    background: #32D18B;
+    background: #2DB878;
     color: #fff;
     padding: .7rem 1rem;
     font-weight: 500;
@@ -972,7 +972,7 @@ footer .container .contentFooter .line .socialMedia {
 footer .container .contentFooter .line .socialMedia .social {
     padding: .7rem;
     border-radius: 50%;
-    background: #32D18B;
+    background: #2DB878;
     display: flex;
     align-items: center;
     justify-content: center;

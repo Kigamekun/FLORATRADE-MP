@@ -1,153 +1,83 @@
 @extends('layouts.base')
 
 @section('css')
-    <link rel="stylesheet" href="{{ url('assets/css/country-license.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css"
+        integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
 @endsection
 
+@push('styles')
+<link href="{{ asset('assets/css/admin_content.css') }}" rel="stylesheet">
+@endpush
 
-
-@section('menu')
-<div class="sidebar-menu-wrapper">
-    <li class="listMenuName">
-        <p>Admin Menu</p>
-    </li>
-    <li class="list-menu ">
-        <div class="icon">
-            <ion-icon name="grid"></ion-icon>
-        </div>
-        <a href="/admin" class="sidebar-menu">Dashboard Admin</a>
-    </li>
-    <li class="list-menu ">
-        <div class="icon">
-            <ion-icon name="folder-open"></ion-icon>
-        </div>
-        <a href="{{ route('admin.plants.index') }}" class="sidebar-menu">Manage Marga (Plants)</a>
-    </li>
-
-    <li class="list-menu ">
-        <div class="icon">
-            <ion-icon name="leaf"></ion-icon>
-        </div>
-        <a href="{{ route('admin.plant.index') }}" class="sidebar-menu">Manage Plant</a>
-    </li>
-
-    <li class="list-menu ">
-        <div class="icon">
-            <ion-icon name="card"></ion-icon>
-        </div>
-        <a href="{{ route('admin.voucher.index') }}" class="sidebar-menu">Manage Voucher</a>
-    </li>
-
-    <li class="list-menu active">
-        <div class="icon">
-            <ion-icon name="airplane"></ion-icon>
-        </div>
-        <a href="{{ route('admin.shipping.index') }}" class="sidebar-menu">Manage Shipping</a>
-    </li>
-
-    <li class="list-menu ">
-        <div class="icon">
-            <ion-icon name="cart"></ion-icon>
-        </div>
-        <a href="{{ route('admin.order.index') }}" class="sidebar-menu">Manage Transaction</a>
-    </li>
-
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="cash"></ion-icon>
-        </div>
-        <a href="{{ route('admin.pricing.index') }}" class="sidebar-menu">Manage Pricing</a>
-    </li>
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="person"></ion-icon>
-        </div>
-        <a href="{{ route('admin.user.index') }}" class="sidebar-menu">Manage User</a>
-    </li>
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="receipt"></ion-icon>
-        </div>
-        <a href="{{ route('admin.faq.index') }}" class="sidebar-menu">Manage Faq</a>
-    </li>
-</div>
-@endsection
 
 @section('content')
+    <style>
+        .dropify-wrapper .dropify-message p {
+            font-size: 14px;
+        }
+
+        div.dataTables_wrapper div.dataTables_length,
+        div.dataTables_wrapper div.dataTables_filter {
+            margin-bottom: 1rem; /* atau ubah sesuai kebutuhan */
+        }
+
+    </style>
     <div class="contentMain">
-        <h2 class="pageNameContent">Fee Ship List</h2>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active">Fee Ship List</li>
+        <h1 class="pageNameContent">Manage Shipping</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">User</li>
+            <li class="breadcrumb-item active">Manage Shipping</li>
         </ol>
 
-        <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                Add Fee Ship
-            </button>
-        </div>
+        <div class="card mb-4">
+            <div class="wrapperTable table-responsive">
+                <div class="card-header mx-1 bg-white d-flex justify-content-between align-items-center">
+                    <span class="fw-normal fs-4 my-3 d-block">
+                            Shipping Data
+                    </span>
+                    <button type="button" class="btn btn-create-add" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        + Add Shipping
+                    </button>
+                </div>
+            </div>
 
-        <div class="wrapperTable table-responsive">
-            <table id="countryList" class="tables" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Shipping Method</th>
-                        <th>Less Than Equal (X)</th>
-
-                        <th>Value</th>
-                        <th>Action</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $key => $item)
+            <table id="countryList" class="table table-hover">
+                    <thead class="table-light">
                         <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>{{ $item->ship_method }}</td>
-                            <td>
-                                <div class="detailName">
-                                    <p class="name">{{ $item->count }}</p>
-                                </div>
-                            </td>
-
-
-                            <td>
-                                <div class="detailName">
-                                    <p class="name">${{ $item->price }}</p>
-                                </div>
-                            </td>
-                            <td>
-
-                                <div class="buttonAction">
-                                    <button type="button" data-id="{{ $item->id }}" data-bs-toggle="modal"
-                                        data-bs-target="#updateTanaman" class="buttons success text-white me-2"
-                                        data-ship_method="{{ $item->ship_method }}" data-count="{{ $item->count }}"
-                                        data-price="{{ $item->price }}" data-url="{{ route('admin.shipping.update', ['id'=>$item->id]) }}">
-
-                                        <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
-                                            alt="">
-                                    </button>
-
-                                    <a href="{{ route('admin.shipping.delete', ['id' => $item->id]) }}"
-                                        class="buttons danger text-white">
-                                        <img width="20" height="20" src="{{ url('assets/img/trash-outline 1.svg') }}"
-                                            alt="">
-                                    </a>
-                                </div>
-                            </td>
+                            <th class="text-center">No</th>
+                            <th>Shipping Method</th>
+                            <th>Less Than Equal (X)</th>
+                            <th>Value</th>
+                            <th class="text-center">Action</th>
                         </tr>
-                    @endforeach
-                </tbody>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $key => $item)
+                            <tr>
+                                <td class="text-center">{{ $key + 1 }}</td>
+                                <td>{{ $item->ship_method }}</td>
+                                <td>{{ $item->count }}</td>
+                                <td>{{ $item->price }}</td>
+                                <td style="width: 20%" class="text-center">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#updateTanaman" data-id="{{ $item->id }}"
+                                    data-ship_method="{{ $item->ship_method }}" data-count="{{ $item->count }}"
+                                    data-price="{{ $item->price }}" data-url="{{ route('admin.shipping.update', ['id'=>$item->id]) }}">
+                                    <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
+                                        alt="">
+                                </button>
+                                <a class="btn btn-danger"
+                                        href="{{ route('admin.shipping.delete', ['id' => $item->id]) }}"><img width="20"
+                                            height="20" src="{{ url('assets/img/trash-outline 1.svg') }}" alt=""></a>
+                            </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
             </table>
         </div>
-
-
     </div>
-
-
-
-
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -208,35 +138,35 @@
 
 
 
-        $('.file-lisensi').change(function() {
+        // $('.file-lisensi').change(function() {
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: "/admin/changeLicenseCountry",
-                method: "POST",
-                data: {
-                    file_lisensi: $(this).prop('checked') ? 1 : 0,
-                    country_id: $(this).attr('data-id')
+        //     $.ajaxSetup({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         }
+        //     });
+        //     $.ajax({
+        //         url: "/admin/changeLicenseCountry",
+        //         method: "POST",
+        //         data: {
+        //             file_lisensi: $(this).prop('checked') ? 1 : 0,
+        //             country_id: $(this).attr('data-id')
 
-                },
-                success: function(data) {
+        //         },
+        //         success: function(data) {
 
-                    console.log(data);
-
-
-                },
-                error: function(data) {
-                    console.log(data);
+        //             console.log(data);
 
 
-                }
+        //         },
+        //         error: function(data) {
+        //             console.log(data);
 
-            });
-        });
+
+        //         }
+
+        //     });
+        // });
     </script>
 
 

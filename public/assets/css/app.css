@@ -100,7 +100,7 @@ Resset Css
   display: block;
   position: absolute;
   left: -115px;
-  background-color: #32D18B;
+  background-color: #2DB878;
   width: 160px;
   height: 45px;
   border-radius: 0 50px 50px 0;
@@ -178,7 +178,7 @@ Resset Css
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #32D18B;
+  background-color: #2DB878;
   border-radius: 6px;
 }
 
@@ -200,7 +200,7 @@ Resset Css
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #32D18B;
+  background-color: #2DB878;
   padding: .6rem;
   border-radius: 4px;
 }
@@ -215,7 +215,7 @@ Resset Css
 }
 
 #app #main .headMain .user-action .notification .notificationList .notification-item .wraperMessage .label {
-  color: #32D18B;
+  color: #2DB878;
   font-weight: 500;
 }
 
@@ -242,7 +242,7 @@ Resset Css
 
 #app #main .contentMain .breadcrumb .breadcrumb-item a {
   text-decoration: none;
-  color: #32D18B;
+  color: #2DB878;
   transition: .3s ease;
 }
 
@@ -374,16 +374,16 @@ Resset Css
 }
 
 /*Component Table*/
-.wrapperTable {
+/* .wrapperTable {
   padding: 2rem 0;
-}
+} */
 
 .wrapperTable .pagination {
   margin-top: 20rem;
 }
 
 .wrapperTable .pagination .paginate_button.active .page-link {
-  background: #32D18B !important;
+  background: #2DB878 !important;
   color: #fff;
   border-radius: 6px;
 }
@@ -449,7 +449,7 @@ Resset Css
 }
 
 .wrapperTable .tables tbody tr td .code .numberCode {
-  color: #32D18B;
+  color: #2DB878;
   text-decoration: none;
   transition: .3s;
 }
@@ -485,7 +485,7 @@ Resset Css
 
 .wrapperTable .tables tbody tr td .buttonAction .success {
   margin-right: .5rem;
-  background: #32D18B;
+  background: #2DB878;
 }
 
 .wrapperTable .tables tbody tr td .buttonAction .success:hover {
@@ -525,7 +525,7 @@ Resset Css
 }
 
 .wrapperTable .tables tbody tr td .status.status-primary {
-  background-color: #32D18B;
+  background-color: #2DB878;
 }
 
 .wrapperTable .tables tbody tr td .status.status-danger {
@@ -563,7 +563,7 @@ Resset Css
 }
 
 .tabsMenu .nav-item .nav-link.active {
-  background: #32D18B;
+  background: #2DB878;
   font-weight: 400;
   color: #fff;
 }
@@ -596,7 +596,7 @@ Resset Css
 }
 
 .form-control:focus, .form-select:focus {
-  border-color: #32D18B;
+  border-color: #2db878;
   box-shadow: 0 0 0 0.25rem rgba(83, 187, 139, 0.4);
 }
 
@@ -611,13 +611,13 @@ Resset Css
 }
 
 .btn-primary {
-  background-color: #32D18B;
+  background-color: #2DB878;
   border-radius: 5px !important;
 }
 
 .btn-primary:focus {
-  background: #32D18B !important;
-  border-color: #32D18B;
+  background: #2DB878 !important;
+  border-color: #2db878;
   box-shadow: 0 0 0 0.25rem rgba(45, 184, 120, 0.5);
 }
 
@@ -632,7 +632,7 @@ Resset Css
 }
 
 .bg-primary {
-  background: #32D18B !important;
+  background: #2DB878 !important;
   transition: .3s;
 }
 
@@ -673,7 +673,7 @@ Resset Css
 }
 
 .numberCode {
-  color: #32D18B;
+  color: #2DB878;
 }
 
 .status {
@@ -684,7 +684,7 @@ Resset Css
 }
 
 .status-primary {
-  background-color: #32D18B;
+  background-color: #2DB878;
 }
 
 .status-danger {

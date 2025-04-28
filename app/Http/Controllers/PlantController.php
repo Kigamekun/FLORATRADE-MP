@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\{Plant,Plants};
-use Illuminate\Foundation\Validation\ValidatesRequests;
-
 class PlantController extends Controller
 {
-    use ValidatesRequests;
 
 
     public function uploadThumb($file,$thumbname,$destinationPath)
@@ -82,8 +79,7 @@ class PlantController extends Controller
         }
 
         try {
-            $categoryId = Plants::where('name_latin', $request->category_id)->first()->id;
-            $request->merge(['category_id' => $categoryId]);
+            $request->category_id = Plants::where('name_latin',$request->category_id)->first()->id;
         } catch (\Throwable $th) {
             return redirect()->back()->with(['message'=>'Gagal ditambahkan','status'=>'danger']);
         }

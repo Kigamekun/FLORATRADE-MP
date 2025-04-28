@@ -162,7 +162,7 @@ body {
 }
 
 .chat-container .body-chat .message-control-container .wrapper-message-control .type-message .insert-file-upload {
-  background-color: #32D18B;
+  background-color: #2DB878;
   padding: 1rem;
   border-radius: 50%;
   display: -webkit-box;
@@ -196,7 +196,7 @@ body {
 }
 
 .chat-container .body-chat .message-control-container .wrapper-message-control .type-message .send-message {
-  background-color: #32D18B;
+  background-color: #2DB878;
   padding: 1rem;
   border: none;
   border-radius: 50%;

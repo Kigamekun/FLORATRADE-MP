@@ -283,7 +283,7 @@ body {
 }
 
 .modal-tracking .modal-dialog .modal-content .modal-body .tracking .process-track .bullets-track.now-proccess {
-  background-color: #32D18B;
+  background-color: #2DB878;
   -webkit-box-shadow: 0 0 0 4px var(--G200, #D6FFDE);
           box-shadow: 0 0 0 4px var(--G200, #D6FFDE);
 }

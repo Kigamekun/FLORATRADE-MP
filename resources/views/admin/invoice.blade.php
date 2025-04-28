@@ -61,7 +61,18 @@
         </div>
         <a href="{{ route('admin.pricing.index') }}" class="sidebar-menu">Manage Pricing</a>
     </li>
-
+    <li class="list-menu">
+        <div class="icon">
+            <ion-icon name="easel"></ion-icon>
+        </div>
+        <a href="{{ route('admin.banner.index') }}" class="sidebar-menu">Manage Banner</a>
+    </li>
+    <li class="list-menu">
+        <div class="icon">
+            <ion-icon name="reader"></ion-icon>
+        </div>
+        <a href="{{ route('admin.terms.index') }}" class="sidebar-menu">Manage Terms</a>
+    </li>
     <li class="list-menu">
         <div class="icon">
             <ion-icon name="person"></ion-icon>

@@ -97,7 +97,7 @@ body {
   display: block;
   height: 3px;
   width: 50%;
-  background-color: #32D18B;
+  background-color: #2DB878;
   position: absolute;
   bottom: -5px;
   border-radius: 2px;
@@ -125,7 +125,7 @@ body {
 }
 
 .faq-section .wrapper-faq .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
-  color: #32D18B;
+  color: #2DB878;
 }
 
 .faq-section .wrapper-faq .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) ion-icon {

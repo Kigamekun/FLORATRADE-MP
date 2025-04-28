@@ -18,7 +18,7 @@ margin-top: 20rem;
 }
 
 .wrapperTable .pagination .paginate_button.active .page-link {
-background: #32D18B !important;
+background: #2DB878 !important;
 color: #fff;
 border-radius: 6px;
 }
@@ -84,7 +84,7 @@ font-size: 16px;
 }
 
 .wrapperTable .tables tbody tr td .code .numberCode {
-color: #32D18B;
+color: #2DB878;
 text-decoration: none;
 transition: .3s;
 }
@@ -120,7 +120,7 @@ transition: .2s;
 
 .wrapperTable .tables tbody tr td .buttonAction .success {
 margin-right: .5rem;
-background: #32D18B;
+background: #2DB878;
 }
 
 .wrapperTable .tables tbody tr td .buttonAction .success:hover {
@@ -160,7 +160,7 @@ background-color: #FFC107;
 }
 
 .wrapperTable .tables tbody tr td .status.status-primary {
-background-color: #32D18B;
+background-color: #2DB878;
 }
 
 .wrapperTable .tables tbody tr td .status.status-danger {
@@ -187,12 +187,12 @@ background-color: #DC3545;
 }
 
 .btn-primary {
-    background-color: #32D18B;
+    background-color: #2DB878;
     border-radius: 5px !important;
 }
 .btn-primary:focus {
-    background: #32D18B !important;
-    border-color: #32D18B;
+    background: #2DB878 !important;
+    border-color: #2db878;
     box-shadow: 0 0 0 0.25rem rgba(45, 184, 120, 0.5);
 }
 

@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Voucher;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-
 class VoucherController extends Controller
 {
-    use ValidatesRequests;
     /**
      * Display a listing of the resource.
      *
@@ -40,10 +37,9 @@ class VoucherController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
+        $request->validate([
             'code' => 'required',
-            'disc' => 'required',
-
+            'disc' => 'required|numeric|min:0|max:100',
         ]);
 
 

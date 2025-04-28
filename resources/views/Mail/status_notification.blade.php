@@ -34,7 +34,7 @@
 
     <div class="container" style="height: 100%; width: 100%;">
         <div class="wrapperContainer" style="margin: auto; width: 100%; max-width: 800px;">
-            <div class="wrapperHead" style="background-color: #32D18B; padding: 3rem; border-radius: 10px 10px 0 0; ">
+            <div class="wrapperHead" style="background-color: #2DB878; padding: 3rem; border-radius: 10px 10px 0 0; ">
                 <table style="width: 100%;">
                     <tbody>
                         <tr>
@@ -74,7 +74,7 @@
                     <p style="margin: 0; margin-bottom:.5rem;">Hi <span class="name"
                             style="font-weight: 600;">{{ $data->nama_penerima }},</span></p>
                     <p style="margin: 0;">Your Request, <span class="numberRequest"
-                            style="color: #32D18B; font-weight: 600;">{{ $data->kode_transaksi }},</span></p>
+                            style="color: #2DB878; font-weight: 600;">{{ $data->kode_transaksi }},</span></p>
                     <p style="margin: 0;">We are currently in {{ $status[$data->status] }}, please wait a moment.</p>
                 </div>
 
@@ -82,7 +82,7 @@
                     <tbody>
                         <tr>
                             <td align="center">
-                                <a href="https://plantsasri.co.id/" style="font-family: 'Poppins', sans-serif; background: #32D18B; padding: .8rem 2rem; border-radius: 6px; text-decoration: none; color: #fff;">View More</a>
+                                <a href="https://plantsasri.co.id/" style="font-family: 'Poppins', sans-serif; background: #2DB878; padding: .8rem 2rem; border-radius: 6px; text-decoration: none; color: #fff;">View More</a>
                             </td>
                         </tr>
                     </tbody>

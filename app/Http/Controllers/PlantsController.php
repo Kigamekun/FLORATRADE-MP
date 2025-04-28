@@ -17,6 +17,8 @@ class PlantsController extends Controller
         return view('admin.manage_plants', [
             'data' => Plants::all()
         ]);
+
+
     }
 
     /**

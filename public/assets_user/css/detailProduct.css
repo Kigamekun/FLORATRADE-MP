@@ -37,7 +37,7 @@ Resset Css
 }
 
 .wrapperDetailProduct .wrapper-image-product .nav-images .is-active img {
-  border: 2px solid #32D18B;
+  border: 2px solid #2DB878;
 }
 
 .wrapperDetailProduct .wrapper-image-product .nav-images .slick-list {
@@ -151,7 +151,7 @@ Resset Css
 .wrapperDetailProduct .wrapper-detail-product .wrapper-quantity-product .quantity-product .product-quantity {
   width: 50px;
   min-width: 0;
-  color: #32D18B;
+  color: #2DB878;
   display: inline-block;
   text-align: center;
   -webkit-appearance: textfield;
@@ -193,7 +193,7 @@ Resset Css
   bottom: -10px;
   left: 50%;
   border-radius: 10px;
-  background-color: #32D18B;
+  background-color: #2DB878;
   height: 2px;
   -webkit-transform: translate(-50%, 50%);
           transform: translate(-50%, 50%);

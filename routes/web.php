@@ -29,6 +29,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+// Menambahkan route untuk products.index
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
 Route::get('/profile', function () {
     return view('auth.profile');
 })->middleware(['auth'])->name('profile');
@@ -89,7 +92,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','checkIsAdmin'])->gro
         Route::get('/create', [PlantsController::class,'create'])->name('plants.create');
         Route::post('/store', [PlantsController::class,'store'])->name('plants.store');
         Route::get('/edit/{id}', [PlantsController::class,'edit'])->name('plants.edit');
-        Route::post('/update/{id}', [PlantsController::class,'update'])->name('plants.update');
+        Route::put('/update/{id}', [PlantsController::class,'update'])->name('plants.update');
         Route::get('/delete/{id}', [PlantsController::class,'destroy'])->name('plants.delete');
     });
 

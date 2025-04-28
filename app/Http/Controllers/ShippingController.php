@@ -4,15 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-
 class ShippingController extends Controller
 {
-    use ValidatesRequests;
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -24,7 +21,7 @@ class ShippingController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -35,7 +32,7 @@ class ShippingController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -68,12 +65,12 @@ class ShippingController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\DB::table('shipping_fees')  $shipping
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $data = DB::table('shipping_fees')->where('id', $id)->first();
-        return response()->view('shipping.show', [
+        $data = DB::table('shipping_fees')::find($id);
+        return view('shipping.show', [
             'data' => $data
         ]);
     }
@@ -82,12 +79,12 @@ class ShippingController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\DB::table('shipping_fees')  $shipping
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $data = DB::table('shipping_fees')->where('id',$id)->first();
-        return response()->view('shipping.create-or-edit', [
+        return view('shipping.create-or-edit', [
             'data' => $data,
             'act' => 'edit'
         ]);
@@ -99,7 +96,7 @@ class ShippingController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\DB::table('shipping_fees')  $shipping
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -112,6 +109,8 @@ class ShippingController extends Controller
 
         ]);
 
+
+
         return redirect()->back()->with(['message'=>'Update Shipping berhasil di update','status'=>'success']);
     }
 
@@ -119,7 +118,7 @@ class ShippingController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\DB::table('shipping_fees')  $shipping
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {

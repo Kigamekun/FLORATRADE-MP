@@ -40,7 +40,7 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
 .uneditable-input:focus {
-    border-color: #32D18B;
+    border-color: #2DB878;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(43, 203, 80, 0.25);
     box-shadow: 0 0 0 0.2rem rgba(43, 203, 80, 0.25);
     outline: 1 none;
@@ -184,7 +184,7 @@ input[type="color"]:focus,
 }
 
 #auth .wrapper .authForm form .bodyForm .wrapperButton .button {
-    background: #32D18B;
+    background: #2DB878;
     color: #fff;
     font-weight: 600;
     width: 100%;

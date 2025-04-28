@@ -36,7 +36,7 @@
         }
 
         .cardd .card-body ul li::marker {
-        color: #32D18B;
+        color: #2DB878;
         }
 
 
@@ -317,12 +317,6 @@
                                             </div>
                                         @endforeach
                                     </div>
-
-
-
-
-
-
 
                                     <div class="tab-pane fade" id="nav-done" role="tabpanel"
                                         aria-labelledby="nav-done-tab">

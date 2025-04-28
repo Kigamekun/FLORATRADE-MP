@@ -32,7 +32,7 @@ body {
 }
 
 .button.button-primary {
-  background-color: #32D18B;
+  background-color: #2DB878;
   color: #fff;
   -webkit-transition: background-color .3s ease;
   transition: background-color .3s ease;
@@ -59,7 +59,7 @@ body {
 
 .button.button-outline {
   background-color: #fff;
-  border: 1px solid #32D18B;
+  border: 1px solid #2DB878;
   -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
@@ -71,9 +71,9 @@ body {
 }
 
 .button.button-outline-primary {
-  border: 1px solid #32D18B;
+  border: 1px solid #2DB878;
   background-color: #fff;
-  color: #32D18B;
+  color: #2DB878;
   text-decoration: none;
   z-index: 2;
   -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
@@ -81,7 +81,7 @@ body {
 }
 
 .button.button-outline-primary:hover {
-  background-color: #32D18B;
+  background-color: #2DB878;
   color: #fff;
   -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
@@ -100,7 +100,7 @@ body {
 }
 
 .button.button-ghost {
-  color: #32D18B;
+  color: #2DB878;
   background-color: transparent;
   -webkit-transition: color .2s ease;
   transition: color .2s ease;
@@ -113,14 +113,14 @@ body {
 }
 
 .button.button-link {
-  color: #32D18B;
+  color: #2DB878;
 }
 
 .button.button-text {
   padding: 0 !important;
   border-radius: 0 !important;
   background-color: transparent;
-  color: #32D18B;
+  color: #2DB878;
 }
 
 .button.button-radius {
@@ -186,15 +186,15 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
 .uneditable-input:focus {
-  border-color: #32D18B !important;
+  border-color: #2DB878 !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
   outline: 1 none !important;
 }
 
 input[type="checkbox"]:checked {
-  border: 1px solid #32D18B;
-  background-color: #32D18B;
+  border: 1px solid #2DB878;
+  background-color: #2DB878;
 }
 
 input[type="checkbox"]:hover {
@@ -252,7 +252,7 @@ input[type="checkbox"]:focus {
 }
 
 .form-select:focus {
-  border-color: #32D18B;
+  border-color: #2DB878;
   -webkit-box-shadow: none;
           box-shadow: none;
   outline: 1 none;
@@ -434,7 +434,7 @@ input[type="checkbox"]:focus {
   font-size: 10px;
   border-radius: 4px;
   padding: 4px 8px;
-  background-color: #32D18B;
+  background-color: #2DB878;
   color: #fff;
   position: absolute;
   right: -10px;
@@ -624,7 +624,7 @@ input[type="checkbox"]:focus {
   padding: 4px 8px;
   border-radius: 4px;
   background: #bbedd6;
-  color: #32D18B;
+  color: #2DB878;
   font-weight: 700;
   margin-right: 4px;
 }
@@ -646,7 +646,7 @@ input[type="checkbox"]:focus {
 }
 
 .product .infoProduct p.price {
-  color: #32D18B;
+  color: #2DB878;
   font-weight: 600;
   margin-bottom: 4px;
   font-size: 18px;
@@ -721,7 +721,7 @@ input[type="checkbox"]:focus {
   bottom: -10px;
   left: 50%;
   border-radius: 10px;
-  background-color: #32D18B;
+  background-color: #2DB878;
   height: 2px;
   -webkit-transform: translate(-50%, 50%);
           transform: translate(-50%, 50%);
@@ -882,7 +882,7 @@ input[type="checkbox"]:focus {
   height: 15px;
   width: 15px;
   margin-top: -4px;
-  background-color: #32D18B;
+  background-color: #2DB878;
   cursor: pointer;
   cursor: pointer;
   pointer-events: all;
@@ -901,7 +901,7 @@ input[type="checkbox"]:focus {
   height: 15px;
   width: 15px;
   margin-top: -5px;
-  background-color: #32D18B;
+  background-color: #2DB878;
   cursor: pointer;
   cursor: pointer;
   pointer-events: all;
@@ -919,7 +919,7 @@ input[type="checkbox"]:focus {
   height: 15px;
   width: 15px;
   margin-top: -5px;
-  background-color: #32D18B;
+  background-color: #2DB878;
   cursor: pointer;
   cursor: pointer;
   pointer-events: all;
@@ -931,7 +931,7 @@ input[type="checkbox"]:focus {
   width: 100%;
   height: 3px;
   cursor: pointer;
-  background: #32D18B;
+  background: #2DB878;
   border-radius: 5px;
 }
 
@@ -940,7 +940,7 @@ input[type="checkbox"]:focus {
   width: 100%;
   height: 3px;
   cursor: pointer;
-  background: #32D18B;
+  background: #2DB878;
   border-radius: 5px;
 }
 
@@ -949,7 +949,7 @@ input[type="checkbox"]:focus {
   width: 100%;
   height: 3px;
   cursor: pointer;
-  background: #32D18B;
+  background: #2DB878;
   border-radius: 5px;
 }
 
@@ -1054,11 +1054,11 @@ input[type="checkbox"]:focus {
 }
 
 .nav-tabs .nav-link.active {
-  color: #32D18B;
+  color: #2DB878;
   font-weight: 600;
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid #32D18B;
+  border-bottom: 2px solid #2DB878;
 }
 
 .tab-content .tab-pane {
@@ -1072,7 +1072,7 @@ input[type="checkbox"]:focus {
 }
 
 .primary-text {
-  color: #32D18B;
+  color: #2DB878;
 }
 
 .alert {
@@ -1107,7 +1107,7 @@ input[type="checkbox"]:focus {
 
 .alert.alert-success {
   background-color: #E2F9EE;
-  border: 1px solid #32D18B;
+  border: 1px solid #2DB878;
 }
 
 @media screen and (max-width: 576px) {
@@ -1117,7 +1117,7 @@ input[type="checkbox"]:focus {
 }
 
 .primary-text {
-  color: #32D18B !important;
+  color: #2DB878 !important;
   text-decoration: none !important;
 }
 
@@ -1200,7 +1200,7 @@ input[type="checkbox"]:focus {
 }
 
 .card-user-menu .menu-profile .menu:hover {
-  color: #32D18B;
+  color: #2DB878;
   -webkit-transition: color .2s ease-in-out;
   transition: color .2s ease-in-out;
 }
