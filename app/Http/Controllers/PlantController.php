@@ -82,7 +82,8 @@ class PlantController extends Controller
         }
 
         try {
-            $request->category_id = Plants::where('name_latin',$request->category_id)->first()->id;
+            $categoryId = Plants::where('name_latin', $request->category_id)->first()->id;
+            $request->merge(['category_id' => $categoryId]);
         } catch (\Throwable $th) {
             return redirect()->back()->with(['message'=>'Gagal ditambahkan','status'=>'danger']);
         }

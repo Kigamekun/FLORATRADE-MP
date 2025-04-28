@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Voucher;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+
 class VoucherController extends Controller
 {
+    use ValidatesRequests;
     /**
      * Display a listing of the resource.
      *

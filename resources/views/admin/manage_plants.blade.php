@@ -62,29 +62,12 @@
         </div>
         <a href="{{ route('admin.pricing.index') }}" class="sidebar-menu">Manage Pricing</a>
     </li>
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="easel"></ion-icon>
-        </div>
-        <a href="{{ route('admin.banner.index') }}" class="sidebar-menu">Manage Banner</a>
-    </li>
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="reader"></ion-icon>
-        </div>
-        <a href="{{ route('admin.terms.index') }}" class="sidebar-menu">Manage Terms</a>
-    </li>
+
     <li class="list-menu">
         <div class="icon">
             <ion-icon name="person"></ion-icon>
         </div>
         <a href="{{ route('admin.user.index') }}" class="sidebar-menu">Manage User</a>
-    </li>
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="receipt"></ion-icon>
-        </div>
-        <a href="{{ route('admin.invoice.index') }}" class="sidebar-menu">Manage Invoice</a>
     </li>
     <li class="list-menu">
         <div class="icon">
@@ -108,7 +91,6 @@
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
             <li class="breadcrumb-item active">Manage Plants</li>
         </ol>
-            <div class="card px-5 py-3">
                 <div class="wrapperTable table-responsive">
                     <div class="d-flex justify-content-end">
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createData">
@@ -150,8 +132,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-
 
     </div>
 
