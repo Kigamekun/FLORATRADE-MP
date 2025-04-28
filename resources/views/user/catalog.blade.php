@@ -207,11 +207,11 @@ background-color: #DC3545;
 
         <div id="mainContent">
             <div class="banner-title">
-                <h1 class="title">List Proce</h1>
+                <h1 class="title">Price List</h1>
                 <div class="breadchumb-wrapper">
                     <a href="./main.html">Home</a>
                     <span>-</span>
-                    <p>List Proce</p>
+                    <p>Price List</p>
                 </div>
             </div>
             <div class="wrapperCatalog container mt-5">

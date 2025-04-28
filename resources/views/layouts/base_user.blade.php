@@ -98,14 +98,16 @@
         </a>
           <a href="/about" class="nav-link">About</a>
           <a href="/catalog" class="nav-link highlight">Price List</a>
-          <a href="#" class="nav-link">T&C</a>
-          <a href="#" class="nav-link">FAQ</a>
-          <a href="#" class="nav-link">Contact</a>
+          <a href="terms" class="nav-link">T&C</a>
+          <a href="faq" class="nav-link">FAQ</a>
+          <a href="/chat/{id}" class="nav-link">Contact</a>
         </div>
         <div class="navbar-right">
-          <a href="#" class="signup-btn">Sign Up</a>
-          <a href="#" class="login-btn">Login</a>
-          <img src="https://cdn.builder.io/api/v1/image/assets/282631be213f4cdc9e5c0d357acf295c/99d6ae149f838af0a95e85ddf6095b2fbab6c8ff?placeholderIfAbsent=true" class="logo" alt="FloraTrade Logo" />
+          <a href="register" class="signup-btn">Sign Up</a>
+          <a href="login" class="login-btn">Login</a>
+          <a href="{{ url('/my-cart') }}">
+            <img src="https://cdn.builder.io/api/v1/image/assets/282631be213f4cdc9e5c0d357acf295c/99d6ae149f838af0a95e85ddf6095b2fbab6c8ff?placeholderIfAbsent=true" class="logo" alt="Cart" />
+          </a>
         </div>
       </nav>
 
