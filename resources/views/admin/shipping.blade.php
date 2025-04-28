@@ -43,41 +43,45 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <div class="card-body">
+=======
+         <div class="card-body">
+>>>>>>> 9927246f1a2becaf75cc7234a85b0f8873e35260
             <table id="countryList" class="table table-hover">
-                    <thead class="table-light">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-center">No</th>
+                        <th>Shipping Method</th>
+                        <th>Less Than Equal (X)</th>
+                        <th>Value</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($data as $key => $item)
                         <tr>
-                            <th class="text-center">No</th>
-                            <th>Shipping Method</th>
-                            <th>Less Than Equal (X)</th>
-                            <th>Value</th>
-                            <th class="text-center">Action</th>
+                            <td class="text-center">{{ $key + 1 }}</td>
+                            <td>{{ $item->ship_method }}</td>
+                            <td>{{ $item->count }}</td>
+                            <td>{{ $item->price }}</td>
+                            <td style="width: 20%" class="text-center">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#updateTanaman" data-id="{{ $item->id }}"
+                                data-ship_method="{{ $item->ship_method }}" data-count="{{ $item->count }}"
+                                data-price="{{ $item->price }}" data-url="{{ route('admin.shipping.update', ['id'=>$item->id]) }}">
+                                <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
+                                    alt="">
+                            </button>
+                            <a class="btn btn-danger"
+                                    href="{{ route('admin.shipping.delete', ['id' => $item->id]) }}"><img width="20"
+                                        height="20" src="{{ url('assets/img/trash-outline 1.svg') }}" alt=""></a>
+                        </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $key => $item)
-                            <tr>
-                                <td class="text-center">{{ $key + 1 }}</td>
-                                <td>{{ $item->ship_method }}</td>
-                                <td>{{ $item->count }}</td>
-                                <td>{{ $item->price }}</td>
-                                <td style="width: 20%" class="text-center">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#updateTanaman" data-id="{{ $item->id }}"
-                                    data-ship_method="{{ $item->ship_method }}" data-count="{{ $item->count }}"
-                                    data-price="{{ $item->price }}" data-url="{{ route('admin.shipping.update', ['id'=>$item->id]) }}">
-                                    <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
-                                        alt="">
-                                </button>
-                                <a class="btn btn-danger"
-                                        href="{{ route('admin.shipping.delete', ['id' => $item->id]) }}"><img width="20"
-                                            height="20" src="{{ url('assets/img/trash-outline 1.svg') }}" alt=""></a>
-                            </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-            </table>
-            </div>
+                    @endforeach
+                </tbody>
+        </table>
+         </div>
         </div>
     </div>
 
