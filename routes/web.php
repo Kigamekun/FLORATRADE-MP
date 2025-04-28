@@ -514,3 +514,8 @@ Route::get('stripe', [StripePaymentController::class, 'stripe']);
 Route::post('stripe', [StripePaymentController::class, 'stripePost'])->name('stripe.post');
 Route::post('/getStripeCheckout', [StripePaymentController::class, 'getStripeCheckout'])->name('getStripeCheckout');
 Route::post('/payStripe', [StripePaymentController::class, 'payStripe'])->name('payStripe');
+
+Route::get('/about', function () {
+    return view('user.about');
+});
+

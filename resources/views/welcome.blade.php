@@ -1,5 +1,6 @@
-<!doctype html>
-<html lang="en">
+@extends('layouts.base_user')
+
+@section('content')
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,24 +12,6 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   </head>
   <body>
-    <header class="navbar">
-      <div class="navbar__left">
-        <img src="{{ asset('assets/img/Logo FloraTrade.png') }}" alt="FloraTrade Logo" class="navbar__logo">
-        <nav class="navbar__menu">
-          <a href="#" class="navbar__link">About</a>
-          <a href="#" class="navbar__link navbar__link--active">Price List</a>
-          <a href="#" class="navbar__link">T&C</a>
-          <a href="#" class="navbar__link">FAQ</a>
-          <a href="#" class="navbar__link">Contact</a>
-        </nav>
-      </div>
-      <div class="navbar__right">
-        <a href="#" class="navbar__signup">Sign Up</a>  <!-- Changed from button -->
-        <a href="#" class="navbar__login">Login</a>  <!-- Changed from button -->
-        <img src= "{{ asset('assets/img/solar_cart-outline.png') }}" alt="Cart" class="navbar__mobile-menu" />
-      </div>
-    </header>
-
     <section class="hero">
       <div class="container">
         <div class="hero__content">
@@ -284,4 +267,4 @@
 
     <script src="(101) script.js"></script>
   </body>
-</html>
+  @endsection
