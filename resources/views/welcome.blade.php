@@ -203,7 +203,7 @@
             <div class="bannerSection">
                 <div class="wrapperBanner">
                     <a href="#" class="banner">
-                        <img src="{{ url('assets_user/img/Banner.png') }}" alt="">
+                        <img src="{{ url('assets_user/img/Banner.png') }}" alt="b">
 
                         <div class="wrapperButton">
                             <div class="leftSide"></div>
