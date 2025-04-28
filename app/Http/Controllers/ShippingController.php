@@ -13,7 +13,7 @@ class ShippingController extends Controller
      */
     public function index()
     {
-        return view('admin.shipping', [
+        return response()->view('admin.shipping', [
             'data' => DB::table('shipping_fees')->get()
         ]);
     }
@@ -25,7 +25,7 @@ class ShippingController extends Controller
      */
     public function create()
     {
-        return view('shipping.create-or-edit',['act'=>'create']);
+        return response()->view('shipping.create-or-edit', ['act' => 'create']);
     }
 
     /**
@@ -36,14 +36,11 @@ class ShippingController extends Controller
      */
     public function store(Request $request)
     {
-
-        $this->validate($request, [
+        $request->validate( [
             'ship_method' => 'required',
             'count' => 'required',
             'price' => 'required',
-
         ]);
-
 
         if (DB::table('shipping_fees')->where(['ship_method'=>$request->ship_method,'count'=>$request->count])->exists()) {
 
@@ -69,7 +66,7 @@ class ShippingController extends Controller
      */
     public function show($id)
     {
-        $data = DB::table('shipping_fees')::find($id);
+        $data = DB::table('shipping_fees')->find($id);
         return view('shipping.show', [
             'data' => $data
         ]);

@@ -37,24 +37,10 @@
         <a href="{{ route('admin.pricing.index') }}" class="sidebar-menu">Manage Pricing</a>
     </li>
 
-    <li class="list-menu {{ request()->routeIs('admin.banner.*') ? 'active' : '' }}">
-        <div class="icon"><ion-icon name="easel"></ion-icon></div>
-        <a href="{{ route('admin.banner.index') }}" class="sidebar-menu">Manage Banner</a>
-    </li>
-
-    <li class="list-menu {{ request()->routeIs('admin.terms.*') ? 'active' : '' }}">
-        <div class="icon"><ion-icon name="reader"></ion-icon></div>
-        <a href="{{ route('admin.terms.index') }}" class="sidebar-menu">Manage Terms</a>
-    </li>
 
     <li class="list-menu {{ request()->routeIs('admin.user.*') ? 'active' : '' }}">
         <div class="icon"><ion-icon name="person"></ion-icon></div>
         <a href="{{ route('admin.user.index') }}" class="sidebar-menu">Manage User</a>
-    </li>
-
-    <li class="list-menu {{ request()->routeIs('admin.invoice.*') ? 'active' : '' }}">
-        <div class="icon"><ion-icon name="receipt-outline"></ion-icon></div>
-        <a href="{{ route('admin.invoice.index') }}" class="sidebar-menu">Manage Invoice</a>
     </li>
 
     <li class="list-menu {{ request()->routeIs('admin.faq.*') ? 'active' : '' }}">

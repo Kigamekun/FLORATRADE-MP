@@ -63,7 +63,7 @@ class PlantController extends Controller
         $data = [];
 
 
-        $this->validate($request, [
+        $request->validate($request, [
             'name' => 'required',
             'stock' => 'required',
             'price' => 'required',
@@ -79,7 +79,8 @@ class PlantController extends Controller
         }
 
         try {
-            $request->category_id = Plants::where('name_latin',$request->category_id)->first()->id;
+            $categoryId = Plants::where('name_latin', $request->category_id)->first()->id;
+            $request->merge(['category_id' => $categoryId]);
         } catch (\Throwable $th) {
             return redirect()->back()->with(['message'=>'Gagal ditambahkan','status'=>'danger']);
         }

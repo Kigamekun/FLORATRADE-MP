@@ -109,25 +109,7 @@
         <div class="icon">
             <ion-icon name="cart"></ion-icon>
         </div>
-        <a href="{{ route('admin.banner.index') }}" class="sidebar-menu">Manage Banner</a>
-    </li>
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="cart"></ion-icon>
-        </div>
-        <a href="{{ route('admin.terms.index') }}" class="sidebar-menu">Manage Terms</a>
-    </li>
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="cart"></ion-icon>
-        </div>
         <a href="{{ route('admin.user.index') }}" class="sidebar-menu">Manage User</a>
-    </li>
-    <li class="list-menu active">
-        <div class="icon">
-            <ion-icon name="cart"></ion-icon>
-        </div>
-        <a href="{{ route('admin.invoice.index') }}" class="sidebar-menu">Manage Invoice</a>
     </li>
     <li class="list-menu">
         <div class="icon">
