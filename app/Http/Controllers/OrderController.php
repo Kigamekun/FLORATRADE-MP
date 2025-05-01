@@ -39,7 +39,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
+        $request->validate( [
             'name' => 'required',
 
             'stock' => 'required',
@@ -210,7 +210,7 @@ class OrderController extends Controller
     {
 
         Order::destroy($id);
-        return redirect()->route('order.index')->with(['message'=>'Order berhasil di delete','status'=>'success']);
+        return redirect()->back()->with(['message'=>'Order berhasil di delete','status'=>'success']);
     }
 
     public function detailOrder(Request $request)

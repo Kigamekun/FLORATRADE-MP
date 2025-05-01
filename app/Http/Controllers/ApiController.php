@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Cookie;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\{Order,Cart,Plant};
 class ApiController extends Controller
 {
     public function count_cart(Request $request)

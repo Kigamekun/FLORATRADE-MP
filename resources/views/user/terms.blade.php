@@ -14,15 +14,28 @@
   <body>
     <!-- Updated Header -->
 
-    <main class="terms-container">
-      <section class="hero-section">
-        <img src="https://cdn.builder.io/api/v1/image/assets/282631be213f4cdc9e5c0d357acf295c/c3e5c5498d672cb672fbcf378f295792e4fc8d58?placeholderIfAbsent=true" class="hero-image" alt="Terms and Conditions Banner" />
-        <div class="hero-overlay">
-          <div class="hero-content">
-            <h1 class="hero-title">Know the Rules, Enjoy the Benefits!</h1>
-            <p class="hero-description">
-              Understanding our Terms and Conditions ensures a smooth and secure
-              shopping experience.
+<div class="app">
+
+    <div id="mainContent">
+        <div class="banner-title">
+            <h1 class="title">Terms And Conditions</h1>
+            <div class="breadchumb-wrapper">
+                <a href="./main.html">Home</a>
+                <span>-</span>
+                <p>Terms And Conditions</p>
+            </div>
+        </div>
+        <div class="content container">
+            {!! DB::table('terms')->first()->terms !!}
+        </div>
+    </div>
+
+</div>
+<footer>
+    <div class="wrapperFooter container">
+        <div class="about">
+            <img src="{{ url('KlorofilFarm.png') }}" alt="">
+            <p>Find the various types of plants you want with Plantsasri. Your satisfaction and comfort is our priority.
             </p>
           </div>
         </div>
@@ -78,7 +91,7 @@
                 Your satisfaction and comfort is our priority.
               </p>
             </div>
-      
+
             <nav class="footer__links">
               <a href="#" class="footer__link">Home</a>
               <a href="#" class="footer__link">About FloraTrade</a>
@@ -87,20 +100,20 @@
               <a href="#" class="footer__link">FAQ</a>
               <a href="#" class="footer__link">Terms &amp; Condition</a>
             </nav>
-      
+
             <div class="footer__contact">
               <h3 class="footer__contact-title">Contact Us</h3>
-              
+
               <div class="footer__contact-item">
                 <img src="img/phone-icon.png" alt="Phone" class="footer__contact-icon">
                 <span class="footer__contact-text">+6280123719310</span>
               </div>
-      
+
               <div class="footer__contact-item">
                 <img src="img/email-icon.png" alt="Email" class="footer__contact-icon">
                 <span class="footer__contact-text">floratrade9@gmail.com</span>
               </div>
-      
+
               <div class="footer__contact-item">
                 <img src="img/location-icon.png" alt="Location" class="footer__contact-icon">
                 <span class="footer__contact-text">Curug Mekar - Bogor Barat, Bogor, Jawa Barat</span>

@@ -188,7 +188,7 @@
           <article class="feature">
             <div class="feature__icon-container">
                 <img src= "{{ asset('assets/img/Group 68.png') }}">
-              
+
                 <circle cx="25" cy="25" r="25" fill="white" />
                 <path
                   d="M26.015 13.875H26.126C28.676 13.875 30.752 11.8 30.752 9.25V4.625C30.752 2.075 28.676 0 26.126 0H16.876C14.326 0 12.251 2.075 12.251 4.625V9.25C12.251 11.8 14.326 13.875 16.876 13.875H17.188L20.015 16.368C20.462 16.763 21.022 16.96 21.582 16.96C22.133 16.96 22.685 16.766 23.12 16.381L26.015 13.877V13.875ZM11.48 27.751C14.456 27.751 16.876 25.33 16.876 22.355C16.876 19.379 14.456 16.959 11.48 16.959C8.505 16.959 6.084 19.379 6.084 22.355C6.084 25.33 8.505 27.751 11.48 27.751ZM26.126 22.355C26.126 25.33 28.547 27.751 31.522 27.751C34.498 27.751 36.918 25.33 36.918 22.355C36.918 19.379 34.498 16.959 31.522 16.959C28.547 16.959 26.126 19.379 26.126 22.355ZM11.48 29.293C7.728 29.293 4.361 31.553 3.098 34.918C2.921 35.392 2.987 35.922 3.274 36.338C3.564 36.754 4.035 37.001 4.541 37.001H18.416C18.922 37.001 19.395 36.753 19.684 36.338C19.972 35.922 20.037 35.392 19.859 34.918C18.598 31.553 15.23 29.293 11.477 29.293H11.48ZM39.905 34.918C38.644 31.553 35.275 29.293 31.522 29.293C27.77 29.293 24.403 31.553 23.14 34.918C22.963 35.392 23.029 35.922 23.316 36.338C23.606 36.754 24.078 37.001 24.583 37.001H38.459C38.964 37.001 39.438 36.753 39.726 36.338C40.014 35.922 40.079 35.392 39.902 34.918H39.905Z"
@@ -233,7 +233,7 @@
               Your satisfaction and comfort is our priority.
             </p>
           </div>
-    
+
           <nav class="footer__links">
             <a href="#" class="footer__link">Home</a>
             <a href="#" class="footer__link">About FloraTrade</a>
@@ -242,27 +242,123 @@
             <a href="#" class="footer__link">FAQ</a>
             <a href="#" class="footer__link">Terms &amp; Condition</a>
           </nav>
-    
+
           <div class="footer__contact">
             <h3 class="footer__contact-title">Contact Us</h3>
-            
+
             <div class="footer__contact-item">
               <img src="img/phone-icon.png" alt="Phone" class="footer__contact-icon">
               <span class="footer__contact-text">+6280123719310</span>
             </div>
-    
+
             <div class="footer__contact-item">
               <img src="img/email-icon.png" alt="Email" class="footer__contact-icon">
               <span class="footer__contact-text">floratrade9@gmail.com</span>
             </div>
-    
+
             <div class="footer__contact-item">
               <img src="img/location-icon.png" alt="Location" class="footer__contact-icon">
               <span class="footer__contact-text">Curug Mekar - Bogor Barat, Bogor, Jawa Barat</span>
             </div>
           </div>
         </div>
-      </div>
+        <div class="wrapperService line">
+            <div class="container d-flex">
+                <div class="image">
+                    <img src="{{ url('assets_user/img/service.png') }}" alt="">
+                </div>
+                <div class="desc">
+                    <h2>How We Work ?</h2>
+                    <p class="mt-1" style="font-weight:300">Make space in your home for plants. you will feel better for it. not only are they beautiful, but caring for them helps us.</p>
+                    <div class="items d-flex align-items-center">
+                        <div class="image">
+                            <img src="{{ url('assets_user/img/icon/delivery.png') }}" alt="">
+                        </div>
+                        <div class="text">
+                            <h4 class="mb-1" style="font-size: 20px;">Free delivery worldwide</h4>
+                            <p style="font-weight:300; font-size : 14px;">We offer free shipping for purchases over certain amount.</p>
+                        </div>
+                    </div>
+                    <div class="items d-flex align-items-center">
+                        <div class="image">
+                            <img src="{{ url('assets_user/img/icon/secure.png') }}" alt="">
+                        </div>
+                        <div class="text">
+                            <h4 class="mb-1" style="font-size: 20px;">Secure payments</h4>
+                            <p style="font-weight:300; font-size : 14px;">Your payment information is processed securely by us.</p>
+                        </div>
+                    </div>
+                    <div class="items d-flex align-items-center">
+                        <div class="image">
+                            <img src="{{ url('assets_user/img/icon/support.png') }}" alt="">
+                        </div>
+                        <div class="text">
+                            <h4 class="mb-1" style="font-size: 20px;">Top-notch support</h4>
+                            <p style="font-weight:300; font-size : 14px;">Any question? There is a Chat Feature to communicate directly with us.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="requestPlant line">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+                        <div class="requestWrapper">
+                            <h1>You Can,</h1>
+                            <h1>Request New Plant.</h1>
+                            <form action="">
+                                <input type="text" class="form-control" placeholder="Name Plant">
+                                <input type="text" class="form-control" placeholder="Variates Name">
+                                <button class="button button-primary w-100 md-button">Submit Request</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="imagesContent">
+                            <img src="{{ url('assets_user/img/content-images-request.png') }}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="wrapperFooter container">
+            <div class="about">
+                {{-- <img src="{{ url('KlorofilFarm.png') }}" alt=""> --}}
+                <p>Find the various types of plants you want with Plantsasri. Your satisfaction and comfort is our priority.
+                </p>
+            </div>
+            <div class="links">
+                <a href="">Home</a>
+                <a href="">About Plantsasri</a>
+                <a href="{{ route('more') }}">Explore Plants</a>
+                <a href="{{ route('catalog') }}">List Price</a>
+                <a href="{{ route('faq') }}">Faq</a>
+                <a href="{{ route('terms') }}">Terms & Condition</a>
+            </div>
+            <div class="contact">
+                <p>Contact Us</p>
+                <a class="item email" href="">
+                    <img src="{{ url('assets_user/img/icon/email 2.png') }}" alt="">
+                    <p>dadaiafh@gmail.com</p>
+                </a>
+                <a class="item call" href="">
+                    <img src="{{ url('assets_user/img/icon/telephone-handle-silhouette 1.png') }}" alt="">
+                    <p>+6286473563</p>
+                </a>
+                <a class="item address" href="">
+                    <img src="{{ url('assets_user/img/icon/pin (1).png') }}" alt="">
+                    <p>GARDEN, No.13 Jalan Cijahe, Curug Mekar - Bogor Barat, Bogor, Jawa Barat</p>
+                </a>
+            </div>
+        </div>
+        <div class="wrapperCopy container">
+            <p>© 2022 Plantsasri, Design By Startcode</p>
+            <p><b>English</b></p>
+        </div>
     </footer>
 
     <script src="(101) script.js"></script>

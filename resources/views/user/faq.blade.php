@@ -199,7 +199,7 @@
 <footer>
     <div class="wrapperFooter container">
         <div class="about">
-            <img src="{{ url('assets_user/img/Logo_Plantsasri 1 1.png') }}" alt="">
+            <img src="{{ url('KlorofilFarm.png') }}" alt="">
             <p>Find the various types of plants you want with Plantsasri. Your satisfaction and comfort is our priority.
             </p>
         </div>
