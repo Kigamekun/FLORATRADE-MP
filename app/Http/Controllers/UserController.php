@@ -110,16 +110,32 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Validasi input dari pengguna
+        $request->validate([
+            'name'    => ['required', 'string', 'max:255'],
+            'email'   => ['required', 'string', 'email', 'max:255'],
+            'phone'   => ['nullable', 'string', 'max:20'],
+            'address' => ['nullable', 'string'],
+            'role'    => ['nullable', 'string'],
+        ]);
 
-            User::update(
-                ['name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'address' => $request->address,
-                'role' => $request->role
-            ]);
+        // Cari user berdasarkan ID
+        $user = User::findOrFail($id); // Menggunakan findOrFail untuk memastikan user ada
 
-        return redirect()->back()->with(['message'=>'User berhasil di update','status'=>'success']);
+        // Update data user
+        $user->update([
+            'name'    => $request->name,
+            'email'   => $request->email,
+            'phone'   => $request->phone,
+            'address' => $request->address,
+            'role'    => $request->role,
+        ]);
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->back()->with([
+            'message' => 'User berhasil di update',
+            'status'  => 'success'
+        ]);
     }
 
     /**
@@ -130,7 +146,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        // Menghapus user berdasarkan ID
         User::destroy($id);
-        return redirect()->route('plant.index')->with(['message'=>'User berhasil di delete','status'=>'success']);
+
+        // Redirect ke route yang benar, misalnya ke halaman daftar user
+        return redirect()->route('admin.user.index')->with([
+            'message' => 'User berhasil di delete',
+            'status' => 'success'
+        ]);
     }
 }

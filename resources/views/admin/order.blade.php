@@ -8,119 +8,54 @@
 
     <style>
 
-.wrapper-item .item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 1rem 0;
-}
+        .wrapper-item .item {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        margin: 1rem 0;
+        }
 
-.wrapper-item .item .images-item {
-  margin-right: .5rem;
-}
+        .wrapper-item .item .images-item {
+        margin-right: .5rem;
+        }
 
-.wrapper-item .item .images-item img {
-  width: 100%;
-  height: 100%;
-  min-width: 64px;
-  min-height: 64px;
-  max-width: 64px;
-  max-height: 64px;
-  -o-object-fit: contain;
-     object-fit: contain;
-  -o-object-position: center;
-     object-position: center;
-  border-radius: 10px;
-}
+        .wrapper-item .item .images-item img {
+        width: 100%;
+        height: 100%;
+        min-width: 64px;
+        min-height: 64px;
+        max-width: 64px;
+        max-height: 64px;
+        -o-object-fit: contain;
+            object-fit: contain;
+        -o-object-position: center;
+            object-position: center;
+        border-radius: 10px;
+        }
 
-.wrapper-item .item .detail-item h6, .wrapper-item .item .detail-item h5 {
-  color: #535353;
-}
+        .wrapper-item .item .detail-item h6, .wrapper-item .item .detail-item h5 {
+        color: #535353;
+        }
 
-.wrapper-item .item .detail-item h5 {
-  font-weight: 300;
-  margin-bottom: .5rem;
-  font-size: 16px;
-}
+        .wrapper-item .item .detail-item h5 {
+        font-weight: 300;
+        margin-bottom: .5rem;
+        font-size: 16px;
+        }
 
-.wrapper-item .item .detail-item h6 {
-  font-weight: 500;
-  font-size: 14px;
-}
+        .wrapper-item .item .detail-item h6 {
+        font-weight: 500;
+        font-size: 14px;
+        }
     </style>
 @endsection
 
-
-
-@section('menu')
-<div class="sidebar-menu-wrapper">
-    <li class="listMenuName">
-        <p>Admin Menu</p>
-    </li>
-    <li class="list-menu ">
-        <div class="icon">
-            <ion-icon name="grid"></ion-icon>
-        </div>
-        <a href="/admin" class="sidebar-menu">Dashboard Admin</a>
-    </li>
-    <li class="list-menu ">
-        <div class="icon">
-            <ion-icon name="folder-open"></ion-icon>
-        </div>
-        <a href="{{ route('admin.plants.index') }}" class="sidebar-menu">Manage Marga (Plants)</a>
-    </li>
-
-    <li class="list-menu ">
-        <div class="icon">
-            <ion-icon name="leaf"></ion-icon>
-        </div>
-        <a href="{{ route('admin.plant.index') }}" class="sidebar-menu">Manage Plant</a>
-    </li>
-
-    <li class="list-menu ">
-        <div class="icon">
-            <ion-icon name="card"></ion-icon>
-        </div>
-        <a href="{{ route('admin.voucher.index') }}" class="sidebar-menu">Manage Voucher</a>
-    </li>
-
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="airplane"></ion-icon>
-        </div>
-        <a href="{{ route('admin.shipping.index') }}" class="sidebar-menu">Manage Shipping</a>
-    </li>
-
-    <li class="list-menu active">
-        <div class="icon">
-            <ion-icon name="cart"></ion-icon>
-        </div>
-        <a href="{{ route('admin.order.index') }}" class="sidebar-menu">Manage Transaction</a>
-    </li>
-
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="cash"></ion-icon>
-        </div>
-        <a href="{{ route('admin.pricing.index') }}" class="sidebar-menu">Manage Pricing</a>
-    </li>
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="person"></ion-icon>
-        </div>
-        <a href="{{ route('admin.user.index') }}" class="sidebar-menu">Manage User</a>
-    </li>
-    <li class="list-menu">
-        <div class="icon">
-            <ion-icon name="receipt"></ion-icon>
-        </div>
-        <a href="{{ route('admin.faq.index') }}" class="sidebar-menu">Manage Faq</a>
-    </li>
-</div>
-@endsection
+@push('styles')
+<link href="{{ asset('assets/css/admin_content.css') }}" rel="stylesheet">
+@endpush
 
 @section('content')
     <style>
@@ -128,8 +63,173 @@
             font-size: 14px;
         }
 
+        div.dataTables_wrapper div.dataTables_length,
+        div.dataTables_wrapper div.dataTables_filter {
+            margin-bottom: 1rem; /* atau ubah sesuai kebutuhan */
+        }
+
     </style>
+
     <div class="contentMain">
+        <h1 class="pageNameContent">Manage Transaction</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">Admin Menu</li>
+            <li class="breadcrumb-item active">Manage Transaction</li>
+        </ol>
+
+        <div class="card mb-4">
+            <div class="wrapperTable table-responsive">
+                    <div class="card-header mx-1 bg-white d-flex justify-content-between align-items-center">
+                    <span class="fw-normal fs-4 my-3 d-block">
+                        Transaction Data
+                    </span>
+            </div>
+
+            <div class="card-body">
+                    <table id="orderTable" class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th>Transaction Code</th>
+                                <th>Date</th>
+                                <th>Total Price</th>
+                                <th>Discount</th>
+                                <th>Real Price</th>
+                                <!-- <th>User Id</th> -->
+                                <!-- <th>Payment</th> -->
+                                <th>Resi Number</th>
+                                <th class="text-center">Action</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            @php
+                                $status = [];
+                                $status[0] = 'Waiting Approval';
+                                $status[1] = 'Order Processed';
+                                $status[2] = 'Quarantine Processed';
+                                $status[3] = 'Order Shipping';
+                                $status[4] = 'Shipped';
+                                $status[5] = 'Done / Reviews';
+                            @endphp
+                            @foreach ($data as $key => $item)
+                                <tr>
+                                    <td class="text-center">{{ $key + 1 }}</td>
+                                    <td>{{ $item->kode_transaksi }}</td>
+                                    <td>{{ $item->date }}</td>
+                                    <td class="text-center">${{ $item->total_price }}</td>
+                                    <td class="text-center">{{ $item->discount }}%</td>
+                                    <td class="text-center">${{ $item->total_price_after_disc }}</td>
+                                    <!-- <td>{{ $item->user_id }}</td> -->
+                                    <!-- <td class="text-center">
+                                        @if ($item->payment_method == 1)
+                                            {{ 'MANUAL TRANSFER' }}
+                                        @elseif($item->payment_method == 2)
+                                            {{ 'PAYPAL' }}
+                                        @elseif($item->payment_method == 3)
+                                            {{ 'STRIPE' }}
+                                        @else
+                                            {{ '-' }}
+                                        @endif
+                                    </td> -->
+                                    <td id="act-{{ $item->id }}"  class="text-center">
+                                        @if ($item->status == 3)
+                                            @if ($item->no_resi != null && $item->no_resi != '')
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#shipModal" data-id="{{ $item->id }}"
+                                                    data-file="{{ $item->file_resi }}" data-no="{{ $item->no_resi }}"
+                                                    data-url="{{ route('admin.order.addResi', ['id' => $item->id]) }}">
+                                                    <img width="20" height="20"
+                                                        src="{{ url('assets/img/file-tray-full-outline 1.svg') }}" alt="">
+                                                </button>
+                                            @else
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#shipModal" data-id="{{ $item->id }}"
+                                                    data-file="{{ $item->file_resi }}" data-no="{{ $item->no_resi }}"
+                                                    data-url="{{ route('admin.order.addResi', ['id' => $item->id]) }}">
+                                                    <img width="20" height="20"
+                                                        src="{{ url('assets/img/file-tray-outline 1.svg') }}" alt="">
+                                                </button>
+                                            @endif
+                                        @endif
+                                    </td>
+
+                                    <td>
+                                        <select name="status" class="form-control stts" data-id="{{ $item->id }}">
+                                            @foreach ($status as $key => $st)
+                                                @if ($item->status == 0)
+                                                    <option value="{{ $key }}" disabled>{{ $st }}</option>
+                                                @else
+                                                    @if ($key == $item->status)
+                                                        <option value="{{ $key }}" selected>{{ $st }}</option>
+                                                    @else
+                                                        <option value="{{ $key }}">{{ $st }}</option>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        @if ($item->payment_method == 1)
+                                            @if ($item->status == 0)
+                                                <a class="btn btn-primary mb-1"
+                                                href="{{ route('admin.order.approve', ['id' => $item->id]) }}">
+                                                <ion-icon name="checkmark-done-outline"></ion-icon>
+                                                </a>
+                                            @endif
+                                            @if (!is_null($item->manual_file))
+                                                <a class="btn btn-primary mb-1"
+                                                    href="{{ route('admin.order.download', ['id' => $item->id]) }}">
+                                                    <ion-icon name="download-outline"></ion-icon>
+                                                </a>
+                                            @else
+                                                <button class="btn btn-danger mb-1" disabled>
+                                                    <ion-icon name="download-outline"></ion-icon>
+                                                </button>
+                                            @endif
+                                        @endif
+                                        <button type="button" class="btn btn-info mb-1" data-bs-toggle="modal"
+                                            data-bs-target="#detailModal" data-id="{{ $item->id }}">
+                                            <ion-icon name="leaf-outline"></ion-icon>
+                                        </button>
+                                        {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#updateData" data-user_id='{{ $item->user_id }}'
+                                            data-kode_transaksi="{{ $item->kode_transaksi }}" data-date="{{ $item->date }}"
+                                            data-total_price="{{ $item->total_price }}"
+                                            data-total_price_after_disc="{{ $item->total_price_after_disc }}"
+                                            data-status="{{ $item->status }}" data-payment_method="
+                                                @if ($item->payment_method == 1) {{ 'MANUAL TRANSFER' }}
+                                            @elseif($item->payment_method == 2)
+                                                {{ 'PAYPAL' }}
+                                            @else
+                                                {{ 'STRIPE' }} @endif
+                                                    " data-currency="{{ $item->currency }}"
+                                            data-no_resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
+                                            data-hasPaid="{{ $item->hasPaid }}" data-discount="{{ $item->discount }}"
+                                            data-discount_code="{{ $item->discount_code }}"
+                                            data-nama_penerima="{{ $item->nama_penerima }}"
+                                            data-alamat_penerima="{{ $item->alamat_penerima }}"
+                                            data-email_penerima="{{ $item->email_penerima }}"
+                                            data-negara_tujuan="{{ $item->negara_tujuan }}"
+                                            data-provinsi_tujuan="{{ $item->provinsi_tujuan }}"
+                                            data-kota_tujuan="{{ $item->kota_tujuan }}" data-zipcode="{{ $item->zipcode }}">
+                                            <ion-icon name="create-outline"></ion-icon>
+                                        </button> --}}
+                                        <a class="btn btn-danger" href="{{ route('admin.order.delete', ['id' => $item->id]) }}">
+                                            <ion-icon name="trash-outline"></ion-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="contentMain">
         <h2 class="pageNameContent">Manage Transaction</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
@@ -288,7 +388,7 @@
         </div>
 
 
-    </div>
+    </div> -->
 
 
 

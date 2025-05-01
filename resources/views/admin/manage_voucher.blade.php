@@ -27,7 +27,7 @@
     <div class="contentMain">
         <h1 class="pageNameContent">Manage Voucher</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item">User</li>
+                <li class="breadcrumb-item">Admin Menu</li>
                 <li class="breadcrumb-item active">Manage Voucher</li>
             </ol>
 
@@ -45,7 +45,7 @@
                     <thead class="table-light">
                         <tr>
                             <th class="text-center">No</th>
-                            <th>Code</th>
+                            <th class="text-center">Code</th>
                             <th class="text-center">Discount</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -54,9 +54,9 @@
                     @foreach ($data as $key => $item)
                     <tr>
                         <td class="text-center">{{ $key + 1 }}</td>
-                        <td>{{ $item->code }}</td>
+                        <td class="text-center">{{ $item->code }}</td>
                         <td class="text-center">{{ $item->disc }}%</td>
-                        <td style="width: 20%">
+                        <td class="text-center"">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#updateData" data-id="{{ $item->id }}"
                                     data-code="{{ $item->code }}" data-disc="{{ $item->disc }}" data-url="{{ route('admin.voucher.update', ['id'=>$item->id]) }}">
