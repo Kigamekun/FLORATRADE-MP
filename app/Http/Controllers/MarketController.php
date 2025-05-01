@@ -8,7 +8,7 @@ use App\Models\{Cart,Plant,User,Order,OrderDetail};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-use Cookie;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\Registered;
@@ -101,6 +101,33 @@ class MarketController extends Controller
         }
         return response()->json(['message'=>'Success add to cart','status'=>'success'], 200);
         // return redirect()->back()->with(['message'=>'success add to cart','status'=>'success'],200);
+    }
+
+    private function getCoordinatesFromAddress($address)
+    {
+        $formattedAddress = urlencode($address);
+        $url = "https://nominatim.openstreetmap.org/search?q={$formattedAddress}&format=json&limit=1";
+
+        // Set user agent (wajib agar tidak ditolak oleh Nominatim)
+        $opts = [
+            "http" => [
+                "method" => "GET",
+                "header" => "User-Agent: MyLaravelApp/1.0\r\n"
+            ]
+        ];
+        $context = stream_context_create($opts);
+
+        $response = file_get_contents($url, false, $context);
+        $data = json_decode($response, true);
+
+        if (!empty($data)) {
+            return [
+                'lat' => $data[0]['lat'],
+                'lng' => $data[0]['lon']
+            ];
+        } else {
+            return null;
+        }
     }
 
     public function checkout(Request $request)
