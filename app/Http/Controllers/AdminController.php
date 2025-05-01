@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\{User, Order};
 use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        return view('admin.index');
+        $orders = Order::with('user')->get(); // semua pesanan
+        $totalOrders = $orders->count();
+        $totalRevenue = $orders->sum('total_price');
+        $ordersByCountry = $orders->groupBy('country')
+            ->map(fn($group) => $group->count());
+
+            return view('admin.index', compact('orders','totalOrders','totalRevenue','ordersByCountry'));
+
     }
 
     public function chat(Request $request)

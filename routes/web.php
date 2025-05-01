@@ -1,11 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AdminController,FaqController,InvoiceController,BannerController,UserController,TermsController,StripePaymentController,PricingController,ShippingController,MarketController,VoucherController, PlantController, OrderController,PlantsController};
+use App\Http\Controllers\{AdminController,FaqController,InvoiceController,BannerController,UserController,TermsController,StripePaymentController,PricingController,ShippingController,MarketController,VoucherController, PlantController, OrderController,PlantsController, ProductController};
 use App\Models\{User,Cart,Plant,Order};
 use Illuminate\Http\Request;
 use PayPal\Api\{Item,Payer,Amount,Details,Payment,ItemList,WebProfile,InputFields,Transaction,RedirectUrls,PaymentExecution};
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
@@ -30,7 +35,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 // Menambahkan route untuk products.index
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
 Route::get('/profile', function () {
     return view('auth.profile');
