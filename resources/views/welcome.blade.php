@@ -85,7 +85,7 @@
           <main class="product-grid">
             <div class="product-grid__header">
               <img src="https://cdn.builder.io/api/v1/image/assets/282631be213f4cdc9e5c0d357acf295c/bae6c7296546594691d429556149426dd736ff2d?placeholderIfAbsent=true" alt="Best Offer" class="product-grid__icon" />
-              <h2 class="product-grid__title">Best Offer</h2>
+              <h2 class="product-grid__title">Best Offer From Us</h2>
             </div>
             <div class="product-grid__row">
               <article class="product-card">
