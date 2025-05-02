@@ -18,7 +18,7 @@ margin-top: 20rem;
 }
 
 .wrapperTable .pagination .paginate_button.active .page-link {
-background: #2DB878 !important;
+background: #32D18B !important;
 color: #fff;
 border-radius: 6px;
 }
@@ -84,7 +84,7 @@ font-size: 16px;
 }
 
 .wrapperTable .tables tbody tr td .code .numberCode {
-color: #2DB878;
+color: #32D18B;
 text-decoration: none;
 transition: .3s;
 }
@@ -120,7 +120,7 @@ transition: .2s;
 
 .wrapperTable .tables tbody tr td .buttonAction .success {
 margin-right: .5rem;
-background: #2DB878;
+background: #32D18B;
 }
 
 .wrapperTable .tables tbody tr td .buttonAction .success:hover {
@@ -160,7 +160,7 @@ background-color: #FFC107;
 }
 
 .wrapperTable .tables tbody tr td .status.status-primary {
-background-color: #2DB878;
+background-color: #32D18B;
 }
 
 .wrapperTable .tables tbody tr td .status.status-danger {
@@ -187,12 +187,12 @@ background-color: #DC3545;
 }
 
 .btn-primary {
-    background-color: #2DB878;
+    background-color: #32D18B;
     border-radius: 5px !important;
 }
 .btn-primary:focus {
-    background: #2DB878 !important;
-    border-color: #2db878;
+    background: #32D18B !important;
+    border-color: #32D18B;
     box-shadow: 0 0 0 0.25rem rgba(45, 184, 120, 0.5);
 }
 
@@ -207,11 +207,11 @@ background-color: #DC3545;
 
         <div id="mainContent">
             <div class="banner-title">
-                <h1 class="title">Price List</h1>
+                <h1 class="title">List Proce</h1>
                 <div class="breadchumb-wrapper">
                     <a href="./main.html">Home</a>
                     <span>-</span>
-                    <p>Price List</p>
+                    <p>List Proce</p>
                 </div>
             </div>
             <div class="wrapperCatalog container mt-5">
@@ -270,7 +270,7 @@ background-color: #DC3545;
     <footer>
         <div class="wrapperFooter container">
             <div class="about">
-                <img src="{{ url('KlorofilFarm.png') }}" alt="">
+                <img src="{{ url('assets_user/img/Logo_Plantsasri 1 1.png') }}" alt="">
                 <p>Find the various types of plants you want with Plantsasri. Your satisfaction and comfort is our priority.
                 </p>
             </div>
