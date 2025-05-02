@@ -56,7 +56,7 @@
       </main>
 
       <!-- Updated Footer -->
-      <footer class="footer">
+      <footer>
         <div class="footer__container">
           <div class="footer__content">
             <div class="footer__brand">
@@ -82,23 +82,23 @@
               <h3 class="footer__contact-title">Contact Us</h3>
               
               <div class="footer__contact-item">
-                <img src="img/phone-icon.png" alt="Phone" class="footer__contact-icon">
+                <img src="{{ url('assets_user/img/icon/telephone-handle-silhouette 1.png') }}" alt="">
                 <span class="footer__contact-text">+6280123719310</span>
               </div>
       
               <div class="footer__contact-item">
-                <img src="img/email-icon.png" alt="Email" class="footer__contact-icon">
+                <img src="{{ url('assets_user/img/icon/email 2.png') }}" alt="">
                 <span class="footer__contact-text">floratrade9@gmail.com</span>
               </div>
       
               <div class="footer__contact-item">
-                <img src="img/location-icon.png" alt="Location" class="footer__contact-icon">
+                <img src="{{ url('assets_user/img/icon/pin (1).png') }}" alt="" >
                 <span class="footer__contact-text">Curug Mekar - Bogor Barat, Bogor, Jawa Barat</span>
               </div>
             </div>
           </div>
         </div>
-      </footer>
+    </footer>
     </section>
     @endsection
 
