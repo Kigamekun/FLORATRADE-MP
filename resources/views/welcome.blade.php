@@ -198,10 +198,13 @@
           height: auto;
           display: block;
         }
+        
 
     </style>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 @endsection
 
 @section('content')
@@ -236,9 +239,9 @@
                 </div>
                 <div class="col-12 col-lg-9">
                     <div class="bestOfferContainer">
-                        <a href="#" class="header-line">
-                            <img src="{{ url('assets_user/img/icon/bestOffer_icon.svg') }}" alt="">
-                            <p>Best Offer</p>
+                        <a href="#" class="header-line" >
+                            <img src="https://cdn.builder.io/api/v1/image/assets/282631be213f4cdc9e5c0d357acf295c/bae6c7296546594691d429556149426dd736ff2d?placeholderIfAbsent=true" alt="">
+                            <p style="font-size: 2em; font-weight: bold; white-space: nowrap;">Best Offer</p>
                         </a>
                         <div class="bestOfferProduct">
                             @foreach (DB::table('plants')->where('status',1)->limit(16)->get()
@@ -275,7 +278,7 @@
             <div class="container">
                 <a href="#" class="header-line">
                     <img src="{{ url('assets_user/img/icon/product_icon.svg') }}" alt="">
-                    <p>Product</p>
+                    <p style="font-size: 2em; font-weight: bold; white-space: nowrap;">Product</p>
                 </a>
 
                 <div class="row">

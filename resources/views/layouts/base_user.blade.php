@@ -20,6 +20,7 @@
 
     <!--Main CSS-->
     <link rel="stylesheet" href="{{ url('assets_user/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     @yield('css')
 </head>
 
@@ -32,25 +33,17 @@
                     <div class="leftSideNavbar">
                         <div class="logoBrand">
                             <a href="/">
-                                <img src="{{ url('assets_user/img/plantsasriLogo.png') }}" alt="">
+                                <img src="{{ url('assets/img/Logo FloraTrade.png') }}" alt="">
                             </a>
                         </div>
-                        <div class="searchMenu">
-                            <form action="{{ route('search') }}" method="POST">
-                                @csrf
-                                <div class="input-group">
-                                    <div class="form-outline">
-                                        <input type="search" id="form1" name="search" class="form-control" />
-                                        <label class="form-label" for="form1">Search</label>
-                                    </div>
-                                    <button type="submit" class="buttonSearch button button-primary">
-                                        <img src="{{ url('assets_user/img/icon/search_icon.svg') }}" alt="">
-                                    </button>
-                                </div>
-                            </form>
+                        <div class="menuLinks">
+                            <a href="{{ url('/about') }}" class="nav-link">About</a>
+                            <a href="{{ url('/catalog') }}" class="nav-link">Price List</a>
+                            <a href="{{ url('/terms') }}" class="nav-link">T&amp;C</a>
+                            <a href="{{ url('/faq') }}" class="nav-link">FAQ</a>
+                            <a href="{{ url('/chat/1') }}" class="nav-link">Contact</a>
                         </div>
                     </div>
-
                     <div class="rightSideNavbar">
                         @if (Auth::check())
                             <div class="afterLogin">
@@ -69,8 +62,7 @@
                         @else
                             <div class="beforeLogin">
                                 <div class="buttonWrapper">
-                                    <a href="{{ route('login') }}"
-                                        class="button button-outline button-outline-primary">Login</a>
+                                    <a href="{{ route('login') }}" class="button button-outline button-outline-primary">Login</a>
                                     <a href="{{ route('register') }}" class="button button-primary">Sign Up</a>
                                 </div>
                                 <div class="cartWrapper">
@@ -83,16 +75,15 @@
                                 </div>
                             </div>
                         @endif
-
                     </div>
                 </div>
             </div>
         </div>
 
-
-
         @yield('content')
     </div>
+
+
 
 
 

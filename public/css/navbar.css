@@ -87,3 +87,25 @@
     color: #fff;
     text-decoration: none;
   }
+
+  .leftSideNavbar {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.menuLinks {
+    display: flex;
+    gap: 20px;
+}
+
+.menuLinks .nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.menuLinks .nav-link:hover {
+    color: #33B87D; /* warna highlight saat hover */
+}
