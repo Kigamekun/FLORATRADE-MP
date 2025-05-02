@@ -118,3 +118,11 @@ color: #494c4b;
         text-align: center;
     }
 }
+
+.footer__contact-item img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    margin-right: 8px; /* opsional */
+  }
+  

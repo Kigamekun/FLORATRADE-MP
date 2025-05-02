@@ -193,47 +193,22 @@
         .btn-primary:hover {
             background-color: #40a777;
         }
+        .img-full {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
     </style>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 @endsection
 
 @section('content')
-    <div id="mainContent">
         <div class="container first-line">
-            <div class="bannerSection">
-                <div class="wrapperBanner">
-                    <a href="#" class="banner">
-                        <img src="{{ url('assets_user/img/Banner.png') }}" alt="">
-
-                        <div class="wrapperButton">
-                            <div class="leftSide"></div>
-                            <div class="rightSide">
-                                <img src="" alt="">
-                            </div>
-                        </div>
-                    </a>
-                    @foreach (DB::table('banners')->orderBy('id', 'DESC')->get()
-        as $key => $item)
-                        @if ($key == 0)
-                            <a href="#" class="banner">
-                                <img src="{{ url('banner/' . $item->gambar) }}" alt="">
-                                <div class="wrapperButton">
-                                    <div class="leftSide"></div>
-                                    <div class="rightSide">
-                                        <img src="" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        @else
-                            <a href="#" class="banner">
-                                <img src="{{ url('banner/' . $item->gambar) }}" alt="">
-                            </a>
-                        @endif
-                    @endforeach
-                </div>
-                <div class="slick-slider-dots"></div>
-            </div>
+          <div class="container">
+            <img src="{{ url('assets_user/img/welcomehome.png') }}" alt="" class="img-full">
+          </div>
         </div>
         <div class="container">
             <div class="row line">
@@ -340,11 +315,11 @@
         <div class="wrapperService line">
             <div class="container d-flex">
                 <div class="image">
-                    <img src="{{ url('assets_user/img/service.png') }}" alt="">
+                    <img src="{{ url('assets_user/img/howwework.png') }}" alt="">
                 </div>
                 <div class="desc">
                     <h2>How We Work ?</h2>
-                    <p class="mt-1" style="font-weight:300">Make space in your home for plants. you will feel better for it. not only are they beautiful, but caring for them helps us.</p>
+                    <p class="mt-1" style="font-weight:300">Make space in your home for plants. you will feel better for it. not only they are beautiful, but caring for them helps us.</p>
                     <div class="items d-flex align-items-center">
                         <div class="image">
                             <img src="{{ url('assets_user/img/icon/delivery.png') }}" alt="">
@@ -370,28 +345,6 @@
                         <div class="text">
                             <h4 class="mb-1" style="font-size: 20px;">Top-notch support</h4>
                             <p style="font-weight:300; font-size : 14px;">Any question? There is a Chat Feature to communicate directly with us.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="requestPlant line">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-12 col-lg-6 mb-4 mb-lg-0">
-                        <div class="requestWrapper">
-                            <h1>You Can,</h1>
-                            <h1>Request New Plant.</h1>
-                            <form action="">
-                                <input type="text" class="form-control" placeholder="Name Plant">
-                                <input type="text" class="form-control" placeholder="Variates Name">
-                                <button class="button button-primary w-100 md-button">Submit Request</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <div class="imagesContent">
-                            <img src="{{ url('assets_user/img/content-images-request.png') }}" alt="">
                         </div>
                     </div>
                 </div>
@@ -435,7 +388,7 @@
               </div>
       
               <div class="footer__contact-item">
-                <img src="{{ url('assets_user/img/icon/pin ().png') }}" alt="">
+                <img src="{{ url('assets_user/img/icon/pin (1).png') }}" alt="" >
                 <span class="footer__contact-text">Curug Mekar - Bogor Barat, Bogor, Jawa Barat</span>
               </div>
             </div>
