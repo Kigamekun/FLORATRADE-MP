@@ -39,7 +39,7 @@
                         <div class="menuLinks">
                             <a href="{{ url('/about') }}" class="nav-link">About</a>
                             <a href="{{ url('/catalog') }}" class="nav-link">Price List</a>
-                            <a href="{{ url('/terms') }}" class="nav-link">T&amp;C</a>
+                            <!-- <a href="{{ url('/terms') }}" class="nav-link">T&amp;C</a> -->
                             <a href="{{ url('/faq') }}" class="nav-link">FAQ</a>
                             <a href="{{ url('/chat/1') }}" class="nav-link">Contact</a>
                         </div>
