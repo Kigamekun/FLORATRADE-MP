@@ -2,6 +2,9 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ url('assets_user/css/cart.css') }}">
+@endsection
+
+@section('content')
     <style>
         /* New styles from the design */
         .cart-page {
@@ -817,16 +820,18 @@
                                 $total_cart = 0;
                             @endphp
 
-                            @if ($authenticable)
-                                @if ($data->count() == 0)
-                                <div class="mt-5 d-flex align-items-center flex-column">
-                                    <img src="{{ url('assets_user/img/state-cart.png') }}" alt="dafnafa">
-                                    <h2 style="color: #535353;" class="mt-3">Yahh, your cart is empty</h2>
-                                    <p style="color: #535353;" class="mt-1">Let's fill it with your favorite plant !</p>
-                                    <a href="{{ route('more') }}" class="button button-primary w-50 text-decoration-none mt-3">Start Shopping</a>
-                                </div>
-                                @else
-                                    @foreach ($data as $key => $item)
+                                @if ($authenticable)
+                                    @if ($data->count() == 0)
+                                    <div class="mt-5 d-flex align-items-center flex-column">
+                                        <img src="{{ url('assets_user/img/state-cart.png') }}" alt="dafnafa">
+                                        <h2 style="color: #535353;" class="mt-3">Yahh, your cart is empty</h2>
+                                        <p style="color: #535353;" class="mt-1">Let's fill it with your favorite plant !</p>
+                                        <a href="{{ route('more') }}" class="button button-primary w-50 text-decoration-none mt-3">Start Shoping</a>
+                                    </div>
+                                    @else
+
+                                @foreach ($data as $key => $item)
+                                <div class="product-list">
                                     @php
                                         $plant = DB::table('plants')
                                             ->where('id', $item->plant_id)
@@ -993,38 +998,44 @@
                     Your satisfaction and comfort is our priority.
                 </p>
             </div>
-
-            <nav class="footer__links">
-                <a href="" class="footer__link">Home</a>
-                <a href="#" class="footer__link">About FloraTrade</a>
-                <a href="" class="footer__link">Explore Plants</a>
-                <a href="" class="footer__link">Price List</a>
-                <a href="" class="footer__link">FAQ</a>
-                <a href="" class="footer__link">Terms &amp; Condition</a>
-            </nav>
-
-            <div class="footer__contact">
-                <h3 class="footer__contact-title">Contact Us</h3>
-                
-                <div class="footer__contact-item">
-                    <img src="{{ url('assets_user/img/icon/telephone-handle-silhouette 1.png') }}" alt="Phone" class="footer__contact-icon">
-                    <span class="footer__contact-text">+6280123719310</span>
-                </div>
-
-                <div class="footer__contact-item">
-                    <img src="{{ url('assets_user/img/icon/email 2.png') }}" alt="Email" class="footer__contact-icon">
-                    <span class="footer__contact-text">floratrade9@gmail.com</span>
-                </div>
-
-                <div class="footer__contact-item">
-                    <img src="{{ url('assets_user/img/icon/pin (1).png') }}" alt="Location" class="footer__contact-icon">
-                    <span class="footer__contact-text">Curug Mekar - Bogor Barat, Bogor, Jawa Barat</span>
-                </div>
-            </div>
         </div>
     </div>
-</footer>
-    </div>
+    <footer>
+        <div class="wrapperFooter container">
+            <div class="about">
+                <img src="{{ url('KlorofilFarm.png') }}" alt="">
+                <p>Find the various types of plants you want with Plantsasri. Your satisfaction and comfort is our priority.
+                </p>
+            </div>
+            <div class="links">
+                <a href="">Home</a>
+                <a href="">About Plantsasri</a>
+                <a href="{{ route('more') }}">Explore Plants</a>
+                <a href="{{ route('catalog') }}">List Price</a>
+                <a href="{{ route('faq') }}">Faq</a>
+                <a href="{{ route('terms') }}">Terms & Condition</a>
+            </div>
+            <div class="contact">
+                <p>Contact Us</p>
+                <a class="item email" href="">
+                    <img src="{{ url('assets_user/img/icon/email 2.png') }}" alt="">
+                    <p>dadaiafh@gmail.com</p>
+                </a>
+                <a class="item call" href="">
+                    <img src="{{ url('assets_user/img/icon/telephone-handle-silhouette 1.png') }}" alt="">
+                    <p>+6286473563</p>
+                </a>
+                <a class="item address" href="">
+                    <img src="{{ url('assets_user/img/icon/pin (1).png') }}" alt="">
+                    <p>GARDEN, No.13 Jalan Cijahe, Curug Mekar - Bogor Barat, Bogor, Jawa Barat</p>
+                </a>
+            </div>
+        </div>
+        <div class="wrapperCopy container">
+            <p>© 2022 Plantsasri, Design By Startcode</p>
+            <p><b>English</b></p>
+        </div>
+    </footer>
 @endsection
 
 @section('js')

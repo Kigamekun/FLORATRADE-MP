@@ -12,7 +12,11 @@
     <link rel="stylesheet" href="{{ url('assets/vendor/bootstrap/icons-1.7.2/font/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css">
     <!-- Font Awesome 5 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> --}}
+{{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.0/css/all.css"> --}}
+{{-- <script src="https://kit.fontawesome.com/f87eaab4e6.js" crossorigin="anonymous"></script> --}}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
 
     <!--CSS Component For Layouting-->

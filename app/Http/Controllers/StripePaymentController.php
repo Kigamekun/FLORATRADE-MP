@@ -304,7 +304,7 @@ class StripePaymentController extends Controller
             $formattedAddress = urlencode($address);
 
             // Create URL for Nominatim API with country code ID (Indonesia)
-            $url = "https://nominatim.openstreetmap.org/search?q={$formattedAddress}&format=json&limit=1&countrycodes=id";
+            $url = "https://nominatim.openstreetmap.org/search?q={$formattedAddress}&format=json&limit=1";
 
             // Set user agent (required by Nominatim's usage policy)
             $options = [
