@@ -1,5 +1,6 @@
 @extends('layouts.base')
 
+
 @section('menu')
     <div class="sidebar-menu-wrapper">
         <li class="listMenuName">
@@ -64,16 +65,17 @@
 @endsection
 
 @section('content')
-
-<!-- Font Awesome 6 Free (official CDN) -->
-{{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.0/css/all.css"> --}}
+    <!-- Font Awesome 6 Free (official CDN) -->
 
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+
+
 
     <style>
         :root {
@@ -208,7 +210,7 @@
             background: white;
             padding: 10px;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             position: absolute;
             top: 10px;
             right: 10px;
@@ -415,9 +417,11 @@
             0% {
                 opacity: 1;
             }
+
             50% {
                 opacity: 0.5;
             }
+
             100% {
                 opacity: 1;
             }
@@ -614,6 +618,7 @@
         }
     </style>
 
+
     <div class="contentMain">
         <div class="d-flex justify-content-between align-items-center">
             <div>
@@ -641,49 +646,60 @@
                 <div class="card stat-card primary">
                     <div class="card-body">
                         <div class="stat-title">Total Orders</div>
-                        <div class="stat-value">{{ $totalOrders }}</div>
+                        <div class="stat-value">{{ number_format($currentMonthOrders) }}</div>
                         <div class="stat-icon"><i class="fas fa-shopping-bag"></i></div>
                         <div class="mt-2">
-                            <span class="text-success"><i class="fas fa-arrow-up"></i> 12.5%</span>
+                            <span class="{{ $orderGrowth >= 0 ? 'text-success' : 'text-danger' }}">
+                                <i class="fas fa-arrow-{{ $orderGrowth >= 0 ? 'up' : 'down' }}"></i>
+                                {{ abs($orderGrowth) }}%
+                            </span>
                             <small class="text-muted ml-2">from last month</small>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-xl-3 col-md-6">
                 <div class="card stat-card success">
                     <div class="card-body">
                         <div class="stat-title">Total Revenue</div>
-                        <div class="stat-value">{{ $totalRevenue }}</div>
-                        <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="stat-value">@currency($currentRevenue)</div>
+                        <div class="stat-icon"><i class="fa-solid fa-dollar-sign"></i></div>
                         <div class="mt-2">
-                            <span class="text-success"><i class="fas fa-arrow-up"></i> 8.3%</span>
+                            <span class="{{ $revenueGrowth >= 0 ? 'text-success' : 'text-danger' }}">
+                                <i class="fa-solid fa-arrow-{{ $revenueGrowth >= 0 ? 'up' : 'down' }}"></i>
+                                {{ abs($revenueGrowth) }}%
+                            </span>
                             <small class="text-muted ml-2">from last month</small>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-xl-3 col-md-6">
                 <div class="card stat-card warning">
                     <div class="card-body">
                         <div class="stat-title">Conversion Rate</div>
-                        <div class="stat-value">5.28%</div>
+                        <div class="stat-value">{{ $conversionRate }}%</div>
                         <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
                         <div class="mt-2">
-                            <span class="text-danger"><i class="fas fa-arrow-down"></i> 1.2%</span>
+                            <!-- Tambahkan logika perbandingan conversion rate jika diperlukan -->
+                            <span class="text-secondary">N/A</span>
                             <small class="text-muted ml-2">from last month</small>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-xl-3 col-md-6">
                 <div class="card stat-card danger">
                     <div class="card-body">
                         <div class="stat-title">Avg. Order Value</div>
-                        <div class="stat-value">$245.80</div>
+                        <div class="stat-value">@currency($avgOrderValue)</div>
                         <div class="stat-icon"><i class="fas fa-tags"></i></div>
                         <div class="mt-2">
-                            <span class="text-success"><i class="fas fa-arrow-up"></i> 3.7%</span>
+                            <!-- Tambahkan logika pertumbuhan AOV jika diperlukan -->
+                            <span class="text-secondary">N/A</span>
                             <small class="text-muted ml-2">from last month</small>
                         </div>
                     </div>
@@ -698,13 +714,17 @@
                     <div class="card-header">
                         <h6>Geographic Order Distribution</h6>
                         <div class="dropdown">
-                            <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="mapViewDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="mapViewDropdown"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-layer-group"></i> Map View
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="mapViewDropdown">
-                                <a class="dropdown-item map-view-option active" href="#" data-view="markers">Markers View</a>
-                                <a class="dropdown-item map-view-option" href="#" data-view="heatmap">Heatmap View</a>
-                                <a class="dropdown-item map-view-option" href="#" data-view="cluster">Cluster View</a>
+                                <a class="dropdown-item map-view-option active" href="#"
+                                    data-view="markers">Markers View</a>
+                                <a class="dropdown-item map-view-option" href="#" data-view="heatmap">Heatmap
+                                    View</a>
+                                <a class="dropdown-item map-view-option" href="#" data-view="cluster">Cluster
+                                    View</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" id="exportMapData">Export Map Data</a>
                             </div>
@@ -712,34 +732,41 @@
                     </div>
                     <div class="card-body p-0">
                         <div id="map"></div>
-                        <div class="map-controls">
+                        <div class="map-controls" style="width: 450px">
                             <button class="map-control-btn active" data-filter="all">All Orders</button>
-                            <button class="map-control-btn" data-filter="pending">Pending</button>
-                            <button class="map-control-btn" data-filter="processing">Processing</button>
-                            <button class="map-control-btn" data-filter="completed">Completed</button>
-                            <button class="map-control-btn" data-filter="cancelled">Cancelled</button>
+                            <button class="map-control-btn" data-filter="waiting approval">Waiting Approval</button>
+                            <button class="map-control-btn" data-filter="order processed">Order Processed</button>
+                            <button class="map-control-btn" data-filter="quarantine process">Quarantine Process</button>
+                            <button class="map-control-btn" data-filter="order shipped">Order Shipped</button>
+                            <button class="map-control-btn" data-filter="shipped">Shipped</button>
+                            <button class="map-control-btn" data-filter="review">Review</button>
                         </div>
+
                     </div>
+
                     <div class="card-footer">
                         <div class="geo-stats">
                             <div class="geo-stat-item">
                                 <h4>Top Country</h4>
-                                <p>United States</p>
+                                <p>{{ $topCountry->negara_tujuan ?? 'N/A' }}</p>
                             </div>
                             <div class="geo-stat-item">
                                 <h4>Top City</h4>
-                                <p>New York</p>
+                                <p>{{ $topCity->kota_tujuan ?? 'N/A' }}</p>
                             </div>
                             <div class="geo-stat-item">
                                 <h4>Int'l Orders</h4>
-                                <p>38%</p>
+                                <p>{{ $internationalPercentage }}%</p>
                             </div>
                             <div class="geo-stat-item">
                                 <h4>New Markets</h4>
-                                <p>+3</p>
+                                <p>+{{ $newMarketsCount }}</p>
                             </div>
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
             <div class="col-lg-4">
@@ -763,320 +790,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h6>Order Status Distribution</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-container" style="height: 200px;">
-                            <canvas id="statusChart"></canvas>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
 
         <!-- Recent Orders and Best Selling Products -->
         <div class="row">
-            <div class="col-lg-8">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h6>Recent Orders</h6>
-                        {{-- <a href="{{ route('admin.order.index') }}" class="btn btn-sm btn-primary">View All</a> --}}
-                    </div>
-                    <div class="card-body">
-                        <div class="custom-filter">
-                            <select id="statusFilter" class="form-select">
-                                <option value="">All Status</option>
-                                <option value="pending">Pending</option>
-                                <option value="processing">Processing</option>
-                                <option value="completed">Completed</option>
-                                <option value="cancelled">Cancelled</option>
-                            </select>
-                            <select id="countryFilter" class="form-select">
-                                <option value="">All Countries</option>
-                                @foreach ($orders->pluck('negara_tujuan')->unique() as $country)
-                                    <option value="{{ $country }}">{{ $country }}</option>
-                                @endforeach
-                            </select>
-                            <select id="paymentFilter" class="form-select">
-                                <option value="">All Payment Methods</option>
-                                @foreach ($orders->pluck('payment_method')->unique() as $method)
-                                    <option value="{{ $method }}">{{ $method }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-hover" id="ordersTable">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Transaction Code</th>
-                                        <th>Customer</th>
-                                        <th>Country</th>
-                                        <th>Date</th>
-                                        <th>Amount</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($orders->take(5) as $order)
-                                        <tr>
-                                            <td>{{ $order->id }}</td>
-                                            <td>{{ $order->kode_transaksi }}</td>
-                                            <td>{{ $order->nama_penerima }}</td>
-                                            <td class="country">{{ $order->negara_tujuan }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($order->date)->format('M d, Y') }}</td>
-                                            <td>{{ $order->currency }} {{ number_format($order->total_price, 2) }}</td>
-                                            <td>
-                                                <span class="status-badge {{ strtolower($order->status) }}">{{ ucfirst($order->status) }}</span>
-                                            </td>
-                                            <td>
-                                                {{-- <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-sm btn-action btn-view"><i class="fas fa-eye"></i></a> --}}
-                                                {{-- <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-sm btn-action btn-edit"><i class="fas fa-pen"></i></a> --}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="mt-3 d-flex justify-content-center">
-                            <nav>
-                                <ul class="pagination">
-                                    <li class="page-item disabled">
-                                        <span class="page-link">&laquo;</span>
-                                    </li>
-                                    <li class="page-item active">
-                                        <span class="page-link">1</span>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">3</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">&raquo;</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h6>Best Selling Plants</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="product-performance">
-                            <div class="product-item">
-                                <div class="product-image">
-                                    <img src="/api/placeholder/50/50" alt="Plant 1">
-                                </div>
-                                <div class="product-details">
-                                    <h5 class="product-name">Monstera Deliciosa</h5>
-                                    <p class="product-category">Indoor Plants</p>
-                                </div>
-                                <div class="product-stats">
-                                    <div class="product-stat">
-                                        <p class="product-stat-value">127</p>
-                                        <p class="product-stat-label">Sold</p>
-                                    </div>
-                                    <div class="product-stat">
-                                        <p class="product-stat-value">$3,810</p>
-                                        <p class="product-stat-label">Revenue</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item">
-                                <div class="product-image">
-                                    <img src="/api/placeholder/50/50" alt="Plant 2">
-                                </div>
-                                <div class="product-details">
-                                    <h5 class="product-name">Fiddle Leaf Fig</h5>
-                                    <p class="product-category">Indoor Plants</p>
-                                </div>
-                                <div class="product-stats">
-                                    <div class="product-stat">
-                                        <p class="product-stat-value">98</p>
-                                        <p class="product-stat-label">Sold</p>
-                                    </div>
-                                    <div class="product-stat">
-                                        <p class="product-stat-value">$2,940</p>
-                                        <p class="product-stat-label">Revenue</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item">
-                                <div class="product-image">
-                                    <img src="/api/placeholder/50/50" alt="Plant 3">
-                                </div>
-                                <div class="product-details">
-                                    <h5 class="product-name">Snake Plant</h5>
-                                    <p class="product-category">Succulents</p>
-                                </div>
-                                <div class="product-stats">
-                                    <div class="product-stat">
-                                        <p class="product-stat-value">86</p>
-                                        <p class="product-stat-label">Sold</p>
-                                    </div>
-                                    <div class="product-stat">
-                                        <p class="product-stat-value">$1,720</p>
-                                        <p class="product-stat-label">Revenue</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item">
-                                <div class="product-image">
-                                    <img src="/api/placeholder/50/50" alt="Plant 4">
-                                </div>
-                                <div class="product-details">
-                                    <h5 class="product-name">Peace Lily</h5>
-                                    <p class="product-category">Flowering Plants</p>
-                                </div>
-                                <div class="product-stats">
-                                    <div class="product-stat">
-                                        <p class="product-stat-value">74</p>
-                                        <p class="product-stat-label">Sold</p>
-                                    </div>
-                                    <div class="product-stat">
-                                        <p class="product-stat-value">$1,480</p>
-                                        <p class="product-stat-label">Revenue</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Order Trend Analysis and Shipping Performance -->
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h6>Order Trend Analysis</h6>
-                        <div class="dropdown">
-                            <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="trendPeriodDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                This Month
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="trendPeriodDropdown">
-                                <a class="dropdown-item" href="#">Last 7 Days</a>
-                                <a class="dropdown-item active" href="#">This Month</a>
-                                <a class="dropdown-item" href="#">Last Month</a>
-                                <a class="dropdown-item" href="#">This Quarter</a>
-                                <a class="dropdown-item" href="#">This Year</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-container">
-                            <canvas id="trendChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h6>Shipping Performance</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <h5 class="text-muted mb-2">Average Delivery Time</h5>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h3 class="mb-0">3.4 days</h3>
-                                <span class="badge bg-success">-0.6 days</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 68%" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <small class="text-muted">Target: 4 days</small>
-                        </div>
-                        <div class="mb-3">
-                            <h5 class="text-muted mb-2">On-Time Delivery Rate</h5>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h3 class="mb-0">94.2%</h3>
-                                <span class="badge bg-success">+2.8%</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 94%" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <small class="text-muted">Target: 90%</small>
-                        </div>
-                        <div class="mt-4">
-                            <h5 class="text-muted mb-3">Top Shipping Methods</h5>
-                            <div class="shipping-timeline">
-                                <div class="timeline-item completed">
-                                    <div class="timeline-dot"></div>
-                                    <h5>Express Shipping (48%)</h5>
-                                    <p>2-3 business days</p>
-                                </div>
-                                <div class="timeline-item completed">
-                                    <div class="timeline-dot"></div>
-                                    <h5>Standard Shipping (35%)</h5>
-                                    <p>4-6 business days</p>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-dot"></div>
-                                    <h5>Economy Shipping (17%)</h5>
-                                    <p>7-10 business days</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Customer Demographics and Payment Analysis -->
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h6>Customer Demographics</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-container" style="height: 200px;">
-                            <canvas id="customerDemographicsChart"></canvas>
-                        </div>
-                        <div class="mt-4">
-                            <h5 class="text-muted mb-3">Customer Segments</h5>
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between mb-1">
-                                    <span>New Customers</span>
-                                    <span>38%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 38%" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between mb-1">
-                                    <span>Returning Customers</span>
-                                    <span>45%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="d-flex justify-content-between mb-1">
-                                    <span>Loyal Customers</span>
-                                    <span>17%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 17%" aria-valuenow="17" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-header">
@@ -1087,34 +808,17 @@
                             <canvas id="paymentMethodChart"></canvas>
                         </div>
                         <div class="mt-4">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div>
-                                    <h6 class="mb-0">Credit Card</h6>
-                                    <small class="text-muted">Visa, Mastercard, Amex</small>
+                            @foreach ($paymentData as $category => $data)
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <h6 class="mb-0">{{ $category }}</h6>
+                                        <small class="text-muted">{{ $data['subtext'] }}</small>
+                                    </div>
+                                    <div class="text-primary font-weight-bold">
+                                        {{ number_format($data['percentage'], 1) }}%
+                                    </div>
                                 </div>
-                                <div class="text-primary font-weight-bold">48%</div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div>
-                                    <h6 class="mb-0">Digital Wallet</h6>
-                                    <small class="text-muted">PayPal, Google Pay</small>
-                                </div>
-                                <div class="text-primary font-weight-bold">32%</div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div>
-                                    <h6 class="mb-0">Bank Transfer</h6>
-                                    <small class="text-muted">Direct deposit</small>
-                                </div>
-                                <div class="text-primary font-weight-bold">15%</div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="mb-0">Others</h6>
-                                    <small class="text-muted">Cash on delivery, etc.</small>
-                                </div>
-                                <div class="text-primary font-weight-bold">5%</div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -1125,750 +829,694 @@
                         <h6>Inventory Status</h6>
                     </div>
                     <div class="card-body">
-                        <div class="chart-container" style="height: 200px;">
-                            <canvas id="inventoryChart"></canvas>
-                        </div>
-                        <div class="mt-4">
+                        @if ($lowStockCount > 0)
                             <div class="alert alert-warning p-2">
                                 <div class="d-flex align-items-center">
                                     <i class="fas fa-exclamation-triangle mr-2"></i>
                                     <div>
                                         <h6 class="mb-0">Low Stock Alert</h6>
-                                        <small>5 products below threshold</small>
+                                        <small>{{ $lowStockCount }} product{{ $lowStockCount > 1 ? 's' : '' }} below
+                                            threshold</small>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-3">
+                        @endif
+
+                        <div class="mt-3">
+                            @foreach ($stock as $plant)
                                 <div class="d-flex justify-content-between mb-1">
-                                    <span>Snake Plant</span>
-                                    <span class="text-danger">3 left</span>
+                                    <span>{{ $plant->name }} ({{ $plant->category->name }})</span>
+                                    <span
+                                        class="@if ($plant->stock < 10) text-danger @elseif($plant->stock < 20) text-warning @endif">
+                                        {{ $plant->stock }} left
+                                    </span>
                                 </div>
-                                <div class="progress mb-2">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress mb-3">
+                                    @php
+                                        // Hitung persentase stok (max 100% jika stok melebihi threshold)
+                                        $percentage = min(($plant->stock / 20) * 100, 100);
+                                        $color =
+                                            $plant->stock < 10
+                                                ? 'danger'
+                                                : ($plant->stock < 20
+                                                    ? 'warning'
+                                                    : 'success');
+                                    @endphp
+                                    <div class="progress-bar bg-{{ $color }}" role="progressbar"
+                                        style="width: {{ $percentage }}%" aria-valuenow="{{ $plant->stock }}"
+                                        aria-valuemin="0" aria-valuemax="20">
+                                    </div>
                                 </div>
-                                <div class="d-flex justify-content-between mb-1">
-                                    <span>Fiddle Leaf Fig</span>
-                                    <span class="text-warning">7 left</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                            @endforeach
+
+                            <!-- Pagination -->
+                            <div class="mt-4">
+                                {{ $stock->links() }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h6>Best Selling Plants</h6>
+                    </div>
+                    <div class="card-body">
+                        @forelse($bestSellingPlants as $plant)
+                            {{-- Gunakan list-group untuk konsistensi spacing --}}
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex align-items-center justify-content-between px-0 py-3">
+                                    <div class="d-flex align-items-center">
+                                        @php
+                                            $thumbs = json_decode($plant['image'], true);
+                                            $src = url('thumbPlant/' . ($thumbs[0] ?? 'placeholder.png'));
+                                        @endphp
+                                        <img src="{{ $src }}" alt="{{ $plant['name'] }}" class="rounded me-3"
+                                            width="50" height="50">
+                                        <div>
+                                            <h6 class="mb-1">{{ $plant['name'] }}</h6>
+                                            <small class="text-muted">{{ $plant['category'] }}</small>
+                                        </div>
+                                    </div>
+                                    <div class="text-end">
+                                        <div class="mb-1">
+                                            <span class="fw-bold">{{ $plant['sold'] }}</span><br>
+                                            <small class="text-muted">Sold</small>
+                                        </div>
+                                        <div>
+                                            <span class="fw-bold">@currency($plant['revenue'])</span><br>
+                                            <small class="text-muted">Revenue</small>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        @empty
+                            <div class="text-center py-5">
+                                <i class="fas fa-seedling fa-3x text-muted mb-3"></i>
+                                <p class="text-muted mb-0">No sales data available</p>
+                            </div>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
         </div>
+
+
+        <!-- Customer Demographics and Payment Analysis -->
+
     </div>
 @endsection
 
 @section('js')
+    @php
+        $statusMap = [
+            0 => 'Waiting Approval',
+            1 => 'Order Processed',
+            2 => 'Quarantine Process',
+            3 => 'Order Shipped',
+            4 => 'Shipped',
+            5 => 'Review',
+        ];
+
+        $orderDataArray = $mapOrders->map(function ($order) use ($statusMap) {
+            return [
+                'id' => $order->id,
+                'lat' => (float) $order->latitude,
+                'lng' => (float) $order->longitude,
+                'customer' => $order->nama_penerima,
+                'status' => $statusMap[$order->status] ?? 'Unknown',
+                'amount' => $order->currency . ' ' . number_format($order->total_price_after_disc),
+                'country' => $order->negara_tujuan,
+                'city' => $order->kota_tujuan,
+                'date' => \Carbon\Carbon::parse($order->created_at)->format('M j, Y'),
+            ];
+        });
+    @endphp
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script> --}}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-measure@3.1.0/dist/leaflet-measure.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-measure@3.1.0/dist/leaflet-measure.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script> --}}
 
     <script>
-       $(document).ready(function() {
-    // Initialize date range picker
-    $('#daterange').daterangepicker({
-        startDate: moment().subtract(29, 'days'),
-        endDate: moment(),
-        ranges: {
-           'Today': [moment(), moment()],
-           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-           'This Month': [moment().startOf('month'), moment().endOf('month')],
-           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        }
-    });
+        $(document).ready(function() {
+            const orderData = @json($orderDataArray);
 
-    // Initialize Leaflet map
-    var map = L.map('map').setView([0, 0], 2);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+            $('#daterange').daterangepicker({
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment(),
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
+                        'month').endOf('month')]
+                }
+            });
 
-    // Dummy data for orders with geo coordinates
-    const orderData = [
-        // Original data from the template
-        // Additional dummy data to show better visualization
-        {id: 1001, lat: 40.7128, lng: -74.0060, customer: "John Smith", status: "completed", amount: "USD 150.00", country: "United States", city: "New York", date: "May 1, 2023"},
-        {id: 1002, lat: 34.0522, lng: -118.2437, customer: "Alice Johnson", status: "processing", amount: "USD 85.45", country: "United States", city: "Los Angeles", date: "May 2, 2023"},
-        {id: 1003, lat: 51.5074, lng: -0.1278, customer: "Richard Wilson", status: "completed", amount: "GBP 120.00", country: "United Kingdom", city: "London", date: "May 3, 2023"},
-        {id: 1004, lat: 48.8566, lng: 2.3522, customer: "Marie Dupont", status: "pending", amount: "EUR 95.50", country: "France", city: "Paris", date: "May 4, 2023"},
-        {id: 1005, lat: 35.6762, lng: 139.6503, customer: "Takashi Yamamoto", status: "processing", amount: "JPY 8500.00", country: "Japan", city: "Tokyo", date: "May 5, 2023"},
-        {id: 1006, lat: -33.8688, lng: 151.2093, customer: "Emma Wilson", status: "completed", amount: "AUD 210.75", country: "Australia", city: "Sydney", date: "May 6, 2023"},
-        {id: 1007, lat: 55.7558, lng: 37.6173, customer: "Ivan Petrov", status: "pending", amount: "RUB 5400.00", country: "Russia", city: "Moscow", date: "May 7, 2023"},
-        {id: 1008, lat: 19.4326, lng: -99.1332, customer: "Carlos Hernandez", status: "processing", amount: "MXN 1850.00", country: "Mexico", city: "Mexico City", date: "May 8, 2023"},
-        {id: 1009, lat: -23.5505, lng: -46.6333, customer: "Ana Silva", status: "completed", amount: "BRL 320.00", country: "Brazil", city: "São Paulo", date: "May 9, 2023"},
-        {id: 1010, lat: 28.6139, lng: 77.2090, customer: "Raj Sharma", status: "pending", amount: "INR 7500.00", country: "India", city: "New Delhi", date: "May 10, 2023"}
-    ];
 
-    // Create custom marker icons based on status
-    function getMarkerIcon(status) {
-        let iconColor;
-        switch(status) {
-            case 'pending': iconColor = '#f6c23e'; break;
-            case 'processing': iconColor = '#4e73df'; break;
-            case 'completed': iconColor = '#1cc88a'; break;
-            case 'cancelled': iconColor = '#e74a3b'; break;
-            default: iconColor = '#36b9cc'; break;
-        }
+            const statusChartData = {
+                labels: {!! json_encode(array_keys($orderStatuses)) !!},
+                data: {!! json_encode(array_values($orderStatuses)) !!}
+            };
 
-        return L.divIcon({
-            html: `<div style="background-color: ${iconColor}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white;"></div>`,
-            className: 'custom-div-icon',
-            iconSize: [30, 30],
-            iconAnchor: [15, 15]
-        });
+            // Data untuk revenue chart
+            const revenueData = {
+                labels: {!! json_encode($monthlyRevenue->pluck('month')) !!},
+                current: {!! json_encode($monthlyRevenue->pluck('revenue')) !!}
+            };
+
+            // Data untuk inventory
+            const inventoryData = {
+                labels: {!! json_encode(
+                    $plants->groupBy('category.name')->map(function ($item, $key) {
+                        return $key;
+                    }),
+                ) !!},
+                stock: {!! json_encode(
+                    $plants->groupBy('category.name')->map(function ($item) {
+                        return $item->sum('stock');
+                    }),
+                ) !!}
+            };
+
+
+
+
+
+            // Initialize Leaflet map
+            var map = L.map('map').setView([0, 0], 2);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            const geocoder = L.Control.geocoder({
+                defaultMarkGeocode: false,
+                position: 'topleft',
+                geocoder: L.Control.Geocoder.nominatim({
+                    serviceUrl: 'https://nominatim.openstreetmap.org/search'
+                })
+            }).addTo(map);
+
+            // Event handler untuk pencarian
+            geocoder.on('markgeocode', function(e) {
+                map.setView(e.geocode.center, 8);
+                L.marker(e.geocode.center)
+                    .bindPopup(e.geocode.name)
+                    .addTo(map);
+            });
+
+
+
+            // Tambahkan title dan description
+            const infoControl = L.control({
+                position: 'bottomright'
+            });
+            infoControl.onAdd = function(map) {
+                this._div = L.DomUtil.create('div', 'map-info');
+                this.update();
+                return this._div;
+            };
+            infoControl.update = function() {
+                this._div.innerHTML = `
+        <h4 class="map-title">Order Distribution Analysis</h4>
+        <p class="map-description">Visualisasi distribusi order berdasarkan lokasi pelanggan</p>
+    `;
+            };
+            infoControl.addTo(map);
+
+            // Filter amount dengan slider
+            const sliderControl = L.control({
+                position: 'bottomleft'
+            });
+            sliderControl.onAdd = function(map) {
+                this._div = L.DomUtil.create('div', 'slider-filter');
+                this._div.innerHTML = `
+        <div class="slider-container">
+            <label>Filter by Amount:</label>
+            <input type="range" id="amountSlider" min="0" max="1000" value="0" class="form-control-range">
+            <span id="sliderValue">0</span>
+        </div>
+    `;
+                return this._div;
+            };
+            sliderControl.addTo(map);
+
+            L.control.measure({
+                position: 'bottomleft',
+                primaryLengthUnit: 'meters',
+                secondaryLengthUnit: 'kilometers',
+                primaryAreaUnit: 'sqmeters'
+            }).addTo(map);
+            // Style tambahan
+            const style = document.createElement('style');
+            style.innerHTML = `
+    .map-info {
+        background: white;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.4);
     }
-
-    // Initialize empty layers for different map views
-    let markersLayer = L.layerGroup().addTo(map);
-    let heatLayer;
-    let clusterLayer = L.markerClusterGroup();
-    let visibleOrders = orderData;
-
-    // Function to update markers on the map
-    function updateMarkers(orders) {
-        // Clear existing markers
-        markersLayer.clearLayers();
-        clusterLayer.clearLayers();
-
-        // If heatLayer exists, remove it
-        if (heatLayer && map.hasLayer(heatLayer)) {
-            map.removeLayer(heatLayer);
-        }
-
-        // Current view mode
-        const currentView = $('.map-view-option.active').data('view') || 'markers';
-
-        // Heat map points
-        let heatPoints = [];
-
-        orders.forEach(order => {
-            // Create marker with popup
-            const marker = L.marker([order.lat, order.lng], {
-                icon: getMarkerIcon(order.status.toLowerCase())
-            }).bindPopup(`
-                <strong>Order #${order.id}</strong><br>
-                Customer: ${order.customer}<br>
-                Status: <span class="badge status-badge ${order.status.toLowerCase()}">${order.status}</span><br>
-                Amount: ${order.amount}<br>
-                Location: ${order.city}, ${order.country}<br>
-                Date: ${order.date}
-            `);
-
-            // Add to appropriate layer
-            if (currentView === 'markers') {
-                marker.addTo(markersLayer);
-            } else if (currentView === 'cluster') {
-                clusterLayer.addLayer(marker);
-            }
-
-            // Add point for heat map
-            heatPoints.push([order.lat, order.lng, 1]);
-        });
-
-        // Apply appropriate view
-        if (currentView === 'cluster') {
-            map.addLayer(clusterLayer);
-        } else if (currentView === 'heatmap') {
-            heatLayer = L.heatLayer(heatPoints, {radius: 25, blur: 15, maxZoom: 10}).addTo(map);
-        }
+    .map-title {
+        margin: 0 0 5px 0;
+        font-size: 16px;
     }
+    .map-description {
+        margin: 0;
+        font-size: 12px;
+        color: #666;
+    }
+    .slider-filter {
+        background: white;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    }
+    .slider-container {
+        width: 200px;
+    }
+    #sliderValue {
+        margin-left: 10px;
+        font-weight: bold;
+    }
+`;
+            document.head.appendChild(style);
 
-    // Initial map update
-    updateMarkers(orderData);
+            // Implementasi filter amount
+            let minAmount = 0;
+            let maxAmount = Math.max(...orderData.map(o => {
+                return parseFloat(o.amount.replace(/[^0-9.]/g, ''));
+            }));
+            // Update slider
+            document.getElementById('amountSlider').max = maxAmount;
+            document.getElementById('amountSlider').value = minAmount;
+            document.getElementById('sliderValue').textContent = formatCurrency(minAmount);
 
-    // Map control filter buttons
-    $('.map-control-btn').on('click', function() {
-        $('.map-control-btn').removeClass('active');
-        $(this).addClass('active');
+            // Fungsi format currency
+            function formatCurrency(value) {
+                return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }).format(value);
+            }
 
-        const filter = $(this).data('filter');
+            // Update slider label
+            document.querySelector('.slider-container label').textContent = 'Filter by Amount (USD):';
 
-        if (filter === 'all') {
-            visibleOrders = orderData;
-        } else {
-            visibleOrders = orderData.filter(order => order.status.toLowerCase() === filter);
-        }
+            // Update event listener untuk handle USD
+            document.getElementById('amountSlider').addEventListener('input', function(e) {
+                const value = parseFloat(e.target.value);
+                document.getElementById('sliderValue').textContent = formatCurrency(value);
+                visibleOrders = orderData.filter(order => {
+                    const amount = parseFloat(order.amount.replace(/[^0-9.]/g, ''));
+                    return amount >= value;
+                });
+                updateMarkers(visibleOrders);
+            });
 
-        updateMarkers(visibleOrders);
-    });
+            // Error handling
+            geocoder.on('error', function(e) {
+                console.error('Geocoding error:', e.error);
+                alert('Gagal menemukan lokasi. Silakan coba kata kunci lain.');
+            });
 
-    // Map view options
-    $('.map-view-option').on('click', function(e) {
-        e.preventDefault();
+            // Dummy data for orders with geo coordinates
+            // Create custom marker icons based on status
+            function getMarkerIcon(status) {
+                let iconColor;
+                switch (status) {
+                    case 'waiting approval':
+                        iconColor = '#f6c23e';
+                        break;
+                    case 'order processed':
+                        iconColor = '#4e73df';
+                        break;
+                    case 'quarantine process':
+                        iconColor = '#e74a3b';
+                        break;
+                    case 'order shipped':
+                        iconColor = '#1cc88a';
+                        break;
+                    case 'shipped':
+                        iconColor = '#36b9cc';
+                        break;
+                    case 'review':
+                        iconColor = '#f8f9fc';
+                        break;
+                    default:
+                        iconColor = '#858796';
+                        break;
 
-        $('.map-view-option').removeClass('active');
-        $(this).addClass('active');
-
-        updateMarkers(visibleOrders);
-
-        // Update dropdown button text
-        $('#mapViewDropdown').html(`<i class="fas fa-layer-group"></i> ${$(this).text()}`);
-    });
-
-    // Export map data
-    $('#exportMapData').on('click', function(e) {
-        e.preventDefault();
-
-        const csvContent = "data:text/csv;charset=utf-8,ID,Customer,Country,City,Status,Amount,Date,Latitude,Longitude\n" +
-            visibleOrders.map(order =>
-                `${order.id},"${order.customer}","${order.country}","${order.city}","${order.status}","${order.amount}","${order.date}",${order.lat},${order.lng}`
-            ).join("\n");
-
-        const encodedUri = encodeURI(csvContent);
-        const link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "map_data_export.csv");
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    });
-
-    // Table filters
-    $('#statusFilter, #countryFilter, #paymentFilter').on('change', function() {
-        const statusFilter = $('#statusFilter').val().toLowerCase();
-        const countryFilter = $('#countryFilter').val().toLowerCase();
-        const paymentFilter = $('#paymentFilter').val().toLowerCase();
-
-        $('#ordersTable tbody tr').each(function() {
-            const statusCell = $(this).find('td .status-badge').text().toLowerCase();
-            const countryCell = $(this).find('td.country').text().toLowerCase();
-            const paymentCell = $(this).find('td.payment').text().toLowerCase();
-
-            const showStatus = !statusFilter || statusCell.includes(statusFilter);
-            const showCountry = !countryFilter || countryCell.includes(countryFilter);
-            const showPayment = !paymentFilter || paymentCell.includes(paymentFilter);
-
-            $(this).toggle(showStatus && showCountry && showPayment);
-        });
-    });
-
-    // Revenue Chart
-    const revenueChart = new Chart(document.getElementById('revenueChart'), {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-            datasets: [{
-                label: 'Current Period',
-                data: [15000, 22000, 19500, 28000, 32000, 36500, 42000],
-                backgroundColor: 'rgba(78, 115, 223, 0.05)',
-                borderColor: 'rgba(78, 115, 223, 1)',
-                pointBackgroundColor: 'rgba(78, 115, 223, 1)',
-                pointBorderColor: '#fff',
-                pointRadius: 4,
-                pointHoverRadius: 6,
-                borderWidth: 3,
-                fill: true
-            },
-            {
-                label: 'Previous Period',
-                data: [12000, 18000, 15500, 24000, 26000, 28500, 32000],
-                backgroundColor: 'rgba(28, 200, 138, 0.05)',
-                borderColor: 'rgba(28, 200, 138, 1)',
-                pointBackgroundColor: 'rgba(28, 200, 138, 1)',
-                pointBorderColor: '#fff',
-                pointRadius: 4,
-                pointHoverRadius: 6,
-                borderWidth: 3,
-                fill: true
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 10,
-                    top: 10,
-                    bottom: 0
                 }
-            },
-            scales: {
-                xAxes: [{
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
-                    },
-                    ticks: {
-                        fontColor: '#858796',
-                        maxTicksLimit: 7
+
+                return L.divIcon({
+                    html: `<div style="background-color: ${iconColor}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white;"></div>`,
+                    className: 'custom-div-icon',
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 15]
+                });
+            }
+
+            // Initialize empty layers for different map views
+            let markersLayer = L.layerGroup().addTo(map);
+            let heatLayer;
+            let clusterLayer = L.markerClusterGroup();
+            let visibleOrders = orderData;
+
+            // Function to update markers on the map
+            function updateMarkers(orders) {
+                // Clear existing markers
+                markersLayer.clearLayers();
+                clusterLayer.clearLayers();
+
+                // If heatLayer exists, remove it
+                if (heatLayer && map.hasLayer(heatLayer)) {
+                    map.removeLayer(heatLayer);
+                }
+
+                // Current view mode
+                const currentView = $('.map-view-option.active').data('view') || 'markers';
+
+                // Heat map points
+                let heatPoints = [];
+
+                orders.forEach(order => {
+                    const amount = parseFloat(order.amount.replace(/[^0-9.]/g, ''));
+                    const marker = L.marker([order.lat, order.lng], {
+                        icon: getMarkerIcon(order.status.toLowerCase())
+                    }).bindPopup(`
+            <strong>Order #${order.id}</strong><br>
+            Customer: ${order.customer}<br>
+            Status: <span class="badge status-badge ${order.status.toLowerCase()}">${order.status}</span><br>
+            Amount: ${formatCurrency(amount)}<br>
+            Location: ${order.city}, ${order.country}<br>
+            Date: ${order.date}
+        `);
+
+                    // Add to appropriate layer
+                    if (currentView === 'markers') {
+                        marker.addTo(markersLayer);
+                    } else if (currentView === 'cluster') {
+                        clusterLayer.addLayer(marker);
                     }
-                }],
-                yAxes: [{
-                    gridLines: {
-                        color: 'rgb(234, 236, 244)',
-                        zeroLineColor: 'rgb(234, 236, 244)',
-                        drawBorder: false,
-                        borderDash: [2],
-                        zeroLineBorderDash: [2]
-                    },
-                    ticks: {
-                        fontColor: '#858796',
-                        beginAtZero: true,
-                        maxTicksLimit: 5,
-                        padding: 10,
-                        callback: function(value, index, values) {
-                            return '$' + number_format(value);
-                        }
-                    }
-                }]
-            },
-            legend: {
-                display: false
-            },
-            tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                titleMarginBottom: 10,
-                titleFontColor: '#6e707e',
-                titleFontSize: 14,
-                borderColor: '#dddfeb',
-                borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
-                displayColors: false,
-                intersect: false,
-                mode: 'index',
-                caretPadding: 10,
-                callbacks: {
-                    label: function(tooltipItem, chart) {
-                        var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                        return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
-                    }
+
+                    // Add point for heat map
+                    heatPoints.push([order.lat, order.lng, 1]);
+                });
+
+                // Apply appropriate view
+                if (currentView === 'cluster') {
+                    map.addLayer(clusterLayer);
+                } else if (currentView === 'heatmap') {
+                    heatLayer = L.heatLayer(heatPoints, {
+                        radius: 25,
+                        blur: 15,
+                        maxZoom: 10
+                    }).addTo(map);
                 }
             }
-        }
-    });
 
-    // Custom legend click handler
-    $('.legend-item').on('click', function() {
-        const datasetIndex = $(this).data('dataset');
-        const isVisible = revenueChart.isDatasetVisible(datasetIndex);
+            // Initial map update
+            updateMarkers(orderData);
 
-        // Toggle dataset visibility
-        if (isVisible) {
-            revenueChart.hide(datasetIndex);
-            $(this).addClass('inactive');
-        } else {
-            revenueChart.show(datasetIndex);
-            $(this).removeClass('inactive');
-        }
-    });
+            // Map control filter buttons
+            $('.map-control-btn').on('click', function() {
+                $('.map-control-btn').removeClass('active');
+                $(this).addClass('active');
 
-    // Order Status Chart
-    const statusChart = new Chart(document.getElementById('statusChart'), {
-        type: 'doughnut',
-        data: {
-            labels: ['Completed', 'Processing', 'Pending', 'Cancelled'],
-            datasets: [{
-                data: [45, 25, 20, 10],
-                backgroundColor: ['#1cc88a', '#4e73df', '#f6c23e', '#e74a3b'],
-                hoverBackgroundColor: ['#17a673', '#2e59d9', '#dda20a', '#c23321'],
-                hoverBorderColor: "rgba(234, 236, 244, 1)",
-            }],
-        },
-        options: {
-            maintainAspectRatio: false,
-            cutoutPercentage: 70,
-            legend: {
-                display: true,
-                position: 'bottom',
-                labels: {
-                    fontColor: '#858796',
-                    boxWidth: 12
+                const filter = $(this).data('filter');
+
+                if (filter === 'all') {
+                    visibleOrders = orderData;
+                } else {
+                    visibleOrders = orderData.filter(order => order.status.toLowerCase() === filter);
                 }
-            },
-            tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                titleMarginBottom: 10,
-                titleFontColor: '#6e707e',
-                titleFontSize: 14,
-                borderColor: '#dddfeb',
-                borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
-                displayColors: false,
-                intersect: false,
-                mode: 'index',
-                caretPadding: 10,
-                callbacks: {
-                    label: function(tooltipItem, data) {
-                        var dataset = data.datasets[tooltipItem.datasetIndex];
-                        var total = dataset.data.reduce(function(previousValue, currentValue) {
-                            return previousValue + currentValue;
-                        });
-                        var currentValue = dataset.data[tooltipItem.index];
-                        var percent = Math.round((currentValue/total) * 100);
-                        return data.labels[tooltipItem.index] + ': ' + percent + '%';
-                    }
-                }
-            }
-        }
-    });
 
-    // Trend Chart
-    const trendChart = new Chart(document.getElementById('trendChart'), {
-        type: 'line',
-        data: {
-            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-            datasets: [
-                {
-                    label: 'Orders',
-                    data: [68, 95, 82, 120],
-                    backgroundColor: 'rgba(78, 115, 223, 0.05)',
-                    borderColor: 'rgba(78, 115, 223, 1)',
-                    pointBackgroundColor: 'rgba(78, 115, 223, 1)',
-                    pointBorderColor: '#fff',
-                    pointRadius: 4,
-                    borderWidth: 2,
-                    lineTension: 0.3,
-                    fill: true
+                updateMarkers(visibleOrders);
+            });
+
+            // Map view options
+            $('.map-view-option').on('click', function(e) {
+                e.preventDefault();
+
+                $('.map-view-option').removeClass('active');
+                $(this).addClass('active');
+
+                updateMarkers(visibleOrders);
+
+                // Update dropdown button text
+                $('#mapViewDropdown').html(`<i class="fas fa-layer-group"></i> ${$(this).text()}`);
+            });
+
+            // Export map data
+            $('#exportMapData').on('click', function(e) {
+                e.preventDefault();
+
+                const csvContent =
+                    "data:text/csv;charset=utf-8,ID,Customer,Country,City,Status,Amount,Date,Latitude,Longitude\n" +
+                    visibleOrders.map(order =>
+                        `${order.id},"${order.customer}","${order.country}","${order.city}","${order.status}","${order.amount}","${order.date}",${order.lat},${order.lng}`
+                    ).join("\n");
+
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "map_data_export.csv");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+
+            // Table filters
+            $('#statusFilter, #countryFilter, #paymentFilter').on('change', function() {
+                const statusFilter = $('#statusFilter').val().toLowerCase();
+                const countryFilter = $('#countryFilter').val().toLowerCase();
+                const paymentFilter = $('#paymentFilter').val().toLowerCase();
+
+                $('#ordersTable tbody tr').each(function() {
+                    const statusCell = $(this).find('td .status-badge').text().toLowerCase();
+                    const countryCell = $(this).find('td.country').text().toLowerCase();
+                    const paymentCell = $(this).find('td.payment').text().toLowerCase();
+
+                    const showStatus = !statusFilter || statusCell.includes(statusFilter);
+                    const showCountry = !countryFilter || countryCell.includes(countryFilter);
+                    const showPayment = !paymentFilter || paymentCell.includes(paymentFilter);
+
+                    $(this).toggle(showStatus && showCountry && showPayment);
+                });
+            });
+
+            // Revenue Chart
+            const revenueChart = new Chart(document.getElementById('revenueChart'), {
+                type: 'line',
+                data: {
+                    labels: revenueData.labels,
+                    datasets: [{
+                        label: 'Revenue',
+                        data: revenueData.current,
+                        borderColor: '#4e73df',
+                        fill: false
+                    }]
                 },
-                {
-                    label: 'Revenue',
-                    data: [12500, 16800, 14200, 21500],
-                    backgroundColor: 'rgba(28, 200, 138, 0)',
-                    borderColor: 'rgba(28, 200, 138, 1)',
-                    pointBackgroundColor: 'rgba(28, 200, 138, 1)',
-                    pointBorderColor: '#fff',
-                    pointRadius: 4,
-                    borderWidth: 2,
-                    lineTension: 0.3,
-                    fill: false,
-                    yAxisID: 'y-axis-2'
-                }
-            ]
-        },
-        options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            scales: {
-                xAxes: [{
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
-                    },
-                    ticks: {
-                        fontColor: '#858796'
-                    }
-                }],
-                yAxes: [
-                    {
-                        type: 'linear',
-                        position: 'left',
-                        id: 'y-axis-1',
-                        gridLines: {
-                            color: 'rgb(234, 236, 244)',
-                            zeroLineColor: 'rgb(234, 236, 244)',
-                            drawBorder: false,
-                            borderDash: [2],
-                            zeroLineBorderDash: [2]
-                        },
-                        ticks: {
-                            fontColor: '#858796',
-                            beginAtZero: true,
-                            maxTicksLimit: 5
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Orders',
-                            fontColor: '#858796'
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 10,
+                            top: 10,
+                            bottom: 0
                         }
                     },
-                    {
-                        type: 'linear',
-                        position: 'right',
-                        id: 'y-axis-2',
-                        gridLines: {
-                            display: false
-                        },
-                        ticks: {
-                            fontColor: '#858796',
-                            beginAtZero: true,
-                            maxTicksLimit: 5,
-                            callback: function(value) {
-                                return '$' + number_format(value);
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                fontColor: '#858796',
+                                maxTicksLimit: 7
                             }
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Revenue',
-                            fontColor: '#858796'
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                color: 'rgb(234, 236, 244)',
+                                zeroLineColor: 'rgb(234, 236, 244)',
+                                drawBorder: false,
+                                borderDash: [2],
+                                zeroLineBorderDash: [2]
+                            },
+                            ticks: {
+                                fontColor: '#858796',
+                                beginAtZero: true,
+                                maxTicksLimit: 5,
+                                padding: 10,
+                                callback: function(value, index, values) {
+                                    return '$' + number_format(value);
+                                }
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        titleMarginBottom: 10,
+                        titleFontColor: '#6e707e',
+                        titleFontSize: 14,
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        intersect: false,
+                        mode: 'index',
+                        caretPadding: 10,
+                        callbacks: {
+                            label: function(tooltipItem, chart) {
+                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                                return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                            }
                         }
                     }
-                ]
-            },
-            legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                    fontColor: '#858796',
-                    boxWidth: 12
                 }
-            },
-            tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                titleMarginBottom: 10,
-                titleFontColor: '#6e707e',
-                titleFontSize: 14,
-                borderColor: '#dddfeb',
-                borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
-                displayColors: false,
-                intersect: false,
-                mode: 'index',
-                caretPadding: 10,
-                callbacks: {
-                    label: function(tooltipItem, chart) {
-                        var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                        if (tooltipItem.datasetIndex === 1) {
-                            return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+            });
+
+            // Custom legend click handler
+            $('.legend-item').on('click', function() {
+                const datasetIndex = $(this).data('dataset');
+                const isVisible = revenueChart.isDatasetVisible(datasetIndex);
+
+                // Toggle dataset visibility
+                if (isVisible) {
+                    revenueChart.hide(datasetIndex);
+                    $(this).addClass('inactive');
+                } else {
+                    revenueChart.show(datasetIndex);
+                    $(this).removeClass('inactive');
+                }
+            });
+
+
+            // Payment Method Chart
+            // Payment Method Chart
+            const paymentMethodChart = new Chart(document.getElementById('paymentMethodChart'), {
+                type: 'pie',
+                data: {
+                    labels: @json($paymentMethods->keys()),
+                    datasets: [{
+                        data: @json($paymentMethods->values()),
+                        backgroundColor: [
+                            '#4e73df', // Manual
+                            '#1cc88a', // PayPal
+                            '#36b9cc' // Stripe
+                        ],
+                        hoverBackgroundColor: [
+                            '#2e59d9',
+                            '#17a673',
+                            '#2c9faf'
+                        ]
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    cutoutPercentage: 65,
+                    legend: {
+                        display: true,
+                        position: 'right',
+                        labels: {
+                            boxWidth: 12,
+                            padding: 20
                         }
-                        return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
-                    }
-                }
-            }
-        }
-    });
-
-    // Customer Demographics Chart
-    const customerDemographicsChart = new Chart(document.getElementById('customerDemographicsChart'), {
-        type: 'doughnut',
-        data: {
-            labels: ['18-24', '25-34', '35-44', '45-54', '55+'],
-            datasets: [{
-                data: [15, 30, 25, 18, 12],
-                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b'],
-                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#dda20a', '#c23321'],
-                hoverBorderColor: "rgba(234, 236, 244, 1)",
-            }],
-        },
-        options: {
-            maintainAspectRatio: false,
-            cutoutPercentage: 65,
-            legend: {
-                display: true,
-                position: 'bottom',
-                labels: {
-                    fontColor: '#858796',
-                    boxWidth: 10,
-                    padding: 15
-                }
-            },
-            tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                titleMarginBottom: 10,
-                titleFontColor: '#6e707e',
-                titleFontSize: 14,
-                borderColor: '#dddfeb',
-                borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
-                displayColors: false,
-                intersect: false,
-                mode: 'index',
-                caretPadding: 10,
-                callbacks: {
-                    label: function(tooltipItem, data) {
-                        var dataset = data.datasets[tooltipItem.datasetIndex];
-                        var total = dataset.data.reduce(function(previousValue, currentValue) {
-                            return previousValue + currentValue;
-                        });
-                        var currentValue = dataset.data[tooltipItem.index];
-                        var percent = Math.round((currentValue/total) * 100);
-                        return data.labels[tooltipItem.index] + ': ' + percent + '%';
-                    }
-                }
-            }
-        }
-    });
-
-    // Payment Method Chart
-    const paymentMethodChart = new Chart(document.getElementById('paymentMethodChart'), {
-        type: 'pie',
-        data: {
-            labels: ['Credit Card', 'Digital Wallet', 'Bank Transfer', 'Others'],
-            datasets: [{
-                data: [48, 32, 15, 5],
-                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e'],
-                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#dda20a'],
-                hoverBorderColor: "rgba(234, 236, 244, 1)",
-            }],
-        },
-        options: {
-            maintainAspectRatio: false,
-            legend: {
-                display: false
-            },
-            tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                titleMarginBottom: 10,
-                titleFontColor: '#6e707e',
-                titleFontSize: 14,
-                borderColor: '#dddfeb',
-                borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
-                displayColors: false,
-                intersect: false,
-                mode: 'index',
-                caretPadding: 10,
-                callbacks: {
-                    label: function(tooltipItem, data) {
-                        return data.labels[tooltipItem.index] + ': ' + data.datasets[0].data[tooltipItem.index] + '%';
-                    }
-                }
-            }
-        }
-    });
-
-    // Inventory Chart
-    const inventoryChart = new Chart(document.getElementById('inventoryChart'), {
-        type: 'bar',
-        data: {
-            labels: ['Indoor Plants', 'Outdoor Plants', 'Succulents', 'Flowering Plants', 'Accessories'],
-            datasets: [{
-                label: 'In Stock',
-                backgroundColor: '#4e73df',
-                hoverBackgroundColor: '#2e59d9',
-                data: [125, 87, 64, 73, 42],
-            }, {
-                label: 'Low Stock',
-                backgroundColor: '#f6c23e',
-                hoverBackgroundColor: '#dda20a',
-                data: [12, 8, 15, 5, 3],
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 25,
-                    top: 0,
-                    bottom: 0
-                }
-            },
-            scales: {
-                xAxes: [{
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
                     },
-                    ticks: {
-                        maxTicksLimit: 6
-                    },
-                    maxBarThickness: 25,
-                }],
-                yAxes: [{
-                    ticks: {
-                        min: 0,
-                        max: 150,
-                        maxTicksLimit: 5,
-                        padding: 10,
-                    },
-                    gridLines: {
-                        color: "rgb(234, 236, 244)",
-                        zeroLineColor: "rgb(234, 236, 244)",
-                        drawBorder: false,
-                        borderDash: [2],
-                        zeroLineBorderDash: [2]
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                const label = data.labels[tooltipItem.index];
+                                const value = data.datasets[0].data[tooltipItem.index];
+                                const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return `${label}: ${value} (${percentage}%)`;
+                            }
+                        }
                     }
-                }],
-            },
-            legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                    fontColor: '#858796',
-                    boxWidth: 12
                 }
-            },
-            tooltips: {
-                titleMarginBottom: 10,
-                titleFontColor: '#6e707e',
-                titleFontSize: 14,
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                borderColor: '#dddfeb',
-                borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
-                displayColors: false,
-                caretPadding: 10,
-            },
-        }
-    });
+            });
 
-    // Dropdown period change handler for trend chart
-    $('#trendPeriodDropdown').next('.dropdown-menu').find('.dropdown-item').on('click', function(e) {
-        e.preventDefault();
+            $('#trendPeriodDropdown').next('.dropdown-menu').find('.dropdown-item').on('click', function(e) {
+                e.preventDefault();
 
-        // Update dropdown button text
-        $('#trendPeriodDropdown').text($(this).text());
+                // Update dropdown button text
+                $('#trendPeriodDropdown').text($(this).text());
 
-        // Remove active class from all items
-        $(this).siblings().removeClass('active');
+                // Remove active class from all items
+                $(this).siblings().removeClass('active');
 
-        // Add active class to clicked item
-        $(this).addClass('active');
+                // Add active class to clicked item
+                $(this).addClass('active');
 
-        // Generate new random data for demonstration
-        const newOrderData = generateRandomData(4, 60, 130);
-        const newRevenueData = newOrderData.map(val => val * 180); // Revenue is proportional to orders
+                // Generate new random data for demonstration
+                const newOrderData = generateRandomData(4, 60, 130);
+                const newRevenueData = newOrderData.map(val => val *
+                    180); // Revenue is proportional to orders
 
-        // Update chart data
-        trendChart.data.datasets[0].data = newOrderData;
-        trendChart.data.datasets[1].data = newRevenueData;
-        trendChart.update();
-    });
+                // Update chart data
+                trendChart.data.datasets[0].data = newOrderData;
+                trendChart.data.datasets[1].data = newRevenueData;
+                trendChart.update();
+            });
 
-    // Helper function to format numbers with commas
-    function number_format(number, decimals, dec_point, thousands_sep) {
-        // Default values
-        decimals = decimals || 0;
-        dec_point = dec_point || '.';
-        thousands_sep = thousands_sep || ',';
+            // Helper function to format numbers with commas
+            function number_format(number, decimals, dec_point, thousands_sep) {
+                // Default values
+                decimals = decimals || 0;
+                dec_point = dec_point || '.';
+                thousands_sep = thousands_sep || ',';
 
-        // Format the number
-        number = parseFloat(number);
+                // Format the number
+                number = parseFloat(number);
 
-        if (isNaN(number) || !isFinite(number)) {
-            return '';
-        }
+                if (isNaN(number) || !isFinite(number)) {
+                    return '';
+                }
 
-        number = number.toFixed(decimals);
+                number = number.toFixed(decimals);
 
-        var parts = number.split('.');
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_sep);
+                var parts = number.split('.');
+                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_sep);
 
-        return parts.join(dec_point);
-    }
+                return parts.join(dec_point);
+            }
 
-    // Helper function to generate random data for charts
-    function generateRandomData(length, min, max) {
-        return Array.from({length: length}, () => Math.floor(Math.random() * (max - min + 1)) + min);
-    }
-});
+            // Helper function to generate random data for charts
+            function generateRandomData(length, min, max) {
+                return Array.from({
+                    length: length
+                }, () => Math.floor(Math.random() * (max - min + 1)) + min);
+            }
+        });
     </script>
 @endsection

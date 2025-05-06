@@ -9,4 +9,9 @@ class Cart extends Model
 {
     protected $fillable = ['user_id','order_id', 'plant_id', 'qty', 'total', 'has_paid'];
     use HasFactory;
+
+    public function plant()
+    {
+        return $this->belongsTo(Plant::class);
+    }
 }

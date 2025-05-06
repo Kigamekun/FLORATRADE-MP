@@ -10,4 +10,9 @@ class Plant extends Model
     protected $table = 'plants';
     protected $fillable = ['name','status','wholesale_price','stock','price','thumb','category_id','description'];
     use HasFactory;
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
