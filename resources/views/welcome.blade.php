@@ -239,10 +239,10 @@
                     </div>
                 </div>
                 <main class="product-grid">
-                        <div class="product-grid__header">
-                            <img src="https://cdn.builder.io/api/v1/image/assets/282631be213f4cdc9e5c0d357acf295c/bae6c7296546594691d429556149426dd736ff2d?placeholderIfAbsent=true" alt="Best Offer" class="product-grid__icon" />
-                            <h2 class="product-grid__title">Best Offer</h2>
-                        </div>
+                        <a href="#" class="header-line">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/282631be213f4cdc9e5c0d357acf295c/bae6c7296546594691d429556149426dd736ff2d?placeholderIfAbsent=true" alt="Best Offer" class="product-grid__icon" />
+                            <p style="font-size: 2em; font-weight: bold; white-space: nowrap;">Best Offer</p>
+                        </a>
                         <div class="product-grid__row">
                             @foreach (DB::table('plants')->where('status', 1)->limit(16)->get() as $item)
                                 @php
