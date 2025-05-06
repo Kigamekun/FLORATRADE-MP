@@ -1,0 +1,209 @@
+/* Products section */
+.products {
+    margin-top: 100px;
+    padding-bottom: 50px;
+  }
+  
+  .products__layout {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Product grid */
+  .product-grid {
+    width: 75%;
+  }
+  
+  .product-grid__header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 25px;
+    color: #101111;
+    font-weight: 500;
+  }
+  
+  .product-grid__icon {
+    width: 34px;
+    aspect-ratio: 1;
+    object-fit: contain;
+  }
+  
+  /* Grid with Scroll */
+  .product-grid__row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    margin-top: 32px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #2ca670 #f0f0f0;  /* Green scroll thumb on a light grey background */
+  }
+  
+  /* Custom Scrollbar */
+  .product-grid__row::-webkit-scrollbar {
+    height: 8px;  /* Height for horizontal scrollbar */
+  }
+  
+  .product-grid__row::-webkit-scrollbar-thumb {
+    background-color: #2ca670;
+    border-radius: 4px;
+  }
+  
+  .product-grid__row::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }
+  
+  /* Product Card */
+  .product-card {
+    flex: 0 0 auto;
+    width: 275px;
+    min-width: 240px;
+    background-color: #fff;
+    border-radius: 13.552px;
+    opacity: 0.9;
+    overflow: hidden;
+    padding-bottom: 13px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    user-select: none;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Card Image */
+  .product-card__image {
+    width: 100%;
+    aspect-ratio: 1.3;
+    object-fit: contain;
+    border-radius: 14px 14px 0 0;
+  }
+  
+  /* Card Content */
+  .product-card__content {
+    padding: 8px 13px;
+  }
+  
+  /* Card Info */
+  .product-card__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .product-card__name {
+    color: #2a2c2b;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  
+  .product-card__price {
+    color: #2ca670;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  .product-card__stats {
+    display: flex;
+    gap: 11px;
+    margin-top: 40px;
+    font-weight: 400;
+  }
+  
+  .product-card__rating {
+    background-color: rgba(249, 237, 221, 1);
+    border: 1px solid rgba(255, 188, 0, 1);
+    color: rgba(255, 188, 0, 1);
+    font-size: 9px;
+    padding: 2px 9px;
+  }
+  
+  .product-card__sold {
+    color: #888888;
+    font-size: 11px;
+  }
+  
+  /* Product Grid without Scroll */
+.product-grid-product__row {
+    display: flex;
+    flex-wrap: wrap; /* Use wrap to make items stack as needed */
+    gap: 20px;
+    margin-top: 32px;
+    padding-bottom: 10px;
+}
+
+/* Product Card */
+.product-card-product {
+    flex: 0 0 auto;
+    width: 275px;
+    min-width: 240px;
+    background-color: #fff;
+    border-radius: 13.552px;
+    opacity: 0.9;
+    overflow: hidden;
+    padding-bottom: 13px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    user-select: none;
+}
+
+.product-card-product:hover {
+    transform: translateY(-5px);
+}
+
+/* Card Image */
+.product-card__image {
+    width: 100%;
+    aspect-ratio: 1.3;
+    object-fit: contain;
+    border-radius: 14px 14px 0 0;
+}
+
+/* Card Content */
+.product-card__content {
+    padding: 8px 13px;
+}
+
+/* Card Info */
+.product-card__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-card__name {
+    color: #2a2c2b;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.product-card__price {
+    color: #2ca670;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* Card Stats */
+.product-card__stats {
+    display: flex;
+    gap: 11px;
+    margin-top: 40px;
+    font-weight: 400;
+}
+
+.product-card__rating {
+    background-color: rgba(249, 237, 221, 1);
+    border: 1px solid rgba(255, 188, 0, 1);
+    color: rgba(255, 188, 0, 1);
+    font-size: 9px;
+    padding: 2px 9px;
+}
+
+
+  
+  

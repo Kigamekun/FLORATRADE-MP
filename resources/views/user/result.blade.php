@@ -6,6 +6,7 @@
     <!--about,faq,terms CSS-->
     <link rel="stylesheet" href="{{ url('assets_user/css/about-faq.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/result.css') }}">
 @endsection
 
 
@@ -83,60 +84,48 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-9">
-                    <div class="productContainer">
-                        <a href="#" class="header-line">
-                            <img src="{{ url('assets_user/img/icon/product_icon.svg') }}" alt="">
-                            <p>Product</p>
-                        </a>
+                <div class="productContainer">
+                    <a href="#" class="header-line">
+                        <img src="{{ url('assets_user/img/icon/product_icon.svg') }}" alt="">
+                        <p style="font-size: 2em; font-weight: bold; white-space: nowrap;">Product</p>
+                    </a>
 
-                        <div class="container">
-                            {{-- <div class="d-flex justify-content-center mt-3"> --}}
+                    <div class="container">
+                        <div class="row custom-product-grid gx-3 gy-4">
+                            @if (count($data) != 0 && !empty($data))
+                                @foreach ($data as $item)
+                                    @php
+                                        $thumb = json_decode($item->thumb, true);
+                                        $rating = number_format((float) DB::table('comments')->where('plant_id', $item->id)->avg('rate') ?? 0, 1);
+                                    @endphp
 
-                            <div class="wrapperProduct row">
-
-                                @if (count($data) != 0 && !empty($data))
-                                    @foreach ($data as $item)
-                                        @php
-                                            $thumb = json_decode($item->thumb, true);
-                                        @endphp
-
-                                        <div class="col-6 col-lg-4">
-                                            <a href="{{ route('detail-plant', ['id' => $item->id]) }}"
-                                                class="product">
-                                                <div class="imagesProduct">
-                                                    <img src="{{ url('thumbPlant/' . $thumb[0]) }}" alt="">
-                                                </div>
-                                                <div class="infoProduct">
-                                                    <p class="nameProduct">{{ $item->name }}</p>
-                                                    <p class="price">${{ $item->price }}</p>
-                                                    <p class="rating">
-                                                        <img src="{{ url('assets_user/img/icon/star_icon.svg') }}"
-                                                            alt="">
-                                                        {{ (int) DB::table('comments')->where('plant_id', $item->id)->avg('rate') }}
-                                                    </p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    @endforeach
-
-
-                                    <div class="d-flex justify-content-end">
-                                        {{ $data->links() }}
+                                    <div class="col-12 col-sm-6 col-lg-4">
+                                        <a href="{{ route('detail-plant', ['id' => $item->id]) }}" class="custom-product-card">
+                                            <div class="custom-product-image">
+                                                <img src="{{ url('thumbPlant/' . $thumb[0]) }}" alt="{{ $item->name }}">
+                                            </div>
+                                            <div class="custom-product-info">
+                                                <p class="custom-product-name">{{ $item->name }}</p>
+                                                <p class="custom-product-price">${{ $item->price }}</p>
+                                                <p class="custom-product-rating">{{ $rating }}</p>
+                                            </div>
+                                        </a>
                                     </div>
-                                @else
-                                    <div class="container">
-                                        {{-- <div class="d-flex justify-content-center mt-3"> --}}
-                                        <img class="w-100" src="{{ url('assets_user/img/empaty state.png') }}"
-                                            alt="">
-                                        {{-- </div> --}}
-                                    </div>
-                                @endif
+                                @endforeach
 
-                            </div>
-                            {{-- </div> --}}
+                                <div class="d-flex justify-content-end">
+                                    {{ $data->links() }}
+                                </div>
+                            @else
+                                <div class="container">
+                                    <img class="w-100" src="{{ url('assets_user/img/empaty state.png') }}" alt="">
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
+            </div>
+
             </div>
         </div>
         <footer>

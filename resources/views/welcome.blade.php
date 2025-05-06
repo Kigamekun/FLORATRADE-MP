@@ -205,6 +205,7 @@
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
 @endsection
 
 @section('content')
@@ -237,84 +238,58 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-9">
-                    <div class="bestOfferContainer">
-                        <a href="#" class="header-line" >
-                            <img src="https://cdn.builder.io/api/v1/image/assets/282631be213f4cdc9e5c0d357acf295c/bae6c7296546594691d429556149426dd736ff2d?placeholderIfAbsent=true" alt="">
-                            <p style="font-size: 2em; font-weight: bold; white-space: nowrap;">Best Offer</p>
-                        </a>
-                        <div class="bestOfferProduct">
-                            @foreach (DB::table('plants')->where('status',1)->limit(16)->get()
-        as $item)
+                <main class="product-grid">
+                        <div class="product-grid__header">
+                            <img src="https://cdn.builder.io/api/v1/image/assets/282631be213f4cdc9e5c0d357acf295c/bae6c7296546594691d429556149426dd736ff2d?placeholderIfAbsent=true" alt="Best Offer" class="product-grid__icon" />
+                            <h2 class="product-grid__title">Best Offer</h2>
+                        </div>
+                        <div class="product-grid__row">
+                            @foreach (DB::table('plants')->where('status', 1)->limit(16)->get() as $item)
                                 @php
                                     $thumb = json_decode($item->thumb, true);
+                                    $imageSrc = isset($thumb[0]) ? url('thumbPlant/' . $thumb[0]) : '';
+                                    $rating = DB::table('comments')->where('plant_id', $item->id)->avg('rate');
+                                    $ratingFormatted = is_null($rating) ? '0.0' : number_format($rating, 1);
+                                    // Optional: hapus kalau nggak punya tabel orders
+                                    // $sold = DB::table('orders')->where('plant_id', $item->id)->sum('quantity');
                                 @endphp
-
-
-                                <a href="{{ route('detail-plant', ['id' => $item->id]) }}" class="product">
-                                    <div class="imagesProduct">
-                                        @if (!is_null($item->thumb))
-                                            <img src="{{ url('thumbPlant/' . $thumb[0]) }}" alt="">
-                                        @else
-                                            <img src="" alt="">
-                                        @endif
-                                    </div>
-                                    <div class="infoProduct">
-                                        <p class="nameProduct">{{ $item->name }}</p>
-                                        <p class="price">${{ $item->price }}</p>
-                                        <p class="rating">
-                                            <img src="{{ url('assets_user/img/icon/star_icon.svg') }}" alt="">
-                                            {{ (int) DB::table('comments')->where('plant_id', $item->id)->avg('rate') }}
-                                        </p>
-                                    </div>
-                                </a>
+                                <article class="product-card">
+                                    <a href="{{ route('detail-plant', ['id' => $item->id]) }}">
+                                        <img
+                                            src="{{ $imageSrc }}"
+                                            alt="{{ $item->name }}"
+                                            class="product-card__image"
+                                        />
+                                        <div class="product-card__content">
+                                            <div class="product-card__info">
+                                                <h3 class="product-card__name">{{ $item->name }}</h3>
+                                                <span class="product-card__price">${{ $item->price }}</span>
+                                            </div>
+                                            <div class="product-card__stats">
+                                                <span class="product-card__rating">{{ $ratingFormatted }}</span>
+                                                {{-- <span class="product-card__sold">{{ $sold }} sold</span> --}}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </article>
                             @endforeach
                         </div>
-                    </div>
-                </div>
+                    </main>
+
+
+                <div class="col-12 col">
             </div>
         </div>
         <div class="wrapperProduct line">
-            <div class="container">
-                <a href="#" class="header-line">
-                    <img src="{{ url('assets_user/img/icon/product_icon.svg') }}" alt="">
-                    <p style="font-size: 2em; font-weight: bold; white-space: nowrap;">Product</p>
-                </a>
-
-                <div class="row">
-                    @foreach (DB::table('plants')->where('status',1)->get() as $item)
-                        @php
-                            $thumb = json_decode($item->thumb, true);
-                        @endphp
-                        <div class="col-6 col-lg-3">
-                            <a href="{{ route('detail-plant', ['id' => $item->id]) }}" class="product">
-                                <div class="imagesProduct">
-                                    @if (!is_null($item->thumb))
-                                        <img src="{{ url('thumbPlant/' . $thumb[0]) }}" alt="">
-                                    @else
-                                        <img src="" alt="">
-                                    @endif
-                                </div>
-                                <div class="infoProduct">
-                                    <p class="nameProduct">{{ $item->name }}</p>
-                                    <p class="price">${{ $item->price }}</p>
-                                    <p class="rating">
-                                        <img src="{{ url('assets_user/img/icon/star_icon.svg') }}" alt="">
-                                        {{ (int) DB::table('comments')->where('plant_id', $item->id)->avg('rate') }}
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-
-
-                </div>
-
-                <div class="d-flex justify-content-center mt-3 mb-3">
-                    <a href="{{ route('more') }}" class="button button-outline-primary md-button">View More</a>
-                </div>
+            <div class="d-flex justify-content-center mt-3 mb-3">
+                <a href="{{ route('more') }}" class="button button-outline-primary md-button">View More</a>
             </div>
         </div>
+    </div>
+
+    
+    
+
         <div class="wrapperService line">
             <div class="container d-flex">
                 <div class="image">
