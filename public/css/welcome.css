@@ -204,6 +204,47 @@
     padding: 2px 9px;
 }
 
-
+@media (max-width: 768px) {
+    /* Header Mobile */
+    .header-line {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .header-line p {
+        font-size: 1.5em !important;
+        white-space: normal !important;
+    }
+    
+    /* Horizontal Scroll */
+    .product-grid__row {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 15px;
+    }
+    
+    .product-grid__row::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Card Mobile */
+    .product-card {
+        scroll-snap-align: start;
+        min-width: 85vw;
+        flex-shrink: 0;
+        margin-right: 15px;
+    }
+    
+    .product-card:first-child {
+        margin-left: 15px;
+    }
+    
+    .product-card:last-child {
+        margin-right: 15px;
+    }
+}
   
   

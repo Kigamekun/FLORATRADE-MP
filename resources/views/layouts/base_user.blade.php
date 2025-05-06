@@ -26,55 +26,73 @@
 
 <body>
 
-    <div id="app">
-        <div id="navbar" class="fixed-top">
-            <div class="container">
-                <div class="navbar-wrapper">
-                    <div class="leftSideNavbar">
-                        <div class="logoBrand">
-                            <a href="/">
-                                <img src="{{ url('assets/img/Logo FloraTrade.png') }}" alt="">
-                            </a>
+        <div id="app">
+            <div id="navbar" class="fixed-top">
+                <div class="container">
+                    <div class="navbar-wrapper">
+                        <div class="leftSideNavbar">
+                            <div class="logoBrand">
+                                <a href="/">
+                                    <img src="{{ url('assets/img/Logo FloraTrade.png') }}" alt="">
+                                </a>
+                            </div>
+                            <!-- Desktop Menu -->
+                            <div class="menuLinks desktop-menu">
+                                <a href="{{ url('/about') }}" class="nav-link">About</a>
+                                <a href="{{ url('/catalog') }}" class="nav-link">Price List</a>
+                                <a href="{{ url('/faq') }}" class="nav-link">FAQ</a>
+                                <a href="{{ url('/chat/1') }}" class="nav-link">Contact</a>
+                            </div>
                         </div>
-                        <div class="menuLinks">
+                        
+                        <div class="rightSideNavbar">
+                            <!-- Auth & Cart Section -->
+                            @if (Auth::check())
+                                <div class="afterLogin">
+                                    <a href="{{ route('profile') }}" class="profileWrapper icon">
+                                        <img src="{{ Auth::user()->thumb }}" style="border-radius: 50%" alt="">
+                                    </a>
+                                    <div class="cartWrapper">
+                                        <a href="{{ route('my-cart') }}" class="cart icon">
+                                            <img src="{{ url('assets_user/img/icon/shopping-cart_icon.svg') }}" alt="">
+                                            <div id="count-cart" class="totalItem">
+                                                {{ DB::table('carts')->where(['user_id' => Auth::id(), 'order_id' => null])->count() }}
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="beforeLogin">
+                                    <div class="buttonWrapper">
+                                        <a href="{{ route('login') }}" class="button button-outline button-outline-primary">Login</a>
+                                        <a href="{{ route('register') }}" class="button button-primary">Sign Up</a>
+                                    </div>
+                                    <div class="cartWrapper">
+                                        <a href="{{ route('my-cart') }}" class="cart icon">
+                                            <img src="{{ url('assets_user/img/icon/shopping-cart_icon.svg') }}" alt="">
+                                            <div id="count-cart" class="totalItem">
+                                                {{ is_null(json_decode(Cookie::get('cart'), true)) ? 0 : count(json_decode(Cookie::get('cart'), true)) }}
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+                            
+                            <!-- Hamburger Menu Button (Mobile Only) -->
+                            <button class="hamburger-btn mobile-only" onclick="toggleMobileMenu()">
+                                ☰
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile Menu -->
+                    <div class="mobile-menu-wrapper">
+                        <div class="mobile-menu">
                             <a href="{{ url('/about') }}" class="nav-link">About</a>
                             <a href="{{ url('/catalog') }}" class="nav-link">Price List</a>
-                            <!-- <a href="{{ url('/terms') }}" class="nav-link">T&amp;C</a> -->
                             <a href="{{ url('/faq') }}" class="nav-link">FAQ</a>
                             <a href="{{ url('/chat/1') }}" class="nav-link">Contact</a>
                         </div>
-                    </div>
-                    <div class="rightSideNavbar">
-                        @if (Auth::check())
-                            <div class="afterLogin">
-                                <a href="{{ route('profile') }}" class="profileWrapper icon">
-                                    <img src="{{ Auth::user()->thumb }}" style="border-radius: 50%" alt="">
-                                </a>
-                                <div class="cartWrapper">
-                                    <a href="{{ route('my-cart') }}" class="cart icon">
-                                        <img src="{{ url('assets_user/img/icon/shopping-cart_icon.svg') }}" alt="">
-                                        <div id="count-cart" class="totalItem">
-                                            {{ DB::table('carts')->where(['user_id' => Auth::id(), 'order_id' => null])->count() }}
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        @else
-                            <div class="beforeLogin">
-                                <div class="buttonWrapper">
-                                    <a href="{{ route('login') }}" class="button button-outline button-outline-primary">Login</a>
-                                    <a href="{{ route('register') }}" class="button button-primary">Sign Up</a>
-                                </div>
-                                <div class="cartWrapper">
-                                    <a href="{{ route('my-cart') }}" class="cart icon">
-                                        <img src="{{ url('assets_user/img/icon/shopping-cart_icon.svg') }}" alt="">
-                                        <div id="count-cart" class="totalItem">
-                                            {{ is_null(json_decode(Cookie::get('cart'), true)) ? 0 : count(json_decode(Cookie::get('cart'), true)) }}
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        @endif
                     </div>
                 </div>
             </div>
@@ -161,6 +179,22 @@
                 }
             }, ]
         });
+    </script>
+    <script>
+    function toggleMobileMenu() {
+        const mobileMenu = document.querySelector('.mobile-menu');
+        mobileMenu.classList.toggle('active');
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const hamburgerBtn = document.querySelector('.hamburger-btn');
+        
+        if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+            mobileMenu.classList.remove('active');
+        }
+    });
     </script>
     @yield('js')
 </body>
