@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plantsasri - Shop</title>
+    <title>FloraTrade</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!--Bootstrap Css-->
@@ -17,41 +17,33 @@
 
     <!--App Css-->
     <link rel="stylesheet" href="{{ url('assets_user/css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!--Main CSS-->
     <link rel="stylesheet" href="{{ url('assets_user/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     @yield('css')
 </head>
 
 <body>
 
     <div id="app">
-        <!-- <div id="navbar" class="fixed-top">
+        <div id="navbar" class="fixed-top">
             <div class="container">
                 <div class="navbar-wrapper">
                     <div class="leftSideNavbar">
                         <div class="logoBrand">
                             <a href="/">
-                                <img src="{{ url('assets_user/img/plantsasriLogo.png') }}" alt="">
+                                <img src="{{ url('assets/img/Logo FloraTrade.png') }}" alt="">
                             </a>
                         </div>
-                        <div class="searchMenu">
-                            <form action="{{ route('search') }}" method="POST">
-                                @csrf
-                                <div class="input-group">
-                                    <div class="form-outline">
-                                        <input type="search" id="form1" name="search" class="form-control" />
-                                        <label class="form-label" for="form1">Search</label>
-                                    </div>
-                                    <button type="submit" class="buttonSearch button button-primary">
-                                        <img src="{{ url('assets_user/img/icon/search_icon.svg') }}" alt="">
-                                    </button>
-                                </div>
-                            </form>
+                        <div class="menuLinks">
+                            <a href="{{ url('/about') }}" class="nav-link">About</a>
+                            <a href="{{ url('/catalog') }}" class="nav-link">Price List</a>
+                            <a href="{{ url('/terms') }}" class="nav-link">T&amp;C</a>
+                            <a href="{{ url('/faq') }}" class="nav-link">FAQ</a>
+                            <a href="{{ url('/chat/1') }}" class="nav-link">Contact</a>
                         </div>
                     </div>
-
                     <div class="rightSideNavbar">
                         @if (Auth::check())
                             <div class="afterLogin">
@@ -70,8 +62,7 @@
                         @else
                             <div class="beforeLogin">
                                 <div class="buttonWrapper">
-                                    <a href="{{ route('login') }}"
-                                        class="button button-outline button-outline-primary">Login</a>
+                                    <a href="{{ route('login') }}" class="button button-outline button-outline-primary">Login</a>
                                     <a href="{{ route('register') }}" class="button button-primary">Sign Up</a>
                                 </div>
                                 <div class="cartWrapper">
@@ -84,36 +75,15 @@
                                 </div>
                             </div>
                         @endif
-
                     </div>
                 </div>
             </div>
-        </div> -->
-
-
-        <nav class="navbar">
-        <div class="navbar-left">
-        <a href="{{ url('/') }}">
-          <img src="{{ asset('assets/img/Logo FloraTrade.png') }}" alt="FloraTrade Logo" class="navbar__logo" style="width: 50px; height: auto;">
-        </a>
-          <a href="/about" class="nav-link">About</a>
-          <a href="/catalog" class="nav-link highlight">Price List</a>
-          <a href="terms" class="nav-link">T&C</a>
-          <a href="faq" class="nav-link">FAQ</a>
-          <a href="/chat/{id}" class="nav-link">Contact</a>
         </div>
-        <div class="navbar-right">
-          <a href="register" class="signup-btn">Sign Up</a>
-          <a href="login" class="login-btn">Login</a>
-          <a href="{{ url('/my-cart') }}">
-            <img src="https://cdn.builder.io/api/v1/image/assets/282631be213f4cdc9e5c0d357acf295c/99d6ae149f838af0a95e85ddf6095b2fbab6c8ff?placeholderIfAbsent=true" class="logo" alt="Cart" />
-          </a>
-        </div>
-      </nav>
-
 
         @yield('content')
     </div>
+
+
 
 
 

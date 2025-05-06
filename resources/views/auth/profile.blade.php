@@ -3,6 +3,7 @@
 @section('css')
     <!--CSS Profile-->
     <link rel="stylesheet" href="{{ url('assets_user/css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     {{-- <link rel="stylesheet" href=""> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css"
         integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw=="
@@ -336,39 +337,46 @@
         </div>
     </div>
     <footer>
-        <div class="wrapperFooter container">
-            <div class="about">
-                <img src="{{ url('KlorofilFarm.png') }}" alt="">
-                <p>Find the various types of plants you want with Plantsasri. Your satisfaction and comfort is our priority.
-                </p>
+        <div class="footer__container">
+          <div class="footer__content">
+            <div class="footer__brand">
+              <h1 class="footer__logo">FloraTrade</h1>
+              <p class="footer__tagline">
+                Bringing Nature Closer to You with the Best Plants, the Best
+                Prices, and the Best Care.
+                <br />
+                Your satisfaction and comfort is our priority.
+              </p>
             </div>
-            <div class="links">
-                <a href="">Home</a>
-                <a href="">About Plantsasri</a>
-                <a href="{{ route('more') }}">Explore Plants</a>
-                <a href="{{ route('catalog') }}">List Price</a>
-                <a href="{{ route('faq') }}">Faq</a>
-                <a href="{{ route('terms') }}">Terms & Condition</a>
+      
+            <nav class="footer__links">
+              <a href="#" class="footer__link">Home</a>
+              <a href="#" class="footer__link">About FloraTrade</a>
+              <a href="#" class="footer__link">Explore Plants</a>
+              <a href="#" class="footer__link">Price List</a>
+              <a href="#" class="footer__link">FAQ</a>
+              <a href="#" class="footer__link">Terms &amp; Condition</a>
+            </nav>
+      
+            <div class="footer__contact">
+              <h3 class="footer__contact-title">Contact Us</h3>
+              
+              <div class="footer__contact-item">
+                <img src="{{ url('assets_user/img/icon/telephone-handle-silhouette 1.png') }}" alt="">
+                <span class="footer__contact-text">+6280123719310</span>
+              </div>
+      
+              <div class="footer__contact-item">
+                <img src="{{ url('assets_user/img/icon/email 2.png') }}" alt="">
+                <span class="footer__contact-text">floratrade9@gmail.com</span>
+              </div>
+      
+              <div class="footer__contact-item">
+                <img src="{{ url('assets_user/img/icon/pin (1).png') }}" alt="" >
+                <span class="footer__contact-text">Curug Mekar - Bogor Barat, Bogor, Jawa Barat</span>
+              </div>
             </div>
-            <div class="contact">
-                <p>Contact Us</p>
-                <a class="item email" href="">
-                    <img src="{{ url('assets_user/img/icon/email 2.png') }}" alt="">
-                    <p>dadaiafh@gmail.com</p>
-                </a>
-                <a class="item call" href="">
-                    <img src="{{ url('assets_user/img/icon/telephone-handle-silhouette 1.png') }}" alt="">
-                    <p>+6286473563</p>
-                </a>
-                <a class="item address" href="">
-                    <img src="{{ url('assets_user/img/icon/pin (1).png') }}" alt="">
-                    <p>GARDEN, No.13 Jalan Cijahe, Curug Mekar - Bogor Barat, Bogor, Jawa Barat</p>
-                </a>
-            </div>
-        </div>
-        <div class="wrapperCopy container">
-            <p>© 2022 Plantsasri, Design By Startcode</p>
-            <p><b>English</b></p>
+          </div>
         </div>
     </footer>
 @endsection
