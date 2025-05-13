@@ -27,7 +27,7 @@
     <div class="contentMain">
         <h1 class="pageNameContent">Manage Plant Product</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item">User</li>
+            <li class="breadcrumb-item">Admin Menu</li>
             <li class="breadcrumb-item active">Manage Plant Product</li>
         </ol>
 
@@ -159,8 +159,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="Kompetensi Keahlian" class="form-label">Plants Marga</label>
-                            <input type="text" id="category_id" name="category_id" placeholder="Search Marga"
+                            <label for="Kompetensi Keahlian" class="form-label">Plant Categories</label>
+                            <input type="text" id="category_id" name="category_id" placeholder="Search Categories"
                                 class="form-control" autocomplete="off" required />
                         </div>
 

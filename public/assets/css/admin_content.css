@@ -57,7 +57,11 @@
         color: #33B87D;
     }
 
-    
+    th {
+        white-space: nowrap;
+      }
+
+
 
 
 
