@@ -1,6 +1,7 @@
 @extends('layouts.base_user')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('css/slidehp.css') }}">
     <style>
                 /*Component Table*/
         .wrapperTable {
