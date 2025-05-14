@@ -2,9 +2,6 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ url('assets_user/css/cart.css') }}">
-@endsection
-
-@section('content')
     <style>
         /* New styles from the design */
         .cart-page {
@@ -96,7 +93,7 @@
         /* Main cart container */
         .cart-container {
             align-self: center;
-            margin-top: 26px;
+            margin-top: 100px;
             width: 100%;
             max-width: 1138px;
             padding: 0 20px;
@@ -130,25 +127,34 @@
             font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
         }
 
-        .cart-header {
-            align-self: start;
-            display: flex;
-            align-items: stretch;
-            gap: 21px;
-            font-size: 30px;
-            color: #2a2c2b;
-            font-weight: 500;
-        }
+.cart-header {
+    align-self: start;
+    display: flex;
+    align-items: center;
+    gap: 21px;
+    font-size: 30px;
+    color: #2a2c2b;
+    font-weight: 500;
+    position: relative;
+    margin-bottom: 15px;
+}
 
-        .cart-header-icon {
-            aspect-ratio: 1;
-            object-fit: contain;
-            object-position: center;
-            width: 34px;
-            margin-top: auto;
-            margin-bottom: auto;
-            flex-shrink: 0;
-        }
+.cart-header-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    background-color: rgba(51, 184, 125, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+}
+
+.cart-header-icon svg {
+    width: 100%;
+    height: 100%;
+}
 
         .cart-title {
             flex-basis: auto;
@@ -164,36 +170,28 @@
             height: 2px;
         }
 
-.select-all-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0;
-}
+        .select-all-row {
+            align-self: start;
+            display: flex;
+            margin-top: 30px;
+            align-items: stretch;
+            gap: 12px;
+            font-size: 15px;
+            color: #2a2c2b;
+            font-weight: 400;
+        }
 
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+        .checkbox-container {
+            border-radius: 6px;
+            border: 1px solid rgba(0, 0, 0, 1);
+            align-self: start;
+            display: flex;
+            width: 20px;
+            flex-shrink: 0;
+            height: 20px;
+            cursor: pointer;
+        }
 
-.delete-all {
-    display: flex;
-    align-items: center;
-}
-
-.delete-cart-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #F2453D;
-    text-decoration: none;
-}
-
-.delete-icon {
-    width: 16px;
-    height: 16px;
-}
         .checkbox-container.checked {
             background-color: rgba(51, 184, 125, 0.2);
             position: relative;
@@ -384,65 +382,53 @@
 
 .coupon-container {
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 1);
-    display: flex;
+    background-color: #fff;
     padding: 26px 28px;
-    align-items: center;
-    font-weight: 400;
+    display: flex;
+    flex-direction: column;
     gap: 10px;
-    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .coupon-input-group {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+    width: 100%;
+    margin: 0;
 }
 
 .coupon-label {
     color: #494c4b;
     font-size: 14px;
-    margin-bottom: 8px;
+    align-self: start;
+    margin-left: 10px; /* Added to align with input */
 }
 
 .coupon-input {
     border-radius: 4px;
     border: 1px solid rgba(51, 184, 125, 1);
-    padding: 10px 13px;
+    padding: 10px 15px;
     font-size: 13px;
     color: #b4bab7;
-    font-family: inherit;
     width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 .apply-btn {
     border-radius: 4px;
     background-color: rgba(51, 184, 125, 1);
-    border: 1px solid rgba(51, 184, 125, 1);
-    padding: 10px 18px;
-    font-size: 14px;
     color: white;
+    border: 1px solid rgba(51, 184, 125, 1);
+    padding: 5px 5px;
+    height: 35px; /* Made 5px smaller */
+    font-size: 14px;
     cursor: pointer;
-    font-family: inherit;
-    white-space: nowrap;
-    height: fit-content;
-    margin-top: 20px;
+    width: calc(100% - 120px); /* Adjusted width */
+    margin-left: 10px; /* Added to align with input */
+    text-align: center;
+    transform: translateX(143%)
 }
-
-        .apply-btn {
-            border-radius: 4px 0 0 4px;
-            border: 1px solid rgba(51, 184, 125, 1);
-            border-right: none;
-            align-self: end;
-            margin-top: 33px;
-            padding: 10px 18px;
-            font-size: 14px;
-            color: rgba(51, 184, 125, 1);
-            background: none;
-            cursor: pointer;
-            font-family: inherit;
-            white-space: nowrap;
-        }
 
         .order-total-container {
             border-radius: 8px;
@@ -517,117 +503,82 @@
             width: 100%;
         }
 
-/* Footer Styles - Mobile-first approach */
-.footer {
-    background-color: #fff;
-    padding: 40px 20px;
-    margin-top: 40px;
-    border-top: 1px solid #e7e7e7;
-}
+        /* Footer styles - Updated from second code */
+        .footer__container {
+            background-color: #fff;
+            width: 100%;
+            padding: 59px 75px;
+        }
 
-.footer__container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
+        .footer__content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+            color: #494c4b;
+        }
 
-.footer__content {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
+        .footer__brand {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+        }
 
-.footer__brand {
-    text-align: center;
-}
+        .footer__logo {
+            font-size: 61px;
+            font-weight: 400;
+            margin: 0;
+        }
 
-.footer__logo {
-    font-size: 50px;
-    color: #2DB878;
-    margin-bottom: 15px;
-}
+        .footer__tagline {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 32px;
+            margin-top: 22px;
+        }
 
-.footer__tagline {
-    font-size: 16px;
-    color: #535353;
-    line-height: 1.5;
-}
+        .footer__links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 8px;
+        }
 
-.footer__links {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    text-align: center;
-}
+        .footer__link {
+            color: #494c4b;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 300;
+        }
 
-.footer__link {
-    font-size: 16px;
-    color: #535353;
-    text-decoration: none;
-    transition: color 0.3s;
-}
+        .footer__contact {
+            display: flex;
+            flex-direction: column;
+        }
 
-.footer__link:hover {
-    color: #2DB878;
-}
+        .footer__contact-title {
+            font-size: 16px;
+            font-weight: 300;
+            margin: 0 0 17px 0;
+        }
 
-.footer__contact {
-    text-align: center;
-}
+        .footer__contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 17px;
+        }
 
-.footer__contact-title {
-    font-size: 18px;
-    color: #2DB878;
-    margin-bottom: 20px;
-}
+        .footer__contact-item img {
+            width: 20px;
+            height: 20px;
+        }
 
-.footer__contact-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.footer__contact-icon {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-}
-
-.footer__contact-text {
-    font-size: 16px;
-    color: #535353;
-}
-
-/* Desktop Styles */
-@media (min-width: 768px) {
-    .footer__content {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
-
-    .footer__brand {
-        width: 30%;
-        text-align: left;
-    }
-
-    .footer__links {
-        width: 30%;
-        grid-template-columns: 1fr;
-        text-align: left;
-        padding-left: 20px;
-    }
-
-    .footer__contact {
-        width: 30%;
-        text-align: left;
-    }
-
-    .footer__contact-item {
-        justify-content: flex-start;
-    }
-}
+        .footer__contact-text {
+            font-size: 16px;
+            font-weight: 300;
+        }
 
         /* Media queries */
         @media (max-width: 991px) {
@@ -751,27 +702,13 @@
                 margin-right: 2px;
             }
 
-            .site-footer {
-                max-width: 100%;
+            .footer__container {
                 padding-left: 20px;
                 padding-right: 20px;
-                margin-top: 40px;
             }
 
-            .footer-branding {
-                max-width: 100%;
-            }
-
-            .footer-logo {
+            .footer__logo {
                 font-size: 40px;
-            }
-
-            .footer-tagline {
-                max-width: 100%;
-            }
-
-            .contact-item {
-                white-space: initial;
             }
         }
 
@@ -784,14 +721,17 @@
 
 @section('content')
     <div class="cart-page">
- 
+
 
         <main class="cart-container">
             <div class="cart-layout">
                 <section class="cart-items-column">
                     <div class="cart-card">
                         <div class="cart-header">
-                            <img src="{{ url('assets_user/img/icon/cart-icon.svg') }}" alt="" class="cart-header-icon">
+                           <!-- Option 1: Direct SVG -->
+<svg class="cart-header-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#33b87d" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+</svg>
                             <h1 class="cart-title">Your Cart</h1>
                         </div>
                         <div class="green-divider"></div>
@@ -805,13 +745,20 @@
                             </div>
                         @endif
 
-<div class="select-all-row">
-    <div class="checkbox-container">
-        <input class="form-check-input checkbox-all" id="select-all" type="checkbox" value="">
-        <label class="form-check-label select-all-text" for="select-all">Choose All</label>
-    </div>
-
-</div>
+                        <div class="select-all-row">
+                            <div class="form-check checkbox-select">
+                                <input class="form-check-input checkbox-all" id="select-all" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label select-all-text" for="flexCheckDefault">
+                                    Choose all
+                                </label>
+                            </div>
+                            <div class="delete-button delete-all">
+                                <a href="{{ route('delete-cart-all') }}" class="delete-cart-button text-decoration-none">
+                                    <img src="{{ url('assets_user/img/icon/trash-delete-icon.svg') }}" alt="">
+                                    Delete
+                                </a>
+                            </div>
+                        </div>
 
                         <hr class="item-divider">
 
@@ -820,18 +767,16 @@
                                 $total_cart = 0;
                             @endphp
 
-                                @if ($authenticable)
-                                    @if ($data->count() == 0)
-                                    <div class="mt-5 d-flex align-items-center flex-column">
-                                        <img src="{{ url('assets_user/img/state-cart.png') }}" alt="dafnafa">
-                                        <h2 style="color: #535353;" class="mt-3">Yahh, your cart is empty</h2>
-                                        <p style="color: #535353;" class="mt-1">Let's fill it with your favorite plant !</p>
-                                        <a href="{{ route('more') }}" class="button button-primary w-50 text-decoration-none mt-3">Start Shoping</a>
-                                    </div>
-                                    @else
-
-                                @foreach ($data as $key => $item)
-                                <div class="product-list">
+                            @if ($authenticable)
+                                @if ($data->count() == 0)
+                                <div class="mt-5 d-flex align-items-center flex-column">
+                                    <img src="{{ url('assets_user/img/state-cart.png') }}" alt="dafnafa">
+                                    <h2 style="color: #535353;" class="mt-3">Yahh, your cart is empty</h2>
+                                    <p style="color: #535353;" class="mt-1">Let's fill it with your favorite plant !</p>
+                                    <a href="{{ route('more') }}" class="button button-primary w-50 text-decoration-none mt-3">Start Shopping</a>
+                                </div>
+                                @else
+                                    @foreach ($data as $key => $item)
                                     @php
                                         $plant = DB::table('plants')
                                             ->where('id', $item->plant_id)
@@ -986,56 +931,49 @@
             </div>
         </main>
 
-<footer class="footer">
-    <div class="footer__container">
-        <div class="footer__content">
-            <div class="footer__brand">
-                <h2 class="footer__logo">FloraTrade</h2>
-                <p class="footer__tagline">
-                    Bringing Nature Closer to You with the Best Plants, the Best
-                    Prices, and the Best Care.
-                    <br />
-                    Your satisfaction and comfort is our priority.
-                </p>
+        <!-- Updated Footer from second code -->
+        <footer class="footer__container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <h1 class="footer__logo">FloraTrade</h1>
+                    <p class="footer__tagline">
+                        Bringing Nature Closer to You with the Best Plants, the Best
+                        Prices, and the Best Care.
+                        <br />
+                        Your satisfaction and comfort is our priority.
+                    </p>
+                </div>
+          
+                <nav class="footer__links">
+                    <a href="" class="footer__link">Home</a>
+                    <a href="" class="footer__link">About FloraTrade</a>
+                    <a href="" class="footer__link">Explore Plants</a>
+                    <a href="" class="footer__link">Price List</a>
+                    <a href="" class="footer__link">FAQ</a>
+                    <a href="" class="footer__link">Terms &amp; Condition</a>
+                </nav>
+          
+                <div class="footer__contact">
+                    <h3 class="footer__contact-title">Contact Us</h3>
+                    
+                    <div class="footer__contact-item">
+                        <img src="{{ url('assets_user/img/icon/telephone-handle-silhouette 1.png') }}" alt="">
+                        <span class="footer__contact-text">+6280123719310</span>
+                    </div>
+          
+                    <div class="footer__contact-item">
+                        <img src="{{ url('assets_user/img/icon/email 2.png') }}" alt="">
+                        <span class="footer__contact-text">floratrade9@gmail.com</span>
+                    </div>
+          
+                    <div class="footer__contact-item">
+                        <img src="{{ url('assets_user/img/icon/pin (1).png') }}" alt="" >
+                        <span class="footer__contact-text">Curug Mekar - Bogor Barat, Bogor, Jawa Barat</span>
+                    </div>
+                </div>
             </div>
-        </div>
+        </footer>
     </div>
-    <footer>
-        <div class="wrapperFooter container">
-            <div class="about">
-                <img src="{{ url('KlorofilFarm.png') }}" alt="">
-                <p>Find the various types of plants you want with Plantsasri. Your satisfaction and comfort is our priority.
-                </p>
-            </div>
-            <div class="links">
-                <a href="">Home</a>
-                <a href="">About Plantsasri</a>
-                <a href="{{ route('more') }}">Explore Plants</a>
-                <a href="{{ route('catalog') }}">List Price</a>
-                <a href="{{ route('faq') }}">Faq</a>
-                <a href="{{ route('terms') }}">Terms & Condition</a>
-            </div>
-            <div class="contact">
-                <p>Contact Us</p>
-                <a class="item email" href="">
-                    <img src="{{ url('assets_user/img/icon/email 2.png') }}" alt="">
-                    <p>dadaiafh@gmail.com</p>
-                </a>
-                <a class="item call" href="">
-                    <img src="{{ url('assets_user/img/icon/telephone-handle-silhouette 1.png') }}" alt="">
-                    <p>+6286473563</p>
-                </a>
-                <a class="item address" href="">
-                    <img src="{{ url('assets_user/img/icon/pin (1).png') }}" alt="">
-                    <p>GARDEN, No.13 Jalan Cijahe, Curug Mekar - Bogor Barat, Bogor, Jawa Barat</p>
-                </a>
-            </div>
-        </div>
-        <div class="wrapperCopy container">
-            <p>© 2022 Plantsasri, Design By Startcode</p>
-            <p><b>English</b></p>
-        </div>
-    </footer>
 @endsection
 
 @section('js')

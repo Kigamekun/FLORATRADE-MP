@@ -268,7 +268,7 @@
 
 <body>
   <!-- Standalone Middle Plant -->
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/4_leaf_clover_icon.svg/512px-4_leaf_clover_icon.svg.png" alt="Plant" class="center-plant">
+  <
 
   <div class="login-container">
     
