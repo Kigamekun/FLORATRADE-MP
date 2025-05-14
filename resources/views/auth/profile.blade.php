@@ -4,13 +4,13 @@
     <!--CSS Profile-->
     <link rel="stylesheet" href="{{ url('assets_user/css/profile.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css"
         integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
     <style>
         /* Add the new styles from the HTML file */
-        .nav-icon {
+        .account-page .nav-icon {
             width: 19px;
             height: 19px;
             display: flex;
@@ -20,7 +20,7 @@
             margin-right: 15px;
         }
 
-        .logout .nav-icon {
+        .account-page .logout .nav-icon {
             color: #f00;
         }
 
@@ -35,13 +35,12 @@
             }
         }
 
-        .container {
-            margin: 26px auto 0;
-            width: 100%;
-            max-width: 1158px;
-            margin-top: 10px;
-        }
-
+.account-page .container {
+    margin: 26px auto 0;
+    width: 100%;
+    max-width: 1158px;
+    margin-top: 10px;
+}
         @media (max-width: 991px) {
             .container {
                 max-width: 100%;
@@ -119,13 +118,13 @@
             font-weight: 400;
         }
 
-        .divider {
-            border: none;
-            border-top: 1px solid rgba(182, 183, 187, 1);
-            width: 100%;
-            margin-top: 18px;
-            background-color: #b6b7bb;
-        }
+.account-page .divider {
+    border: none;
+    border-top: 1px solid rgba(182, 183, 187, 1);
+    width: 100%;
+    margin-top: 18px;
+    background-color: #b6b7bb;
+}
 
         .sidebar-nav {
             display: flex;
@@ -134,7 +133,7 @@
             margin-top: 20px;
         }
 
-        .nav-item {
+        .account-page .nav-item {
             display: flex;
             align-items: center;
             gap: 15px;
@@ -145,21 +144,21 @@
             padding: 10px 0 10px 16px;
         }
 
-        .nav-item.active {
-            font-weight: 500;
-        }
+.account-page .nav-item.active {
+    font-weight: 500;
+}
 
-        .nav-text {
-            color: #494c4b;
-        }
+.account-page .nav-text {
+    color: #494c4b;
+}
 
-        .logout {
-            color: #f00;
-        }
+.account-page .logout {
+    color: #f00;
+}
 
-        .logout .nav-text {
-            color: #f00;
-        }
+.account-page .logout .nav-text {
+    color: #f00;
+}
 
         /* Main content styles */
         .main-content {
@@ -250,19 +249,19 @@
             transform: translateY(-70%);
         }
         
-        .btn-outline {
-            padding: 5px 15px;
-            border: 1px solid rgba(51, 184, 125, 1);
-            border-radius: 4px;
-            background: white;
-            color: rgba(51, 184, 125, 1);
-            font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-            margin-bottom: 30px;
-        }
+.account-page .btn-outline {
+    padding: 5px 15px;
+    border: 1px solid rgba(51, 184, 125, 1);
+    border-radius: 4px;
+    background: white;
+    color: rgba(51, 184, 125, 1);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
         
         .change-pic-btn {
             margin-left: auto;
