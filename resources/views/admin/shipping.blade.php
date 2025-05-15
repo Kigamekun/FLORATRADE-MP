@@ -27,7 +27,7 @@
     <div class="contentMain">
         <h1 class="pageNameContent">Manage Shipping</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item">User</li>
+            <li class="breadcrumb-item">Admin Menu</li>
             <li class="breadcrumb-item active">Manage Shipping</li>
         </ol>
 
@@ -47,7 +47,6 @@
             <div class="card-body">
 =======
          <div class="card-body">
->>>>>>> 9927246f1a2becaf75cc7234a85b0f8873e35260
             <table id="countryList" class="table table-hover">
                 <thead class="table-light">
                     <tr>
@@ -88,9 +87,9 @@
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div id="modal-content" class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Add Fee Ship List</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Add Shipping List</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('admin.shipping.store') }}" method="post">
@@ -182,7 +181,7 @@
 
             var html = `
     <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Fee Ship List</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Shipping List</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="${$(e.relatedTarget).data('url')}" method="post">

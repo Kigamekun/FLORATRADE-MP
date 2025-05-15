@@ -1,8 +1,8 @@
 <div class="sidebar-menu-wrapper">
-    <li class="listMenuName"><p>Dashboard</p></li>
+    <li class="listMenuName"><p>Home Dashboard</p></li>
     <li class="list-menu {{ request()->routeIs('admin.index') ? 'active' : '' }}">
         <div class="icon"><ion-icon name="grid"></ion-icon></div>
-        <a href="{{ route('admin.index') }}" class="sidebar-menu">Dashboard Admin</a>
+        <a href="{{ route('admin.index') }}" class="sidebar-menu">Dashboard</a>
     </li>
 
     <li class="listMenuName"><p>Admin Menu</p></li>
@@ -27,20 +27,9 @@
         <a href="{{ route('admin.shipping.index') }}" class="sidebar-menu">Manage Shipping</a>
     </li>
 
-    <li class="list-menu {{ request()->routeIs('admin.order.*') ? 'active' : '' }}">
-        <div class="icon"><ion-icon name="cart"></ion-icon></div>
-        <a href="{{ route('admin.order.index') }}" class="sidebar-menu">Manage Transaction</a>
-    </li>
-
     <li class="list-menu {{ request()->routeIs('admin.pricing.*') ? 'active' : '' }}">
         <div class="icon"><ion-icon name="cash"></ion-icon></div>
         <a href="{{ route('admin.pricing.index') }}" class="sidebar-menu">Manage Pricing</a>
-    </li>
-
-
-    <li class="list-menu {{ request()->routeIs('admin.user.*') ? 'active' : '' }}">
-        <div class="icon"><ion-icon name="person"></ion-icon></div>
-        <a href="{{ route('admin.user.index') }}" class="sidebar-menu">Manage User</a>
     </li>
 
     <li class="list-menu {{ request()->routeIs('admin.faq.*') ? 'active' : '' }}">
@@ -48,8 +37,19 @@
         <a href="{{ route('admin.faq.index') }}" class="sidebar-menu">Manage Faq</a>
     </li>
 
-    <li class="list-menu {{ request()->routeIs('admin.chat') || request()->routeIs('admin.chatDetail') ? 'active' : '' }}">
+    <li class="list-menu {{ request()->routeIs('admin.order.*') ? 'active' : '' }}">
+        <div class="icon"><ion-icon name="cart"></ion-icon></div>
+        <a href="{{ route('admin.order.index') }}" class="sidebar-menu">Manage Transaction</a>
+    </li>
+
+    <!-- <li class="list-menu {{ request()->routeIs('admin.chat') || request()->routeIs('admin.chatDetail') ? 'active' : '' }}">
         <div class="icon"><ion-icon name="chatbubbles"></ion-icon></div>
         <a href="{{ route('admin.chat') }}" class="sidebar-menu">Chat</a>
+    </li> -->
+
+    <li class="listMenuName"><p>User</p></li>
+    <li class="list-menu {{ request()->routeIs('admin.user.*') ? 'active' : '' }}">
+        <div class="icon"><ion-icon name="person"></ion-icon></div>
+        <a href="{{ route('admin.user.index') }}" class="sidebar-menu">Manage User</a>
     </li>
 </div>
