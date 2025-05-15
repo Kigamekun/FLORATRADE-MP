@@ -34,7 +34,7 @@
         .login-container {
           display: flex;
           width: 90%;
-          max-width: 900px;
+          max-width: 901px;
           background-color: #fff;
           border-radius: 12px;
           overflow: hidden;
