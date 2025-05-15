@@ -43,11 +43,8 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
             <div class="card-body">
-=======
          <div class="card-body">
->>>>>>> 9927246f1a2becaf75cc7234a85b0f8873e35260
             <table id="countryList" class="table table-hover">
                 <thead class="table-light">
                     <tr>
