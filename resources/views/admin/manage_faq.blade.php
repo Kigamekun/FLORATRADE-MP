@@ -7,140 +7,75 @@
         crossorigin="anonymous" referrerpolicy="no-referrer">
 @endsection
 
-
-
-@section('menu')
-    <div class="sidebar-menu-wrapper">
-        <li class="listMenuName">
-            <p>Admin Menu</p>
-        </li>
-        <li class="list-menu ">
-            <div class="icon">
-                <ion-icon name="grid"></ion-icon>
-            </div>
-            <a href="/admin" class="sidebar-menu">Dashboard Admin</a>
-        </li>
-        <li class="list-menu ">
-            <div class="icon">
-                <ion-icon name="folder-open"></ion-icon>
-            </div>
-            <a href="{{ route('admin.plants.index') }}" class="sidebar-menu">Manage Marga (Plants)</a>
-        </li>
-
-        <li class="list-menu ">
-            <div class="icon">
-                <ion-icon name="leaf"></ion-icon>
-            </div>
-            <a href="{{ route('admin.plant.index') }}" class="sidebar-menu">Manage Plant</a>
-        </li>
-
-        <li class="list-menu">
-            <div class="icon">
-                <ion-icon name="card"></ion-icon>
-            </div>
-            <a href="{{ route('admin.voucher.index') }}" class="sidebar-menu">Manage Voucher</a>
-        </li>
-
-        <li class="list-menu">
-            <div class="icon">
-                <ion-icon name="airplane"></ion-icon>
-            </div>
-            <a href="{{ route('admin.shipping.index') }}" class="sidebar-menu">Manage Shipping</a>
-        </li>
-
-        <li class="list-menu ">
-            <div class="icon">
-                <ion-icon name="cart"></ion-icon>
-            </div>
-            <a href="{{ route('admin.order.index') }}" class="sidebar-menu">Manage Transaction</a>
-        </li>
-
-        <li class="list-menu">
-            <div class="icon">
-                <ion-icon name="cash"></ion-icon>
-            </div>
-            <a href="{{ route('admin.pricing.index') }}" class="sidebar-menu">Manage Pricing</a>
-        </li>
-        <li class="list-menu">
-            <div class="icon">
-                <ion-icon name="person"></ion-icon>
-            </div>
-            <a href="{{ route('admin.user.index') }}" class="sidebar-menu">Manage User</a>
-        </li>
-        <li class="list-menu active">
-            <div class="icon">
-                <ion-icon name="receipt"></ion-icon>
-            </div>
-            <a href="{{ route('admin.faq.index') }}" class="sidebar-menu">Manage Faq</a>
-        </li>
-    </div>
-@endsection
+@push('styles')
+<link href="{{ asset('assets/css/admin_content.css') }}" rel="stylesheet">
+@endpush
 
 @section('content')
     <style>
         .dropify-wrapper .dropify-message p {
             font-size: 14px;
         }
+
+        div.dataTables_wrapper div.dataTables_length,
+        div.dataTables_wrapper div.dataTables_filter {
+            margin-bottom: 1rem; /* atau ubah sesuai kebutuhan */
+        }
     </style>
+
     <div class="contentMain">
-        <h2 class="pageNameContent">Manage Faq</h2>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active">Manage Faq</li>
-        </ol>
+            <h1 class="pageNameContent">Manage FAQ</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">Admin Menu</li>
+                <li class="breadcrumb-item active">Manage FAQ</li>
+            </ol>
 
-        <div class="wrapperTable table-responsive">
+            <div class="card mb-4">
+                <div class="wrapperTable table-responsive">
+                        <div class="card-header mx-1 bg-white d-flex justify-content-between align-items-center">
+                        <span class="fw-normal fs-4 my-3 d-block">
+                            FAQ Data
+                        </span>
+                        <button type="button" class="btn btn-create-add" data-bs-toggle="modal" data-bs-target="#createData">
+                            + Create FAQ
+                        </button>
+                </div>
 
-            <div class="d-flex justify-content-end">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createData">
-                    Create Faq
-
-                </button>
-
+                <div class="card-body">
+                    <table id="faqTable" class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th>Question</th>
+                                <th>Answer</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            @foreach ($data as $key => $item)
+                                <tr>
+                                    <td class="text-center">{{ $key + 1 }}</td>
+                                    <td>{{ $item->title }}</td>
+                                    <td>{{ $item->description }}</td>
+                                    <td style="width: 20%" class="text-center">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#updateData" data-id="{{ $item->id }}"
+                                        data-title="{{ $item->title }}" data-description="{{ $item->description }}"
+                                        data-url="{{ route('admin.faq.update', ['id' => $item->id]) }}">
+                                        <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
+                                            alt="">
+                                    </button>
+                                    <a class="btn btn-danger"
+                                        href="{{ route('admin.faq.delete', ['id' => $item->id]) }}"><img width="20"
+                                            height="20" src="{{ url('assets/img/trash-outline 1.svg') }}" alt=""></a>
+                                </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <br>
-            <table id="faqTable" class="tables" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Action</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $key => $item)
-                        <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>{{ $item->title }}</td>
-                            <td>{{ $item->description }}</td>
-                            <td style="width: 20%">
-
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#updateData" data-id="{{ $item->id }}"
-                                    data-title="{{ $item->title }}" data-description="{{ $item->description }}"
-                                    data-url="{{ route('admin.faq.update', ['id' => $item->id]) }}">
-                                    <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
-                                        alt="">
-                                </button>
-                                <a class="btn btn-danger"
-                                    href="{{ route('admin.faq.delete', ['id' => $item->id]) }}"><img width="20"
-                                        height="20" src="{{ url('assets/img/trash-outline 1.svg') }}" alt=""></a>
-
-                            </td>
-
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
     </div>
-
-
-
-
-
 
     <!-- Modal -->
     <div class="modal fade" id="updateData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -170,13 +105,13 @@
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="title" class="form-label">title</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="isi title ">
+                            <label for="title" class="form-label">Question</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Fill question">
                         </div>
 
                         <div class="mb-3">
-                            <label for="description" class="form-label">description</label>
-                            <textarea name="description" id="description" class="form-control" cols="30" rows="10"></textarea>
+                            <label for="description" class="form-label">Answer</label>
+                            <textarea name="description" id="description" class="form-control" cols="30" rows="10" placeholder="Type Here"></textarea>
                         </div>
 
                     </div>
@@ -224,12 +159,12 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="title" class="form-label">title</label>
+                        <label for="title" class="form-label">Question</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="isi title " value="${$(e.relatedTarget).data('title')}">
                     </div>
 
                     <div class="mb-3">
-                        <label for="description" class="form-label">description</label>
+                        <label for="description" class="form-label">Answer</label>
                             <textarea name="description" id="description" class="form-control" cols="30" rows="10">${$(e.relatedTarget).data('description')}</textarea>
                     </div>
                 </div>

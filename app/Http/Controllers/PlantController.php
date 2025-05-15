@@ -63,13 +63,12 @@ class PlantController extends Controller
         $data = [];
 
 
-        $request->validate($request, [
+        $request->validate([
             'name' => 'required',
             'stock' => 'required',
             'price' => 'required',
             'description' => 'required',
             'thumb.*' => 'required|image|mimes:jpeg,png,jpg'
-
         ]);
 
 

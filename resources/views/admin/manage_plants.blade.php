@@ -27,7 +27,7 @@
     <div class="contentMain">
         <h1 class="pageNameContent">Manage Plant Categories</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item">User</li>
+            <li class="breadcrumb-item">Admin Menu</li>
             <li class="breadcrumb-item active">Manage Plant Categories</li>
         </ol>
 
@@ -167,7 +167,7 @@
                 <form action="${url}" method="post">
                     @csrf
                     @method('PUT')
-                    <div class="modal-body">
+                    <div class="modal-body ">
                         <div class="mb-3">
                             <label for="edit_name_indonesia" class="form-label">Nama Indonesia</label>
                             <input type="text" class="form-control" id="edit_name_indonesia" name="name_indonesia" value="${nameIndonesia}">

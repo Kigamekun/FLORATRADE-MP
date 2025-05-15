@@ -1,0 +1,65 @@
+@media (max-width: 768px) {
+  
+
+  .product-grid__row {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 1rem;
+    width: 100vw;
+    padding: 1rem;
+    box-sizing: border-box;
+    justify-content: flex-start; /* Biarkan mulai dari kiri tapi tetap scrollable */
+    scroll-snap-type: x mandatory;
+  }
+
+  .product-card {
+    flex: 0 0 auto;
+    width: 70vw;
+    max-width: 250px;
+    scroll-snap-align: start;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .product-card__image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .product-card__content {
+    padding: 0.5rem;
+  }
+
+  .header-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+  }
+
+  .product-grid__icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+    .mobile-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+
+@media (max-width: 768px) {
+    .product-grid__icon {
+      display: none;
+    }
+  }

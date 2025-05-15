@@ -52,15 +52,15 @@
     <div id="app">
         <div id="sidebarMain">
             <div class="wrapperSidebar">
-                <div class="brandLogo">
+                <!-- <div class="brandLogo">
                     <img src="{{ url('assets/img/plantsasriLogo.png') }}" alt="">
-                </div>
+                </div> -->
                 <a href="" class="profile">
                     <div class="imagesProfile">
                         <img src="{{ url('assets/img/faces.jpg') }}" alt="">
                     </div>
                     <div class="profileUser">
-                        <h5 class="labelDay">Morning</h5>
+                        <h5 class="labelDay">Welcome</h5>
                         <h5 class="nameUser">{{ Auth::user()->name }}</h5>
                     </div>
                 </a>
