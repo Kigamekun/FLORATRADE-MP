@@ -31,17 +31,18 @@
           color: #000;
         }
 
-        .login-container {
-          display: flex;
-          width: 90%;
-          max-width: 900px;
-          background-color: #fff;
-          border-radius: 12px;
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-          z-index: 1;
-          height: 650px;
-          position: relative;
-        }
+.login-container {
+    display: flex;
+    width: 90%;
+    max-width: 900px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    height: 650px;
+    position: relative;
+    overflow: hidden; /* Ensure content respects the border-radius */
+}
 
         .login-form {
           background-color: #fff;
@@ -352,7 +353,7 @@
         <button type="submit" class="login-btn">Register</button>
 
         <!-- Already have an account? -->
-        <a href="#" class="signup-link">Already have an account?</a>
+        <a href="{{ route('login') }}" class="signup-link"> Already have an account?</a>
       </form>
     </div>
 

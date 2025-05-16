@@ -521,5 +521,7 @@ Route::post('/payStripe', [StripePaymentController::class, 'payStripe'])->name('
 
 Route::get('/about', function () {
     return view('user.about');
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 });
 
