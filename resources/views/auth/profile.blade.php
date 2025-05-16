@@ -427,6 +427,49 @@
         .modal-body .dropify-wrapper .dropify-message p {
             font-size: 14px;
         }
+
+        /* Add this to your existing CSS */
+.modal-footer .btn,
+.modal-body .btn-outline {
+    padding: 5px 15px;
+    border: 1px solid rgba(51, 184, 125, 1);
+    border-radius: 4px;
+    background: rgba(51, 184, 125, 1);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-footer .btn:hover,
+.modal-body .btn-outline:hover {
+    background-color: white;
+    color: rgba(51, 184, 125, 1);
+}
+
+.modal-footer .btn-secondary {
+    border-color: #6c757d;
+    background-color: #6c757d;
+    color: white;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: white;
+    color: #6c757d;
+}
+
+.modal-footer .btn-primary {
+    background-color: rgba(51, 184, 125, 1);
+    color: white;
+    border-color: rgba(51, 184, 125, 1);
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: white;
+    color: rgba(51, 184, 125, 1);
+}
     </style>
 @endsection
 
