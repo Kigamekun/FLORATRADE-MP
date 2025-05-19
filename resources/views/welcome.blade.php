@@ -345,12 +345,10 @@
             </div>
       
             <nav class="footer__links">
-              <a href="#" class="footer__link">Home</a>
-              <a href="#" class="footer__link">About FloraTrade</a>
-              <a href="#" class="footer__link">Explore Plants</a>
-              <a href="#" class="footer__link">Price List</a>
-              <a href="#" class="footer__link">FAQ</a>
-              <a href="#" class="footer__link">Terms &amp; Condition</a>
+              <a href="/" class="footer__link">Home</a>
+              <a href="about" class="footer__link">About FloraTrade</a>
+              <a href="catalog" class="footer__link">Price List</a>
+              <a href="faq" class="footer__link">FAQ</a>
             </nav>
       
             <div class="footer__contact">
