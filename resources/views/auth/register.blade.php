@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Marketplace</title>
-    
+
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Bootstrap Icons CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
@@ -135,17 +135,20 @@
         }
 
         .login-btn {
-          width: calc(100% / 3);
-          padding: 10px;
-          border: none;
-          border-radius: 24px;
-          cursor: pointer;
-          background-color: #2CA670;
-          color: #fff;
-          float: right;
-          clear: both;
-          font-weight: bold;
-          font-size: 16px;
+            width: 100%; /* fleksibel */
+            max-width: 300px; /* batas maksimal */
+            padding: 12px;
+            margin: 20px auto 0; /* tengah horizontal */
+            display: block;
+            border: none;
+            border-radius: 24px;
+            cursor: pointer;
+            background-color: #2CA670;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* opsional: efek bayangan */
+            transition: background-color 0.3s ease;
         }
 
         .visual-section {
@@ -222,7 +225,7 @@
         }
 
         .signup-link {
-          position: absolute;
+          /* position: absolute;
           bottom: 30px;
           left: 50%;
           transform: translateX(-50%);
@@ -230,7 +233,13 @@
           text-decoration: none;
           font-size: 14px;
           display: block;
-          margin-top: 30px;
+          margin-top: 30px; */
+          text-align: center;
+        display: block;
+        margin-top: 20px;
+        color: #88e0aa;
+        text-decoration: none;
+        font-size: 14px;
         }
 
         .bottom-plant {
@@ -264,6 +273,10 @@
           bottom: -18px;
           left: 16px;
         }
+
+        .form-container{
+           margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -272,7 +285,7 @@
   <
 
   <div class="login-container">
-    
+
     <!-- Left Side: Register Form -->
     <div class="login-form">
       <form method="POST" action="{{ route('register') }}">
@@ -280,80 +293,82 @@
         <h2>Create a New Account</h2>
         <p>Join us and start your experience today.</p>
 
-        <!-- Name Input -->
-        <div class="input-group">
-          <div class="input-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 10C5.33 10 0 11.34 0 14V16H16V14C16 11.34 10.67 10 8 10Z" fill="currentColor"/>
-            </svg>
-          </div>
-          <input type="text" id="name" name="name" class="input-field" placeholder="Name" value="{{ old('name') }}" required autofocus>
+        <div class="form-container">
+            <!-- Name Input -->
+            <div class="input-group">
+            <div class="input-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 10C5.33 10 0 11.34 0 14V16H16V14C16 11.34 10.67 10 8 10Z" fill="currentColor"/>
+                </svg>
+            </div>
+            <input type="text" id="name" name="name" class="input-field" placeholder="Name" value="{{ old('name') }}" required autofocus>
+            </div>
+
+            <!-- Email Input -->
+            <div class="input-group">
+            <div class="input-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.9693 3.69458L10.3573 9.30658C9.73158 9.93075 8.88383 10.2813 8 10.2813C7.11617 10.2813 6.26842 9.93075 5.64267 9.30658L0.0306667 3.69458C0.0213333 3.79991 0 3.89525 0 3.99991V11.9999C0.001059 12.8836 0.352588 13.7309 0.97748 14.3558C1.60237 14.9807 2.4496 15.3322 3.33333 15.3332H12.6667C13.5504 15.3322 14.3976 14.9807 15.0225 14.3558C15.6474 13.7309 15.9989 12.8836 16 11.9999V3.99991C16 3.89525 15.9787 3.79991 15.9693 3.69458Z" fill="currentColor"></path>
+                <path d="M9.41476 8.36408L15.5041 2.27408C15.2091 1.78496 14.7931 1.38011 14.2961 1.09857C13.7991 0.81703 13.2379 0.668308 12.6668 0.666748H3.33343C2.76224 0.668308 2.20109 0.81703 1.70411 1.09857C1.20713 1.38011 0.791079 1.78496 0.496094 2.27408L6.58543 8.36408C6.96114 8.73829 7.46982 8.94839 8.00009 8.94839C8.53037 8.94839 9.03905 8.73829 9.41476 8.36408Z" fill="currentColor"></path>
+                </svg>
+            </div>
+            <input type="email" id="email" name="email" class="input-field" placeholder="Email Address" value="{{ old('email') }}" required>
+            </div>
+
+            <!-- Phone Input -->
+            <div class="input-group">
+            <div class="input-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.6667 10.6667V13.3333C14.6667 14.0697 14.0697 14.6667 13.3333 14.6667H2.66667C1.93029 14.6667 1.33333 14.0697 1.33333 13.3333V2.66667C1.33333 1.93029 1.93029 1.33333 2.66667 1.33333H5.33333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14.6667 6.66667V1.33333H9.33333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.33333 1.33333L14.6667 6.66667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <input type="tel" id="phone" name="phone" class="input-field" placeholder="Phone Number" value="{{ old('phone') }}" required>
+            </div>
+
+            <!-- Address Textarea -->
+            <div class="input-group">
+            <div class="input-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 8.83333C9.19608 8.83333 10.1667 7.86274 10.1667 6.66667C10.1667 5.47059 9.19608 4.5 8 4.5C6.80392 4.5 5.83333 5.47059 5.83333 6.66667C5.83333 7.86274 6.80392 8.83333 8 8.83333Z" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M13.8333 6.66667C13.8333 11.5 8 14.8333 8 14.8333C8 14.8333 2.16667 11.5 2.16667 6.66667C2.16667 5.28696 2.71488 3.96354 3.69373 2.98469C4.67257 2.00585 5.99599 1.45764 7.37567 1.45764C8.75534 1.45764 10.0788 2.00585 11.0576 2.98469C12.0365 3.96354 12.5847 5.28696 12.5847 6.66667H13.8333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <textarea id="address" name="address" class="input-field" rows="2" placeholder="Address" required>{{ old('address') }}</textarea>
+            </div>
+
+            <!-- Password Input -->
+            <div class="password-input-container">
+            <div class="input-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5.33333H3.99999C2.52724 5.33333 1.33333 6.52724 1.33333 8V12C1.33333 13.4728 2.52724 14.6667 3.99999 14.6667H12C13.4728 14.6667 14.6667 13.4728 14.6667 12V8C14.6667 6.52724 13.4728 5.33333 12 5.33333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4.66667 5.33333V3.33333C4.66667 2.8029 4.87738 2.29419 5.25245 1.91912C5.62753 1.54405 6.13623 1.33333 6.66667 1.33333H9.33334C9.86377 1.33333 10.3725 1.54405 10.7475 1.91912C11.1226 2.29419 11.3333 2.8029 11.3333 3.33333V5.33333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 10.6667C8.36819 10.6667 8.66667 10.3682 8.66667 10C8.66667 9.63181 8.36819 9.33333 8 9.33333C7.63181 9.33333 7.33333 9.63181 7.33333 10C7.33333 10.3682 7.63181 10.6667 8 10.6667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <input type="password" id="password" name="password" class="input-field" placeholder="Password" required autocomplete="new-password">
+            <i class="bi bi-eye-slash-fill password-toggle" id="togglePassword1"></i>
+            </div>
+
+            <!-- Confirm Password Input -->
+            <div class="password-input-container">
+            <div class="input-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5.33333H3.99999C2.52724 5.33333 1.33333 6.52724 1.33333 8V12C1.33333 13.4728 2.52724 14.6667 3.99999 14.6667H12C13.4728 14.6667 14.6667 13.4728 14.6667 12V8C14.6667 6.52724 13.4728 5.33333 12 5.33333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4.66667 5.33333V3.33333C4.66667 2.8029 4.87738 2.29419 5.25245 1.91912C5.62753 1.54405 6.13623 1.33333 6.66667 1.33333H9.33334C9.86377 1.33333 10.3725 1.54405 10.7475 1.91912C11.1226 2.29419 11.3333 2.8029 11.3333 3.33333V5.33333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 10.6667C8.36819 10.6667 8.66667 10.3682 8.66667 10C8.66667 9.63181 8.36819 9.33333 8 9.33333C7.63181 9.33333 7.33333 9.63181 7.33333 10C7.33333 10.3682 7.63181 10.6667 8 10.6667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <input type="password" id="password_confirmation" name="password_confirmation" class="input-field" placeholder="Confirm Password" required>
+            <i class="bi bi-eye-slash-fill password-toggle" id="togglePassword2"></i>
+            </div>
+
+            <button type="submit" class="login-btn">Register</button>
+
+            <!-- Already have an account? -->
+            <a href="{{ route('login') }}" class="signup-link"> Already have an account?</a>
         </div>
-
-        <!-- Email Input -->
-        <div class="input-group">
-          <div class="input-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15.9693 3.69458L10.3573 9.30658C9.73158 9.93075 8.88383 10.2813 8 10.2813C7.11617 10.2813 6.26842 9.93075 5.64267 9.30658L0.0306667 3.69458C0.0213333 3.79991 0 3.89525 0 3.99991V11.9999C0.001059 12.8836 0.352588 13.7309 0.97748 14.3558C1.60237 14.9807 2.4496 15.3322 3.33333 15.3332H12.6667C13.5504 15.3322 14.3976 14.9807 15.0225 14.3558C15.6474 13.7309 15.9989 12.8836 16 11.9999V3.99991C16 3.89525 15.9787 3.79991 15.9693 3.69458Z" fill="currentColor"></path>
-              <path d="M9.41476 8.36408L15.5041 2.27408C15.2091 1.78496 14.7931 1.38011 14.2961 1.09857C13.7991 0.81703 13.2379 0.668308 12.6668 0.666748H3.33343C2.76224 0.668308 2.20109 0.81703 1.70411 1.09857C1.20713 1.38011 0.791079 1.78496 0.496094 2.27408L6.58543 8.36408C6.96114 8.73829 7.46982 8.94839 8.00009 8.94839C8.53037 8.94839 9.03905 8.73829 9.41476 8.36408Z" fill="currentColor"></path>
-            </svg>
-          </div>
-          <input type="email" id="email" name="email" class="input-field" placeholder="Email Address" value="{{ old('email') }}" required>
-        </div>
-
-        <!-- Phone Input -->
-        <div class="input-group">
-          <div class="input-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.6667 10.6667V13.3333C14.6667 14.0697 14.0697 14.6667 13.3333 14.6667H2.66667C1.93029 14.6667 1.33333 14.0697 1.33333 13.3333V2.66667C1.33333 1.93029 1.93029 1.33333 2.66667 1.33333H5.33333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M14.6667 6.66667V1.33333H9.33333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9.33333 1.33333L14.6667 6.66667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <input type="tel" id="phone" name="phone" class="input-field" placeholder="Phone Number" value="{{ old('phone') }}" required>
-        </div>
-
-        <!-- Address Textarea -->
-        <div class="input-group">
-          <div class="input-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 8.83333C9.19608 8.83333 10.1667 7.86274 10.1667 6.66667C10.1667 5.47059 9.19608 4.5 8 4.5C6.80392 4.5 5.83333 5.47059 5.83333 6.66667C5.83333 7.86274 6.80392 8.83333 8 8.83333Z" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M13.8333 6.66667C13.8333 11.5 8 14.8333 8 14.8333C8 14.8333 2.16667 11.5 2.16667 6.66667C2.16667 5.28696 2.71488 3.96354 3.69373 2.98469C4.67257 2.00585 5.99599 1.45764 7.37567 1.45764C8.75534 1.45764 10.0788 2.00585 11.0576 2.98469C12.0365 3.96354 12.5847 5.28696 12.5847 6.66667H13.8333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <textarea id="address" name="address" class="input-field" rows="2" placeholder="Address" required>{{ old('address') }}</textarea>
-        </div>
-
-        <!-- Password Input -->
-        <div class="password-input-container">
-          <div class="input-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 5.33333H3.99999C2.52724 5.33333 1.33333 6.52724 1.33333 8V12C1.33333 13.4728 2.52724 14.6667 3.99999 14.6667H12C13.4728 14.6667 14.6667 13.4728 14.6667 12V8C14.6667 6.52724 13.4728 5.33333 12 5.33333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M4.66667 5.33333V3.33333C4.66667 2.8029 4.87738 2.29419 5.25245 1.91912C5.62753 1.54405 6.13623 1.33333 6.66667 1.33333H9.33334C9.86377 1.33333 10.3725 1.54405 10.7475 1.91912C11.1226 2.29419 11.3333 2.8029 11.3333 3.33333V5.33333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M8 10.6667C8.36819 10.6667 8.66667 10.3682 8.66667 10C8.66667 9.63181 8.36819 9.33333 8 9.33333C7.63181 9.33333 7.33333 9.63181 7.33333 10C7.33333 10.3682 7.63181 10.6667 8 10.6667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <input type="password" id="password" name="password" class="input-field" placeholder="Password" required autocomplete="new-password">
-          <i class="bi bi-eye-slash-fill password-toggle" id="togglePassword1"></i>
-        </div>
-
-        <!-- Confirm Password Input -->
-        <div class="password-input-container">
-          <div class="input-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 5.33333H3.99999C2.52724 5.33333 1.33333 6.52724 1.33333 8V12C1.33333 13.4728 2.52724 14.6667 3.99999 14.6667H12C13.4728 14.6667 14.6667 13.4728 14.6667 12V8C14.6667 6.52724 13.4728 5.33333 12 5.33333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M4.66667 5.33333V3.33333C4.66667 2.8029 4.87738 2.29419 5.25245 1.91912C5.62753 1.54405 6.13623 1.33333 6.66667 1.33333H9.33334C9.86377 1.33333 10.3725 1.54405 10.7475 1.91912C11.1226 2.29419 11.3333 2.8029 11.3333 3.33333V5.33333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M8 10.6667C8.36819 10.6667 8.66667 10.3682 8.66667 10C8.66667 9.63181 8.36819 9.33333 8 9.33333C7.63181 9.33333 7.33333 9.63181 7.33333 10C7.33333 10.3682 7.63181 10.6667 8 10.6667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <input type="password" id="password_confirmation" name="password_confirmation" class="input-field" placeholder="Confirm Password" required>
-          <i class="bi bi-eye-slash-fill password-toggle" id="togglePassword2"></i>
-        </div>
-
-        <button type="submit" class="login-btn">Register</button>
-
-        <!-- Already have an account? -->
-        <a href="{{ route('login') }}" class="signup-link"> Already have an account?</a>
       </form>
     </div>
 
@@ -374,8 +389,8 @@
     <img src="assets/aaaa.png" alt="Plant in Pot" class="bottom-plant">
 
     <!-- Bottom right plant -->
-    <img src="{{ asset('assets/img/Picture7.png') }}" 
-    alt="Bottom Right Plant" 
+    <img src="{{ asset('assets/img/Picture7.png') }}"
+    alt="Bottom Right Plant"
     class="bottom-right-plant">
   </div>
 
@@ -431,7 +446,7 @@
           const parent = input.closest('.input-group') || input.closest('.password-input-container');
           parent?.classList.add('focused');
         });
-        
+
         input.addEventListener('blur', () => {
           const parent = input.closest('.input-group') || input.closest('.password-input-container');
           if (!input.value) {
@@ -449,35 +464,35 @@
         const address = document.getElementById('address').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('password_confirmation').value;
-        
+
         // Clear previous errors
         document.querySelectorAll('.error-message').forEach(el => el.remove());
         document.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
-        
+
         // Name validation
         if (name.trim().length < 2) {
           showError('name', 'Name must be at least 2 characters');
           isValid = false;
         }
-        
+
         // Email validation
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
           showError('email', 'Please enter a valid email address');
           isValid = false;
         }
-        
+
         // Phone validation
         if (!/^\+?[0-9]{10,15}$/.test(phone.replace(/\s/g, ''))) {
           showError('phone', 'Please enter a valid phone number');
           isValid = false;
         }
-        
+
         // Address validation
         if (address.trim().length === 0) {
           showError('address', 'Address is required');
           isValid = false;
         }
-        
+
         // Password validation
         if (password.length < 8) {
           showError('password', 'Password must be at least 8 characters');
@@ -486,13 +501,13 @@
           showError('password', 'Password must contain letters and numbers');
           isValid = false;
         }
-        
+
         // Confirm password validation
         if (password !== confirmPassword) {
           showError('password_confirmation', 'Passwords do not match');
           isValid = false;
         }
-        
+
         if (!isValid) {
           event.preventDefault();
         }
@@ -501,15 +516,15 @@
       function showError(fieldId, message) {
         const field = document.getElementById(fieldId);
         const parent = field.closest('.input-group') || field.closest('.password-input-container');
-        
+
         // Add error class
         parent.classList.add('input-error');
-        
+
         // Create error message element
         const errorElement = document.createElement('p');
         errorElement.className = 'error-message';
         errorElement.textContent = message;
-        
+
         parent.appendChild(errorElement);
       }
     });

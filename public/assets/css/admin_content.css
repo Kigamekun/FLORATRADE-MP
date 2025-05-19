@@ -61,6 +61,12 @@
         white-space: nowrap;
       }
 
+    .pageNameContent {
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
 
 
 

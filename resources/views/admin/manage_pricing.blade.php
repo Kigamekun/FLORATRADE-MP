@@ -83,8 +83,8 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="buttonAction">
-                                        <button type="button" data-id="{{ $item->id }}" data-bs-toggle="modal"
-                                            data-bs-target="#updateTanaman" class="buttons success text-white me-2"
+                                        <button type="button" class="btn btn-primary" data-id="{{ $item->id }}" data-bs-toggle="modal"
+                                            data-bs-target="#updateTanaman"
                                             data-count="{{ $item->count }}" data-value="{{ $item->value }}" data-url="{{ route('admin.pricing.update', ['id'=>$item->id]) }}">
 
                                             <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
@@ -92,7 +92,7 @@
                                         </button>
 
                                         <a href="{{ route('admin.pricing.delete', ['id' => $item->id]) }}"
-                                            class="buttons danger text-white">
+                                            class="btn btn-danger">
                                             <img width="20" height="20" src="{{ url('assets/img/trash-outline 1.svg') }}"
                                                 alt="">
                                         </a>
