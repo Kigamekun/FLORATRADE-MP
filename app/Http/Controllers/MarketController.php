@@ -385,20 +385,31 @@ class MarketController extends Controller
         return redirect()->back()->with(['message'=>'Success delete all item in your cart !','status'=>'success']);
     }
 
-    public function search(Request $request)
-    {
+public function search(Request $request)
+{
+    $query = Plant::where('status', 1); // Base query to fetch active plants
 
-        if (isset($_GET['category'])) {
-            $data = Plant::where('category_id',$_GET['category'])->where('status',1)->paginate(20);
-            return view('user.result',['data'=>$data]);
-        }
-        else if(isset($request->min) && isset($request->max)){
-            $data = Plant::where('price','>=',$request->min)->where('price','<=',$request->max)->where('status',1)->paginate(20);
-            return view('user.result',['data'=>$data]);
-        }
-        $data = Plant::where('name','LIKE','%'.$request->search.'%')->where('status',1)->paginate(20);
-        return view('user.result',['data'=>$data]);
+    // Apply category filter if provided
+    if ($request->has('category')) {
+        $query->where('category_id', $request->category);
     }
+
+    // Apply price filter if provided
+    if ($request->has('price')) {
+        $query->where('price', '<=', $request->price);
+    }
+
+    // Apply search filter if provided
+    if ($request->has('search')) {
+        $query->where('name', 'LIKE', '%' . $request->search . '%');
+    }
+
+    // Paginate the results
+    $data = $query->paginate(20);
+
+    // Return the view with the filtered data
+    return view('user.result', ['data' => $data]);
+}
 
     public function chat(Request $request,$for)
     {

@@ -7,6 +7,50 @@
     <link rel="stylesheet" href="{{ url('assets_user/css/about-faq.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/result.css') }}">
+<style>
+    .price-slider-container {
+        padding: 20px 0;
+    }
+    
+    .price-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    
+    #currentPrice {
+        color: #4CAF50;
+        font-weight: bold;
+    }
+    
+    #priceSlider {
+        width: 100%;
+        height: 8px;
+        -webkit-appearance: none;
+        background: #d3d3d3;
+        outline: none;
+        border-radius: 10px;
+    }
+    
+    #priceSlider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #4CAF50;
+        cursor: pointer;
+    }
+    
+    #priceSlider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #4CAF50;
+        cursor: pointer;
+    }
+</style>
 @endsection
 
 
@@ -46,40 +90,28 @@
 
 
                             </div>
-                            <div class="priceFilterContainer">
-                                <h4>Price Filter</h4>
-                                <form action="{{ route('search') }}" method="POST">
-                                    @csrf
-                                    <div class="priceFilterWrapper">
-                                        <div class="priceNumberValue">
-                                            <div class="price-wrap">
-                                                <input id="one">
-                                                <label for="one">$</label>
-                                            </div>
-                                            <div class="price-wrap">
-                                                <input id="two">
-                                                <label for="two">$</label>
-                                            </div>
-                                        </div>
-                                        <div class="price-field">
-                                            <input name="min" type="range"
-                                                min="{{ DB::table('plants')->orderBy('price', 'ASC')->pluck('price')->first() }}"
-                                                max="{{ DB::table('plants')->orderBy('price', 'DESC')->pluck('price')->first() }}"
-                                                value="{{ DB::table('plants')->orderBy('price', 'ASC')->pluck('price')->first() }}"
-                                                id="lower">
-                                            <input name="max" type="range"
-                                                min="{{ DB::table('plants')->orderBy('price', 'ASC')->pluck('price')->first() }}"
-                                                max="{{ DB::table('plants')->orderBy('price', 'DESC')->pluck('price')->first() }}"
-                                                value="{{ DB::table('plants')->orderBy('price', 'DESC')->pluck('price')->first() }}"
-                                                id="upper">
-                                        </div>
-                                        <div class="d-flex justify-content-center">
-                                            <button type="submit" class="button button-primary md-button">Apply
-                                                Filter</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+<!-- In your HTML section (replace the price filter container) -->
+<!-- Price Filter Section -->
+<div class="priceFilterContainer">
+    <h4>Price Filter</h4>
+    <form action="{{ route('search') }}" method="GET"> <!-- Ensure the form uses GET -->
+        <div class="priceFilterWrapper">
+            <div class="price-slider-container">
+                <div class="price-labels">
+                    <span>$2</span>
+                    <span id="currentPrice">$5.00</span>
+                    <span>$5</span>
+                </div>
+                <input name="price" type="range" 
+                       min="2" max="5" step="0.1" 
+                       value="{{ request('price', 5) }}" id="priceSlider">
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <button type="submit" class="button button-primary md-button">Apply Filter</button>
+            </div>
+        </div>
+    </form>
+</div>
                         </div>
                     </div>
                 </div>
@@ -174,51 +206,45 @@
     @endsection
 
 
-    @section('js')
-        <script>
-            //Filter Price
-            var lowerSlider = document.querySelector('#lower');
-            var upperSlider = document.querySelector('#upper');
+// In your script section
+@section('js')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const priceSlider = document.getElementById('priceSlider');
+    const currentPriceDisplay = document.getElementById('currentPrice');
 
-            document.querySelector('#two').value = upperSlider.value;
-            document.querySelector('#one').value = lowerSlider.value;
+    if (priceSlider && currentPriceDisplay) {
+        // Initialize with the current value from the request
+        const initialPrice = priceSlider.value;
+        currentPriceDisplay.textContent = `$${parseFloat(initialPrice).toFixed(2)}`;
 
-            var lowerVal = parseInt(lowerSlider.value);
-            var upperVal = parseInt(upperSlider.value);
+        // Update the displayed price as the slider moves
+        priceSlider.addEventListener('input', function() {
+            currentPriceDisplay.textContent = `$${parseFloat(this.value).toFixed(2)}`;
+        });
+    }
 
-            upperSlider.oninput = function() {
-                lowerVal = parseInt(lowerSlider.value);
-                upperVal = parseInt(upperSlider.value);
-
-                if (upperVal < lowerVal + 4) {
-                    lowerSlider.value = upperVal - 4;
-                    if (lowerVal == lowerSlider.min) {
-                        upperSlider.value = 4;
-                    }
+        // Form submission handling
+        const priceForm = document.querySelector('.priceFilterWrapper form');
+        if (priceForm) {
+            priceForm.addEventListener('submit', function(e) {
+                // Ensure the price parameter is included
+                if (!this.querySelector('[name="price"]')) {
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = 'price';
+                    hiddenInput.value = priceSlider.value;
+                    this.appendChild(hiddenInput);
                 }
-                document.querySelector('#two').value = this.value
-            };
+            });
+        }
 
-            lowerSlider.oninput = function() {
-                lowerVal = parseInt(lowerSlider.value);
-                upperVal = parseInt(upperSlider.value);
-                if (lowerVal > upperVal - 4) {
-                    upperSlider.value = lowerVal + 4;
-                    if (upperVal == upperSlider.max) {
-                        lowerSlider.value = parseInt(upperSlider.max) - 4;
-                    }
-                }
-                document.querySelector('#one').value = this.value
-            };
-        </script>
-
-        {{-- @if (isset($_GET['page']))
-            <script>
-                $('ul.pagination li').hide().filter(':lt(1), :nth-child(2),:nth-child(3),:nth-last-child(1)').show();
-            </script>
+        // Original pagination functionality
+        @if (isset($_GET['page']))
+            $('ul.pagination li').hide().filter(':lt(1), :nth-child(2),:nth-child(3),:nth-last-child(1)').show();
         @else
-            <script>
-                $('ul.pagination li').hide().filter(':lt(1), :nth-child(2),:nth-child(3),:nth-last-child(1)').show();
-            </script>
-        @endif --}}
-    @endsection
+            $('ul.pagination li').hide().filter(':lt(1), :nth-child(2),:nth-child(3),:nth-last-child(1)').show();
+        @endif
+    });
+</script>
+@endsection

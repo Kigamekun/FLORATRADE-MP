@@ -222,25 +222,36 @@
         }
 
         /* Cart item styles */
-        .product-list {
-            display: flex;
-            margin-top: 23px;
-            margin-left: 18px;
-            width: 100%;
-            align-items: stretch;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
+/* Update the product-list and item-details styles */
+.product-list {
+    display: flex;
+    margin-top: 23px;
+    width: 100%;
+    align-items: center;
+    gap: 10px; /* Reduced from 20px */
+    flex-wrap: wrap;
+}
 
-        .item-details {
-            display: flex;
-            align-items: center;
-            gap: 26px;
-            font-size: 13px;
-            color: #2a2c2b;
-            font-weight: 400;
-        }
+.item-details {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    font-size: 13px;
+    color: #2a2c2b;
+    font-weight: 400;
+    flex-grow: 1; /* Added to take remaining space */
+}
+
+/* Update the checkbox container */
+.checkbox-item {
+    margin-left: 0; /* Remove any left margin */
+    margin-right: 10px; /* Add small right margin */
+}
+
+/* Remove the margin-left from product-list */
+.product-list {
+    margin-left: 0; /* Remove the 18px margin */
+}
 
         .item-checkbox {
             border-radius: 6px;
