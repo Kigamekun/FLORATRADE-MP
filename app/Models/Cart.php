@@ -14,4 +14,10 @@ class Cart extends Model
     {
         return $this->belongsTo(Plant::class);
     }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
 }

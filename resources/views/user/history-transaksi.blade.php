@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="{{ url('assets_user/css/history-transaksi.css') }}">
     <link rel="stylesheet" href="{{ url('assets_user/css/checkout.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css"
         integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -14,19 +16,19 @@
 
     <style>
         /* Add the new sidebar styles */
-    .account-page .nav-icon {
-        width: 19px;
-        height: 19px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: inherit;
-        margin-right: 15px;
-    }
+        .account-page .nav-icon {
+            width: 19px;
+            height: 19px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: inherit;
+            margin-right: 15px;
+        }
 
-    .account-page .logout .nav-icon {
-        color: #f00;
-    }
+        .account-page .logout .nav-icon {
+            color: #f00;
+        }
 
         .account-page {
             padding: 20px 0;
@@ -138,24 +140,24 @@
             margin-top: 20px;
         }
 
-    .account-page .nav-item {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        font-size: 16px;
-        color: #494c4b;
-        text-decoration: none;
-        margin-top: 10px;
-        padding: 10px 0 10px 16px;
-    }
+        .account-page .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 16px;
+            color: #494c4b;
+            text-decoration: none;
+            margin-top: 10px;
+            padding: 10px 0 10px 16px;
+        }
 
-    .account-page .nav-item.active {
-        font-weight: 500;
-    }
+        .account-page .nav-item.active {
+            font-weight: 500;
+        }
 
-    .account-page .nav-text {
-        color: #494c4b;
-    }
+        .account-page .nav-text {
+            color: #494c4b;
+        }
 
         .account-page .logout {
             color: #f00;
@@ -185,7 +187,7 @@
         .dropify-wrapper .dropify-message p {
             font-size: 14px;
         }
-        
+
         .cardd {
             background: #FFFFFF;
             box-shadow: 0px 2px 60px rgba(0, 0, 0, 0.04), 0px 0.835552px 25.0666px rgba(0, 0, 0, 0.0287542), 0px 0.446726px 13.4018px rgba(0, 0, 0, 0.0238443), 0px 0.250431px 7.51293px rgba(0, 0, 0, 0.02), 0px 0.133002px 3.99006px rgba(0, 0, 0, 0.0161557), 0px 0.0553451px 1.66035px rgba(0, 0, 0, 0.0112458);
@@ -215,8 +217,8 @@
             display: -ms-flexbox;
             display: flex;
             -webkit-box-align: center;
-                -ms-flex-align: center;
-                    align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
             margin: 1rem 0;
         }
 
@@ -232,13 +234,14 @@
             max-width: 64px;
             max-height: 64px;
             -o-object-fit: contain;
-                object-fit: contain;
+            object-fit: contain;
             -o-object-position: center;
-                object-position: center;
+            object-position: center;
             border-radius: 10px;
         }
 
-        .wrapper-item .item .detail-item h6, .wrapper-item .item .detail-item h5 {
+        .wrapper-item .item .detail-item h6,
+        .wrapper-item .item .detail-item h5 {
             color: #535353;
         }
 
@@ -258,7 +261,7 @@
             background: white;
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
         .nav-tabs {
@@ -365,770 +368,747 @@
 @endsection
 
 @section('content')
-    <main class="account-page">
-        <div class="container">
-            <div class="content-wrapper">
-                <!-- Sidebar -->
-                <aside class="sidebar">
-                    <div class="user-info">
-                        <div class="avatar-name">
-                            <div class="avatar-small">
-                                @if(Auth::user()->thumb)
-                                    <img src="{{ Auth::user()->thumb }}" alt="" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
-                                @else
-                                    {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
-                                @endif
-                            </div>
-                            <h3 class="username">{{ Auth::user()->name }}</h3>
+<main class="account-page">
+    <div class="container">
+        <div class="content-wrapper">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="user-info">
+                    <div class="avatar-name">
+                        <div class="avatar-small">
+                            @if(Auth::user()->thumb)
+                            <img src="{{ Auth::user()->thumb }}" alt=""
+                                style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+                            @else
+                            {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
+                            @endif
                         </div>
-                        <hr class="divider">
-                        <nav class="sidebar-nav">
-                            <a href="{{ route('profile') }}" class="nav-item active">
-                                <img src="{{ asset('assets_user/img/icon/user-solid.svg') }}" alt="profile" class="nav-icon">
-                                <span class="nav-text">Account</span>
-                            </a>
-                            <!--
-                            <a href="{{ route('chat', ['for' => 1]) }}" class="nav-item">
-                                <img src="{{ asset('assets_user/img/icon/cart-shopping-solid.svg') }}" alt="profile" class="nav-icon">
-                                <span class="nav-text">Chat</span>
-                            </a>
-                            -->
-                            <a href="{{ route('history-transaction') }}" class="nav-item">
-                                <img src="{{ asset('assets_user/img/icon/cart-shopping-solid.svg') }}" alt="profile" class="nav-icon">
-                                <span class="nav-text">History Transaction</span>
-                            </a>
-                            <a href="{{ route('logoutUser') }}" class="nav-item logout">
-                                <svg class="nav-icon" viewBox="0 0 512 512" width="19" height="19" fill="red" xmlns="http://www.w3.org/2000/svg">
-  <!-- Font Awesome Free 6.4.0 sign-out-alt icon (converted to inline SVG) -->
-  <path d="M160 416H96c-17.67 0-32-14.33-32-32V128c0-17.67 14.33-32 32-32h64c17.67 0 32-14.33 32-32S177.7 32 160 32H96C42.98 32 0 74.98 0 128v256c0 53.02 42.98 96 96 96h64c17.67 0 32-14.33 32-32S177.7 416 160 416zM502.6 233.4l-128-128c-12.51-12.51-32.76-12.49-45.25 0c-12.5 12.5-12.5 32.75 0 45.25L402.8 224H192C174.3 224 160 238.3 160 256s14.31 32 32 32h210.8l-73.38 73.38c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l128-128C515.1 264.2 515.1 247.8 502.6 233.4z"/>
-</svg>
-                                <span class="nav-text">Logout</span>
-                            </a>
-                        </nav>
+                        <h3 class="username">{{ Auth::user()->name }}</h3>
                     </div>
-                </aside>
-
-                <!-- Main Content -->
-                <section class="main-content">
-                    <div class="history-container">
-                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <button class="nav-link active" id="nav-All-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-All" type="button" role="tab" aria-controls="nav-All"
-                                aria-selected="true">All</button>
-                            <button class="nav-link" id="nav-done-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-done" type="button" role="tab" aria-controls="nav-done"
-                                aria-selected="false">Done</button>
-                            <button class="nav-link" id="nav-proccess-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-proccess" type="button" role="tab" aria-controls="nav-proccess"
-                                aria-selected="false">Proccess</button>
-                            <button class="nav-link" id="nav-failed-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-failed" type="button" role="tab" aria-controls="nav-failed"
-                                aria-selected="false">Failed</button>
+                    <hr class="divider">
+                    <nav class="sidebar-nav">
+                        <a href="{{ route('profile') }}" class="nav-item active">
+                            <img src="{{ asset('assets_user/img/icon/user-solid.svg') }}" alt="profile"
+                                class="nav-icon">
+                            <span class="nav-text">Account</span>
+                        </a>
+                        <a href="{{ route('history-transaction') }}" class="nav-item">
+                            <img src="{{ asset('assets_user/img/icon/cart-shopping-solid.svg') }}" alt="profile"
+                                class="nav-icon">
+                            <span class="nav-text">History Transaction</span>
+                        </a>
+                        <a href="{{ route('logoutUser') }}" class="nav-item logout">
+                            <svg class="nav-icon" viewBox="0 0 512 512" width="19" height="19" fill="red"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M160 416H96c-17.67 0-32-14.33-32-32V128c0-17.67 14.33-32 32-32h64c17.67 0 32-14.33 32-32S177.7 32 160 32H96C42.98 32 0 74.98 0 128v256c0 53.02 42.98 96 96 96h64c17.67 0 32-14.33 32-32S177.7 416 160 416zM502.6 233.4l-128-128c-12.51-12.51-32.76-12.49-45.25 0c-12.5 12.5-12.5 32.75 0 45.25L402.8 224H192C174.3 224 160 238.3 160 256s14.31 32 32 32h210.8l-73.38 73.38c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l128-128C515.1 264.2 515.1 247.8 502.6 233.4z" />
+                            </svg>
+                            <span class="nav-text">Logout</span>
+                        </a>
+                    </nav>
+                </div>
+            </aside>
+            <!-- Main Content -->
+            <section class="main-content">
+                <div class="history-container">
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-All-tab" data-bs-toggle="tab" data-bs-target="#nav-All"
+                            type="button" role="tab" aria-controls="nav-All" aria-selected="true">All</button>
+                       
+                        <button class="nav-link" id="nav-proccess-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-proccess" type="button" role="tab" aria-controls="nav-proccess"
+                            aria-selected="false">Proccess</button>
+                             <button class="nav-link" id="nav-done-tab" data-bs-toggle="tab" data-bs-target="#nav-done"
+                            type="button" role="tab" aria-controls="nav-done" aria-selected="false">Done</button>
+                        <button class="nav-link" id="nav-failed-tab" data-bs-toggle="tab" data-bs-target="#nav-failed"
+                            type="button" role="tab" aria-controls="nav-failed" aria-selected="false">Failed</button>
+                    </div>
+                    @if ($data->count() == 0)
+                    <div class="mt-5 d-flex align-items-center flex-column">
+                        <img src="{{ url('assets_user/img/state-cart.png') }}" alt="dafnafa">
+                        <h2 style="color: #535353;" class="mt-3">Yahh, your cart is empty</h2>
+                        <p style="color: #535353;" class="mt-1">Let's fill it with your favorite plant !</p>
+                        <button type="submit" class="button button-primary w-50 text-decoration-none mt-3">
+                            Start Shopping
+                        </button>
+                    </div>
+                    @endif
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-All" role="tabpanel"
+                            aria-labelledby="nav-All-tab">
+                            <input type="hidden" name="id_selected" id="id_selected">
+                            <input type="hidden" name="total_selected" id="total_selected">
+                            @foreach ($data as $item)
+                            <div class="history-item">
+                                <div class="head-item">
+                                    <div class="icon">
+                                        <img src="{{ url('assets_user/img/icon/icon-history-transaksi.svg') }}" alt="">
+                                    </div>
+                                    <div class="date">{{ $item->date }}</div>
+                                    @if ($item->status < 0) <div class="status danger">
+                                        Failed
+                                </div>
+                                @elseif($item->status == 5)
+                                <div class="status success">
+                                    Done
+                                </div>
+                                @elseif($item->status >= 0)
+                                <div class="status success">
+                                    Proccess
+                                </div>
+                                @endif
+                                <div class="id-transaksi">{{ $item->kode_transaksi }}</div>
+                            </div>
+                            @php
+                            $thumb =
+                            json_decode(DB::table('plants')->where('id',DB::table('carts')->where('order_id',$item->id)->first()->plant_id)->first()->thumb,
+                            true);
+                            @endphp
+                            <div class="body-item">
+                                <div class="image-item">
+                                    <img src="{{ url('thumbPlant/'.$thumb[0]) }}" alt="">
+                                </div>
+                                <div class="detail-item">
+                                    <a href="#" class="name-item">{{
+                                        DB::table('plants')->where('id',DB::table('carts')->where('order_id',$item->id)->first()->plant_id)->first()->name
+                                        }}</a>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="price">
+                                            <span>
+                                                @if ($item->total_price == $item->total_price_after_disc)
+                                                @if ($item->payment_method == 1)
+                                                @php
+                                                $cc = DB::table('credit_cards')
+                                                ->where('id', $item->manual_payment_id)
+                                                ->first();
+                                                @endphp
+                                                {{ $cc->currency_symbol }}
+                                                {{ $item->total_price_after_disc + $item->shipping_price }}
+                                                @else
+                                                ${{ $item->total_price_after_disc + $item->shipping_price }}
+                                                @endif
+                                                @else
+                                                @if ($item->payment_method == 1)
+                                                @php
+                                                $cc = DB::table('credit_cards')
+                                                ->where('id', $item->manual_payment_id)
+                                                ->first();
+                                                @endphp
+                                                <span
+                                                    style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
+                                                    {{ $cc->currency_symbol }}
+                                                    {{ $item->total_price + $item->shipping_price }}</span>
+                                                /
+                                                {{ $cc->currency_symbol }}
+                                                {{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
+                                                @else
+                                                <span
+                                                    style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
+                                                    ${{ $item->total_price + $item->shipping_price }}</span>
+                                                /
+                                                ${{ $item->total_price_after_disc + $item->tax + $item->shipping_price
+                                                }}
+                                                @endif
+                                                @endif
+                                        </div>
+                                        <div class="action-item">
+                                            @if ($item->payment_method == 1 && $item->status == 0)
+                                            @if (is_null($item->manual_file))
+                                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal" data-id="{{ $item->id }}"
+                                                data-manual_payment_id="{{ $item->manual_payment_id }}"
+                                                data-shipping_price="{{ $item->shipping_price }}"
+                                                data-shipping_method="{{ $item->shipping_method }}"
+                                                data-total_price_after_disc="{{ $item->total_price_after_disc }}">
+                                                Manual Transaction
+                                            </button>
+                                            @else
+                                            <button type="button" class="btn btn-success" disabled>
+                                                ✓
+                                            </button>
+                                            @endif
+                                            @endif
+                                            <button type="button" class="button button-text" data-bs-toggle="modal"
+                                                data-bs-target="#seeDetailModal" data-id='{{ $item->id }}'
+                                                data-user_id='{{ $item->user_id }}'
+                                                data-kode_transaksi="{{ $item->kode_transaksi }}"
+                                                data-date="{{ $item->date }}" @if ($item->payment_method == 1)
+                                                data-total_price="{{ $item->total_price }}"
+                                                data-total_price_after_disc="{{ $item->total_price_after_disc }}"
+                                                data-shipping_price="{{ $item->shipping_price }}"
+                                                data-tax="{{ $item->tax }}"
+                                                data-currency_symbol="{{ $cc->currency_symbol }}"
+                                                @else
+                                                data-total_price="{{ $item->total_price }}"
+                                                data-total_price_after_disc="{{ $item->total_price_after_disc }}"
+                                                data-shipping_price="{{ $item->shipping_price }}"
+                                                data-tax="{{ $item->tax }}"
+                                                data-currency_symbol="$" @endif
+                                                data-status="{{ $item->status }}"
+                                                data-payment_method="
+                                                @if ($item->payment_method == 1) {{ 'MANUAL TRANSFER' }}
+                                                @elseif($item->payment_method == 2)
+                                                {{ 'PAYPAL' }}
+                                                @else
+                                                {{ 'STRIPE' }} @endif"
+                                                data-currency="{{ $item->currency }}"
+                                                data-tax="{{ $item->tax }}"
+                                                data-no_resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum
+                                                Tersedia.' }}"
+                                                data-hasPaid="{{ $item->hasPaid }}"
+                                                data-discount="{{ $item->discount }}"
+                                                data-discount_code="{{ $item->discount_code }}"
+                                                data-nama_penerima="{{ $item->nama_penerima }}"
+                                                data-alamat_penerima="{{ $item->alamat_penerima }}"
+                                                data-email_penerima="{{ $item->email_penerima }}"
+                                                data-negara_tujuan="{{ $item->negara_tujuan }}"
+                                                data-provinsi_tujuan="{{ $item->provinsi_tujuan }}"
+                                                data-kota_tujuan="{{ $item->kota_tujuan }}"
+                                                data-shipping_method="{{ $item->shipping_method }}"
+                                                data-zipcode="{{ $item->zipcode }}">
+                                                See Details
+                                            </button>
+                                            <button type="button" class="button button-outline-primary"
+                                                data-bs-toggle="modal" data-bs-target="#trackTransaksiModal"
+                                                data-alamat_penerima="{{ $item->alamat_penerima }}"
+                                                data-nama_penerima="{{ $item->nama_penerima }}"
+                                                data-resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
+                                                data-status="{{ $item->status }}">
+                                                Track Order
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-                        @if ($data->count() == 0)
-                            <div class="mt-5 d-flex align-items-center flex-column">
-                                <img src="{{ url('assets_user/img/state-cart.png') }}" alt="dafnafa">
-                                <h2 style="color: #535353;" class="mt-3">Yahh, your cart is empty</h2>
-                                <p style="color: #535353;" class="mt-1">Let's fill it with your favorite plant !</p>
-                                <button type="submit" class="button button-primary w-50 text-decoration-none mt-3">
-                                    Start Shopping
+                        @endforeach
+                    </div>
+                    <div class="tab-pane fade" id="nav-done" role="tabpanel" aria-labelledby="nav-done-tab">
+                        <input type="hidden" name="id_selected" id="id_selected">
+                        <input type="hidden" name="total_selected" id="total_selected">
+                        @foreach (App\Models\Order::where(['user_id' => Auth::id(),'status'=>5])->get() as $item)
+                        <div class="history-item">
+                            <div class="head-item">
+                                <div class="icon">
+                                    <img src="{{ url('assets_user/img/icon/icon-history-transaksi.svg') }}" alt="">
+                                </div>
+                                <div class="date">{{ $item->date }}</div>
+                                @if ($item->status < 0) <div class="status danger">
+                                    Failed
+                            </div>
+                            @elseif($item->status == 5)
+                            <div class="status success">
+                                Done
+                            </div>
+                            @elseif($item->status >= 0)
+                            <div class="status success">
+                                Proccess
+                            </div>
+                            @endif
+                            <div class="id-transaksi">{{ $item->kode_transaksi }}</div>
+                        </div>
+                         @php
+                        $thumb =
+                        json_decode(DB::table('plants')->where('id',DB::table('carts')->where('order_id',$item->id)->first()->plant_id)->first()->thumb,
+                        true);
+                        @endphp
+                        <div class="body-item">
+                            <div class="image-item">
+                                <img src="{{ url('thumbPlant/'.$thumb[0]) }}" alt="">
+                            </div>
+                            <div class="detail-item">
+                                <a href="#" class="name-item">{{
+                                    DB::table('plants')->where('id',DB::table('carts')->where('order_id',$item->id)->first()->plant_id)->first()->name
+                                    }}</a>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="price">
+                                        <span>
+                                            @if ($item->total_price == $item->total_price_after_disc)
+                                            @if ($item->payment_method == 1)
+                                            @php
+                                            $cc = DB::table('credit_cards')
+                                            ->where('id', $item->manual_payment_id)
+                                            ->first();
+                                            @endphp
+                                            {{ $cc->currency_symbol }}
+                                            {{ $item->total_price_after_disc + $item->shipping_price }}
+                                            @else
+                                            ${{ $item->total_price_after_disc + $item->shipping_price }}
+                                            @endif
+                                            @else
+                                            @if ($item->payment_method == 1)
+                                            @php
+                                            $cc = DB::table('credit_cards')
+                                            ->where('id', $item->manual_payment_id)
+                                            ->first();
+                                            @endphp
+                                            <span
+                                                style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
+                                                {{ $cc->currency_symbol }}
+                                                {{ $item->total_price + $item->shipping_price }}</span>
+                                            /
+                                            {{ $cc->currency_symbol }}
+                                            {{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
+                                            @else
+                                            <span
+                                                style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
+                                                ${{ $item->total_price + $item->shipping_price }}</span>
+                                            /
+                                            ${{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
+                                            @endif
+                                            @endif
+                                    </div>
+                                    <div class="action-item">
+                                        @if ($item->payment_method == 1 && $item->status == 0)
+                                        @if (is_null($item->manual_file))
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal" data-id="{{ $item->id }}"
+                                            data-manual_payment_id="{{ $item->manual_payment_id }}"
+                                            data-shipping_price="{{ $item->shipping_price }}"
+                                            data-shipping_method="{{ $item->shipping_method }}"
+                                            data-total_price_after_disc="{{ $item->total_price_after_disc }}">
+                                            Manual Transaction
+                                        </button>
+                                        @else
+                                        <button type="button" class="btn btn-success" disabled>
+                                            ✓
+                                        </button>
+                                        @endif
+                                        @endif
+                                        <button type="button" class="button button-text" data-bs-toggle="modal"
+                                            data-bs-target="#seeDetailModal" data-id='{{ $item->id }}'
+                                            data-user_id='{{ $item->user_id }}'
+                                            data-kode_transaksi="{{ $item->kode_transaksi }}"
+                                            data-date="{{ $item->date }}" @if ($item->payment_method == 1)
+                                            data-total_price="{{ $item->total_price }}"
+                                            data-total_price_after_disc="{{ $item->total_price_after_disc }}"
+                                            data-shipping_price="{{ $item->shipping_price }}"
+                                            data-tax="{{ $item->tax }}"
+                                            data-currency_symbol="{{ $cc->currency_symbol }}"
+                                            @else
+                                            data-total_price="{{ $item->total_price }}"
+                                            data-total_price_after_disc="{{ $item->total_price_after_disc }}"
+                                            data-shipping_price="{{ $item->shipping_price }}"
+                                            data-tax="{{ $item->tax }}"
+                                            data-currency_symbol="$" @endif
+                                            data-status="{{ $item->status }}"
+                                            data-payment_method="
+                                            @if ($item->payment_method == 1) {{ 'MANUAL TRANSFER' }}
+                                            @elseif($item->payment_method == 2)
+                                            {{ 'PAYPAL' }}
+                                            @else
+                                            {{ 'STRIPE' }} @endif"
+                                            data-currency="{{ $item->currency }}"
+                                            data-tax="{{ $item->tax }}"
+                                            data-no_resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.'
+                                            }}"
+                                            data-hasPaid="{{ $item->hasPaid }}"
+                                            data-discount="{{ $item->discount }}"
+                                            data-discount_code="{{ $item->discount_code }}"
+                                            data-nama_penerima="{{ $item->nama_penerima }}"
+                                            data-alamat_penerima="{{ $item->alamat_penerima }}"
+                                            data-email_penerima="{{ $item->email_penerima }}"
+                                            data-negara_tujuan="{{ $item->negara_tujuan }}"
+                                            data-provinsi_tujuan="{{ $item->provinsi_tujuan }}"
+                                            data-kota_tujuan="{{ $item->kota_tujuan }}"
+                                            data-shipping_method="{{ $item->shipping_method }}"
+                                            data-zipcode="{{ $item->zipcode }}">
+                                            See Details
+                                        </button>
+                                        @php
+                                        $sudah_review = \App\Models\Comment::where('user_id', auth()->id())
+                                        ->where('plant_id', $item->id) // ganti jika `plant_id` bukan ID order
+                                        ->exists();
+                                        @endphp
+                                        @if (!$sudah_review)
+                                        <button type="button" class="button button-outline-success"
+                                            data-bs-toggle="modal" data-bs-target="#reviewModal"
+                                            data-order-id="{{ $item->id }}" data-plant-id="{{ $item->plant_id }}">
+                                            Beri Ulasan
+                                        </button>
+                                        @else
+                                        <button type="button" class="button button-success" disabled>
+                                            Ulasan Terkirim
+                                        </button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="tab-pane fade" id="nav-proccess" role="tabpanel" aria-labelledby="nav-proccess-tab">
+                    <input type="hidden" name="id_selected" id="id_selected">
+                    <input type="hidden" name="total_selected" id="total_selected">
+                    @foreach (App\Models\Order::where(['user_id' => Auth::id()])->where('status','>=',0)->where('status','!=',5)->get() as $item)
+                    <div class="history-item">
+                        <div class="head-item">
+                            <div class="icon">
+                                <img src="{{ url('assets_user/img/icon/icon-history-transaksi.svg') }}" alt="">
+                            </div>
+                            <div class="date">{{ $item->date }}</div>
+                            @if ($item->status < 0) <div class="status danger">
+                                Failed
+                        </div>
+                        @elseif($item->status == 5)
+                        <div class="status success">
+                            Done
+                        </div>
+                        @elseif($item->status >= 0)
+                        <div class="status success">
+                            Proccess
+                        </div>
+                        @endif
+                        <div class="id-transaksi">{{ $item->kode_transaksi }}</div>
+                    </div>
+                     @php
+                    $thumb =
+                    json_decode(DB::table('plants')->where('id',DB::table('carts')->where('order_id',$item->id)->first()->plant_id)->first()->thumb,
+                    true);
+                    @endphp
+                    <div class="body-item">
+                        <div class="image-item">
+                            <img src="{{ url('thumbPlant/'.$thumb[0]) }}" alt="">
+                        </div>
+                        <div class="detail-item">
+                            <a href="#" class="name-item">{{
+                                DB::table('plants')->where('id',DB::table('carts')->where('order_id',$item->id)->first()->plant_id)->first()->name
+                                }}</a>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="price">
+                                    <span>
+                                        @if ($item->total_price == $item->total_price_after_disc)
+                                        @if ($item->payment_method == 1)
+                                        @php
+                                        $cc = DB::table('credit_cards')
+                                        ->where('id', $item->manual_payment_id)
+                                        ->first();
+                                        @endphp
+                                        {{ $cc->currency_symbol }}
+                                        {{ $item->total_price_after_disc + $item->shipping_price }}
+                                        @else
+                                        ${{ $item->total_price_after_disc + $item->shipping_price }}
+                                        @endif
+                                        @else
+                                        @if ($item->payment_method == 1)
+                                        @php
+                                        $cc = DB::table('credit_cards')
+                                        ->where('id', $item->manual_payment_id)
+                                        ->first();
+                                        @endphp
+                                        <span
+                                            style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
+                                            {{ $cc->currency_symbol }}
+                                            {{ $item->total_price + $item->shipping_price }}</span>
+                                        /
+                                        {{ $cc->currency_symbol }}
+                                        {{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
+                                        @else
+                                        <span
+                                            style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
+                                            ${{ $item->total_price + $item->shipping_price }}</span>
+                                        /
+                                        ${{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
+                                        @endif
+                                        @endif
+                                </div>
+                                <div class="action-item">
+                                    @if ($item->payment_method == 1 && $item->status == 0)
+                                    @if (is_null($item->manual_file))
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" data-id="{{ $item->id }}"
+                                        data-manual_payment_id="{{ $item->manual_payment_id }}"
+                                        data-shipping_price="{{ $item->shipping_price }}"
+                                        data-shipping_method="{{ $item->shipping_method }}"
+                                        data-total_price_after_disc="{{ $item->total_price_after_disc }}">
+                                        Manual Transaction
+                                    </button>
+                                    @else
+                                    <button type="button" class="btn btn-success" disabled>
+                                        ✓
+                                    </button>
+                                    @endif
+                                    @endif
+                                    <button type="button" class="button button-text" data-bs-toggle="modal"
+                                        data-bs-target="#seeDetailModal" data-id='{{ $item->id }}'
+                                        data-user_id='{{ $item->user_id }}'
+                                        data-kode_transaksi="{{ $item->kode_transaksi }}" data-date="{{ $item->date }}"
+                                        @if ($item->payment_method == 1) data-total_price="{{ $item->total_price }}"
+                                        data-total_price_after_disc="{{ $item->total_price_after_disc }}"
+                                        data-shipping_price="{{ $item->shipping_price }}"
+                                        data-tax="{{ $item->tax }}"
+                                        data-currency_symbol="{{ $cc->currency_symbol }}"
+                                        @else
+                                        data-total_price="{{ $item->total_price }}"
+                                        data-total_price_after_disc="{{ $item->total_price_after_disc }}"
+                                        data-shipping_price="{{ $item->shipping_price }}"
+                                        data-tax="{{ $item->tax }}"
+                                        data-currency_symbol="$" @endif
+                                        data-status="{{ $item->status }}"
+                                        data-payment_method="
+                                        @if ($item->payment_method == 1) {{ 'MANUAL TRANSFER' }}
+                                        @elseif($item->payment_method == 2)
+                                        {{ 'PAYPAL' }}
+                                        @else
+                                        {{ 'STRIPE' }} @endif"
+                                        data-currency="{{ $item->currency }}"
+                                        data-tax="{{ $item->tax }}"
+                                        data-no_resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
+                                        data-hasPaid="{{ $item->hasPaid }}"
+                                        data-discount="{{ $item->discount }}"
+                                        data-discount_code="{{ $item->discount_code }}"
+                                        data-nama_penerima="{{ $item->nama_penerima }}"
+                                        data-alamat_penerima="{{ $item->alamat_penerima }}"
+                                        data-email_penerima="{{ $item->email_penerima }}"
+                                        data-negara_tujuan="{{ $item->negara_tujuan }}"
+                                        data-provinsi_tujuan="{{ $item->provinsi_tujuan }}"
+                                        data-kota_tujuan="{{ $item->kota_tujuan }}"
+                                        data-shipping_method="{{ $item->shipping_method }}"
+                                        data-zipcode="{{ $item->zipcode }}">
+                                        See Details
+                                    </button>
+                                    <button type="button" class="button button-outline-primary" data-bs-toggle="modal"
+                                        data-bs-target="#trackTransaksiModal"
+                                        data-alamat_penerima="{{ $item->alamat_penerima }}"
+                                        data-nama_penerima="{{ $item->nama_penerima }}"
+                                        data-resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
+                                        data-status="{{ $item->status }}">
+                                        Track Order
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+        </div>
+        <div class="tab-pane fade" id="nav-failed" role="tabpanel" aria-labelledby="nav-failed-tab">
+            <input type="hidden" name="id_selected" id="id_selected">
+            <input type="hidden" name="total_selected" id="total_selected">
+            @foreach (App\Models\Order::where(['user_id' => Auth::id()])->where('status','<',0)->get() as $item)
+                <div class="history-item">
+                    <div class="head-item">
+                        <div class="icon">
+                            <img src="{{ url('assets_user/img/icon/icon-history-transaksi.svg') }}" alt="">
+                        </div>
+                        <div class="date">{{ $item->date }}</div>
+                        @if ($item->status < 0) <div class="status danger">
+                            Failed
+                    </div>
+                    @elseif($item->status == 5)
+                    <div class="status success">
+                        Done
+                    </div>
+                    @elseif($item->status >= 0)
+                    <div class="status success">
+                        Proccess
+                    </div>
+                    @endif
+                    <div class="id-transaksi">{{ $item->kode_transaksi }}</div>
+                </div>
+                 @php
+                $thumb =
+                json_decode(DB::table('plants')->where('id',DB::table('carts')->where('order_id',$item->id)->first()->plant_id)->first()->thumb,
+                true);
+                @endphp
+                <div class="body-item">
+                    <div class="image-item">
+                        <img src="{{ url('thumbPlant/'.$thumb[0]) }}" alt="">
+                    </div>
+                    <div class="detail-item">
+                        <a href="#" class="name-item">{{
+                            DB::table('plants')->where('id',DB::table('carts')->where('order_id',$item->id)->first()->plant_id)->first()->name
+                            }}</a>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="price">
+                                <span>
+                                    @if ($item->total_price == $item->total_price_after_disc)
+                                    @if ($item->payment_method == 1)
+                                    @php
+                                    $cc = DB::table('credit_cards')
+                                    ->where('id', $item->manual_payment_id)
+                                    ->first();
+                                    @endphp
+                                    {{ $cc->currency_symbol }}
+                                    {{ $item->total_price_after_disc + $item->shipping_price }}
+                                    @else
+                                    ${{ $item->total_price_after_disc + $item->shipping_price }}
+                                    @endif
+                                    @else
+                                    @if ($item->payment_method == 1)
+                                    @php
+                                    $cc = DB::table('credit_cards')
+                                    ->where('id', $item->manual_payment_id)
+                                    ->first();
+                                    @endphp
+                                    <span style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
+                                        {{ $cc->currency_symbol }}
+                                        {{ $item->total_price + $item->shipping_price }}</span>
+                                    /
+                                    {{ $cc->currency_symbol }}
+                                    {{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
+                                    @else
+                                    <span style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
+                                        ${{ $item->total_price + $item->shipping_price }}</span>
+                                    /
+                                    ${{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
+                                    @endif
+                                    @endif
+                            </div>
+                            <div class="action-item">
+                                @if ($item->payment_method == 1 && $item->status == 0)
+                                @if (is_null($item->manual_file))
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" data-id="{{ $item->id }}"
+                                    data-manual_payment_id="{{ $item->manual_payment_id }}"
+                                    data-shipping_price="{{ $item->shipping_price }}"
+                                    data-shipping_method="{{ $item->shipping_method }}"
+                                    data-total_price_after_disc="{{ $item->total_price_after_disc }}">
+                                    Manual Transaction
+                                </button>
+                                @else
+                                <button type="button" class="btn btn-success" disabled>
+                                    ✓
+                                </button>
+                                @endif
+                                @endif
+                                <button type="button" class="button button-text" data-bs-toggle="modal"
+                                    data-bs-target="#seeDetailModal" data-id='{{ $item->id }}'
+                                    data-user_id='{{ $item->user_id }}'
+                                    data-kode_transaksi="{{ $item->kode_transaksi }}" data-date="{{ $item->date }}" 
+                                    @if($item->payment_method == 1)
+                                    data-total_price="{{ $item->total_price }}"
+                                    data-total_price_after_disc="{{ $item->total_price_after_disc }}"
+                                    data-shipping_price="{{ $item->shipping_price }}"
+                                    data-tax="{{ $item->tax }}"
+                                    data-currency_symbol="{{ $cc->currency_symbol }}"
+                                    @else
+                                    data-total_price="{{ $item->total_price }}"
+                                    data-total_price_after_disc="{{ $item->total_price_after_disc }}"
+                                    data-shipping_price="{{ $item->shipping_price }}"
+                                    data-tax="{{ $item->tax }}"
+                                    data-currency_symbol="$" @endif
+                                    data-status="{{ $item->status }}"
+                                    data-payment_method="
+                                    @if ($item->payment_method == 1) {{ 'MANUAL TRANSFER' }}
+                                    @elseif($item->payment_method == 2)
+                                    {{ 'PAYPAL' }}
+                                    @else
+                                    {{ 'STRIPE' }} @endif"
+                                    data-currency="{{ $item->currency }}"
+                                    data-tax="{{ $item->tax }}"
+                                    data-no_resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
+                                    data-hasPaid="{{ $item->hasPaid }}"
+                                    data-discount="{{ $item->discount }}"
+                                    data-discount_code="{{ $item->discount_code }}"
+                                    data-nama_penerima="{{ $item->nama_penerima }}"
+                                    data-alamat_penerima="{{ $item->alamat_penerima }}"
+                                    data-email_penerima="{{ $item->email_penerima }}"
+                                    data-negara_tujuan="{{ $item->negara_tujuan }}"
+                                    data-provinsi_tujuan="{{ $item->provinsi_tujuan }}"
+                                    data-kota_tujuan="{{ $item->kota_tujuan }}"
+                                    data-shipping_method="{{ $item->shipping_method }}"
+                                    data-zipcode="{{ $item->zipcode }}">
+                                    See Details
+                                </button>
+                                <button type="button" class="button button-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#trackTransaksiModal"
+                                    data-alamat_penerima="{{ $item->alamat_penerima }}"
+                                    data-nama_penerima="{{ $item->nama_penerima }}"
+                                    data-resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
+                                    data-status="{{ $item->status }}">
+                                    Track Order
                                 </button>
                             </div>
-                        @endif
-
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-All" role="tabpanel"
-                                aria-labelledby="nav-All-tab">
-                                <input type="hidden" name="id_selected" id="id_selected">
-                                <input type="hidden" name="total_selected" id="total_selected">
-                                @foreach ($data as $item)
-                                    <div class="history-item">
-                                        <div class="head-item">
-                                            <div class="icon">
-                                                <img src="{{ url('assets_user/img/icon/icon-history-transaksi.svg') }}"
-                                                    alt="">
-                                            </div>
-                                            <div class="date">{{ $item->date }}</div>
-                                            @if ($item->status < 0)
-                                                <div class="status danger">
-                                                    Failed
-                                                </div>
-                                            @elseif($item->status == 5)
-                                                <div class="status success">
-                                                    Done
-                                                </div>
-                                            @elseif($item->status >= 0)
-                                                <div class="status success">
-                                                    Proccess
-                                                </div>
-                                            @endif
-                                            <div class="id-transaksi">{{ $item->kode_transaksi }}</div>
-                                        </div>
-
-                                        @php
-                                        $thumb = json_decode(DB::table('plants')->where('id',DB::table('carts')->where('order_id',$item->id)->first()->plant_id)->first()->thumb, true);
-                                        @endphp
-
-                                        <div class="body-item">
-                                            <div class="image-item">
-                                                <img src="{{ url('thumbPlant/'.$thumb[0]) }}" alt="">
-                                            </div>
-                                            <div class="detail-item">
-                                                <a href="#" class="name-item">{{ DB::table('plants')->where('id',DB::table('carts')->where('order_id',$item->id)->first()->plant_id)->first()->name }}</a>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">
-                                                        <span>
-                                                            @if ($item->total_price == $item->total_price_after_disc)
-                                                                @if ($item->payment_method == 1)
-                                                                    @php
-                                                                        $cc = DB::table('credit_cards')
-                                                                            ->where('id', $item->manual_payment_id)
-                                                                            ->first();
-                                                                    @endphp
-
-                                                                    {{ $cc->currency_symbol }}
-                                                                    {{ $item->total_price_after_disc + $item->shipping_price }}
-                                                                @else
-                                                                    ${{ $item->total_price_after_disc + $item->shipping_price }}
-                                                                @endif
-                                                            @else
-                                                                @if ($item->payment_method == 1)
-                                                                    @php
-                                                                        $cc = DB::table('credit_cards')
-                                                                            ->where('id', $item->manual_payment_id)
-                                                                            ->first();
-                                                                    @endphp
-                                                                    <span
-                                                                        style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
-                                                                        {{ $cc->currency_symbol }}
-                                                                        {{ $item->total_price + $item->shipping_price }}</span>
-                                                                    /
-                                                                    {{ $cc->currency_symbol }}
-                                                                    {{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
-                                                                @else
-                                                                    <span
-                                                                        style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
-                                                                        ${{ $item->total_price + $item->shipping_price }}</span>
-                                                                    /
-                                                                    ${{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
-                                                                @endif
-                                                            @endif
-                                                    </div>
-                                                    <div class="action-item">
-                                                        @if ($item->payment_method == 1 && $item->status == 0)
-                                                            @if (is_null($item->manual_file))
-                                                                <button type="button" class="btn btn-success"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal"
-                                                                    data-id="{{ $item->id }}"
-                                                                    data-manual_payment_id="{{ $item->manual_payment_id }}"
-                                                                    data-shipping_price="{{ $item->shipping_price }}"
-                                                                    data-shipping_method="{{ $item->shipping_method }}"
-                                                                    data-total_price_after_disc="{{ $item->total_price_after_disc }}">
-                                                                    Manual Transaction
-                                                                </button>
-                                                            @else
-                                                                <button type="button" class="btn btn-success"
-                                                                    disabled>
-                                                                    ✓
-                                                                </button>
-                                                            @endif
-                                                        @endif
-
-                                                        <button type="button" class="button button-text"
-                                                            data-bs-toggle="modal" data-bs-target="#seeDetailModal"
-                                                            data-id='{{ $item->id }}'
-                                                            data-user_id='{{ $item->user_id }}'
-                                                            data-kode_transaksi="{{ $item->kode_transaksi }}"
-                                                            data-date="{{ $item->date }}"
-                                                            @if ($item->payment_method == 1) data-total_price="{{ $item->total_price }}"
-                                                            data-total_price_after_disc="{{ $item->total_price_after_disc }}"
-                                                            data-shipping_price="{{ $item->shipping_price }}"
-                                                            data-tax="{{ $item->tax }}"
-                                                            data-currency_symbol="{{ $cc->currency_symbol }}"
-                                                            @else
-                                                            data-total_price="{{ $item->total_price }}"
-                                                            data-total_price_after_disc="{{ $item->total_price_after_disc }}"
-                                                            data-shipping_price="{{ $item->shipping_price }}"
-                                                            data-tax="{{ $item->tax }}"
-                                                            data-currency_symbol="$" @endif
-                                                            data-status="{{ $item->status }}"
-                                                            data-payment_method="
-                                                                            @if ($item->payment_method == 1) {{ 'MANUAL TRANSFER' }}
-                                                            @elseif($item->payment_method == 2)
-                                                                {{ 'PAYPAL' }}
-                                                            @else
-                                                                {{ 'STRIPE' }} @endif"
-                                                            data-currency="{{ $item->currency }}"
-                                                            data-tax="{{ $item->tax }}"
-                                                            data-no_resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
-                                                            data-hasPaid="{{ $item->hasPaid }}"
-                                                            data-discount="{{ $item->discount }}"
-                                                            data-discount_code="{{ $item->discount_code }}"
-                                                            data-nama_penerima="{{ $item->nama_penerima }}"
-                                                            data-alamat_penerima="{{ $item->alamat_penerima }}"
-                                                            data-email_penerima="{{ $item->email_penerima }}"
-                                                            data-negara_tujuan="{{ $item->negara_tujuan }}"
-                                                            data-provinsi_tujuan="{{ $item->provinsi_tujuan }}"
-                                                            data-kota_tujuan="{{ $item->kota_tujuan }}"
-                                                            data-shipping_method="{{ $item->shipping_method }}"
-                                                            data-zipcode="{{ $item->zipcode }}">
-                                                            See Details
-                                                        </button>
-                                                        <button type="button" class="button button-outline-primary"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#trackTransaksiModal"
-                                                            data-alamat_penerima="{{ $item->alamat_penerima }}"
-                                                            data-nama_penerima="{{ $item->nama_penerima }}"
-                                                            data-resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
-                                                            data-status="{{ $item->status }}">
-                                                            Track Order
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-
-                            <div class="tab-pane fade" id="nav-done" role="tabpanel"
-                                aria-labelledby="nav-done-tab">
-                                <input type="hidden" name="id_selected" id="id_selected">
-                                <input type="hidden" name="total_selected" id="total_selected">
-                                @foreach (App\Models\Order::where(['user_id' => Auth::id(),'status'=>5])->get() as $item)
-                                    <div class="history-item">
-                                        <div class="head-item">
-                                            <div class="icon">
-                                                <img src="{{ url('assets_user/img/icon/icon-history-transaksi.svg') }}"
-                                                    alt="">
-                                            </div>
-                                            <div class="date">{{ $item->date }}</div>
-                                            @if ($item->status < 0)
-                                                <div class="status danger">
-                                                    Failed
-                                                </div>
-                                            @elseif($item->status == 5)
-                                                <div class="status success">
-                                                    Done
-                                                </div>
-                                            @elseif($item->status >= 0)
-                                                <div class="status success">
-                                                    Proccess
-                                                </div>
-                                            @endif
-                                            <div class="id-transaksi">{{ $item->kode_transaksi }}</div>
-                                        </div>
-                                        <div class="body-item">
-                                            <div class="image-item">
-                                                <img src="{{ Auth::user()->thumb }}" alt="">
-                                            </div>
-                                            <div class="detail-item">
-                                                <a href="#" class="name-item">{{ $item->nama_penerima }}</a>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">
-                                                        <span>
-                                                            @if ($item->total_price == $item->total_price_after_disc)
-                                                                @if ($item->payment_method == 1)
-                                                                    @php
-                                                                        $cc = DB::table('credit_cards')
-                                                                            ->where('id', $item->manual_payment_id)
-                                                                            ->first();
-                                                                    @endphp
-
-                                                                    {{ $cc->currency_symbol }}
-                                                                    {{ $item->total_price_after_disc + $item->shipping_price }}
-                                                                @else
-                                                                    ${{ $item->total_price_after_disc + $item->shipping_price }}
-                                                                @endif
-                                                            @else
-                                                                @if ($item->payment_method == 1)
-                                                                    @php
-                                                                        $cc = DB::table('credit_cards')
-                                                                            ->where('id', $item->manual_payment_id)
-                                                                            ->first();
-                                                                    @endphp
-                                                                    <span
-                                                                        style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
-                                                                        {{ $cc->currency_symbol }}
-                                                                        {{ $item->total_price + $item->shipping_price }}</span>
-                                                                    /
-                                                                    {{ $cc->currency_symbol }}
-                                                                    {{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
-                                                                @else
-                                                                    <span
-                                                                        style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
-                                                                        ${{ $item->total_price + $item->shipping_price }}</span>
-                                                                    /
-                                                                    ${{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
-                                                                @endif
-                                                            @endif
-                                                    </div>
-                                                    <div class="action-item">
-                                                        @if ($item->payment_method == 1 && $item->status == 0)
-                                                            @if (is_null($item->manual_file))
-                                                                <button type="button" class="btn btn-success"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal"
-                                                                    data-id="{{ $item->id }}"
-                                                                    data-manual_payment_id="{{ $item->manual_payment_id }}"
-                                                                    data-shipping_price="{{ $item->shipping_price }}"
-                                                                    data-shipping_method="{{ $item->shipping_method }}"
-                                                                    data-total_price_after_disc="{{ $item->total_price_after_disc }}">
-                                                                    Manual Transaction
-                                                                </button>
-                                                            @else
-                                                                <button type="button" class="btn btn-success"
-                                                                    disabled>
-                                                                    ✓
-                                                                </button>
-                                                            @endif
-                                                        @endif
-
-                                                        <button type="button" class="button button-text"
-                                                            data-bs-toggle="modal" data-bs-target="#seeDetailModal"
-                                                            data-id='{{ $item->id }}'
-                                                            data-user_id='{{ $item->user_id }}'
-                                                            data-kode_transaksi="{{ $item->kode_transaksi }}"
-                                                            data-date="{{ $item->date }}"
-                                                            @if ($item->payment_method == 1) data-total_price="{{ $item->total_price }}"
-                                                            data-total_price_after_disc="{{ $item->total_price_after_disc }}"
-                                                            data-shipping_price="{{ $item->shipping_price }}"
-                                                            data-tax="{{ $item->tax }}"
-                                                            data-currency_symbol="{{ $cc->currency_symbol }}"
-                                                            @else
-                                                            data-total_price="{{ $item->total_price }}"
-                                                            data-total_price_after_disc="{{ $item->total_price_after_disc }}"
-                                                            data-shipping_price="{{ $item->shipping_price }}"
-                                                            data-tax="{{ $item->tax }}"
-                                                            data-currency_symbol="$" @endif
-                                                            data-status="{{ $item->status }}"
-                                                            data-payment_method="
-                                                                            @if ($item->payment_method == 1) {{ 'MANUAL TRANSFER' }}
-                                                            @elseif($item->payment_method == 2)
-                                                                {{ 'PAYPAL' }}
-                                                            @else
-                                                                {{ 'STRIPE' }} @endif"
-                                                            data-currency="{{ $item->currency }}"
-                                                            data-tax="{{ $item->tax }}"
-                                                            data-no_resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
-                                                            data-hasPaid="{{ $item->hasPaid }}"
-                                                            data-discount="{{ $item->discount }}"
-                                                            data-discount_code="{{ $item->discount_code }}"
-                                                            data-nama_penerima="{{ $item->nama_penerima }}"
-                                                            data-alamat_penerima="{{ $item->alamat_penerima }}"
-                                                            data-email_penerima="{{ $item->email_penerima }}"
-                                                            data-negara_tujuan="{{ $item->negara_tujuan }}"
-                                                            data-provinsi_tujuan="{{ $item->provinsi_tujuan }}"
-                                                            data-kota_tujuan="{{ $item->kota_tujuan }}"
-                                                            data-shipping_method="{{ $item->shipping_method }}"
-                                                            data-zipcode="{{ $item->zipcode }}">
-                                                            See Details
-                                                        </button>
-                                                        <button type="button" class="button button-outline-primary"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#trackTransaksiModal"
-                                                            data-alamat_penerima="{{ $item->alamat_penerima }}"
-                                                            data-nama_penerima="{{ $item->nama_penerima }}"
-                                                            data-resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
-                                                            data-status="{{ $item->status }}">
-                                                            Track Order
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-
-                            <div class="tab-pane fade" id="nav-proccess" role="tabpanel"
-                                aria-labelledby="nav-proccess-tab">
-                                <input type="hidden" name="id_selected" id="id_selected">
-                                <input type="hidden" name="total_selected" id="total_selected">
-                                @foreach (App\Models\Order::where(['user_id' => Auth::id()])->where('status','>=',0)->get() as $item)
-                                    <div class="history-item">
-                                        <div class="head-item">
-                                            <div class="icon">
-                                                <img src="{{ url('assets_user/img/icon/icon-history-transaksi.svg') }}"
-                                                    alt="">
-                                            </div>
-                                            <div class="date">{{ $item->date }}</div>
-                                            @if ($item->status < 0)
-                                                <div class="status danger">
-                                                    Failed
-                                                </div>
-                                            @elseif($item->status == 5)
-                                                <div class="status success">
-                                                    Done
-                                                </div>
-                                            @elseif($item->status >= 0)
-                                                <div class="status success">
-                                                    Proccess
-                                                </div>
-                                            @endif
-                                            <div class="id-transaksi">{{ $item->kode_transaksi }}</div>
-                                        </div>
-                                        <div class="body-item">
-                                            <div class="image-item">
-                                                <img src="{{ Auth::user()->thumb }}" alt="">
-                                            </div>
-                                            <div class="detail-item">
-                                                <a href="#" class="name-item">{{ $item->nama_penerima }}</a>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">
-                                                        <span>
-                                                            @if ($item->total_price == $item->total_price_after_disc)
-                                                                @if ($item->payment_method == 1)
-                                                                    @php
-                                                                        $cc = DB::table('credit_cards')
-                                                                            ->where('id', $item->manual_payment_id)
-                                                                            ->first();
-                                                                    @endphp
-
-                                                                    {{ $cc->currency_symbol }}
-                                                                    {{ $item->total_price_after_disc + $item->shipping_price }}
-                                                                @else
-                                                                    ${{ $item->total_price_after_disc + $item->shipping_price }}
-                                                                @endif
-                                                            @else
-                                                                @if ($item->payment_method == 1)
-                                                                    @php
-                                                                        $cc = DB::table('credit_cards')
-                                                                            ->where('id', $item->manual_payment_id)
-                                                                            ->first();
-                                                                    @endphp
-                                                                    <span
-                                                                        style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
-                                                                        {{ $cc->currency_symbol }}
-                                                                        {{ $item->total_price + $item->shipping_price }}</span>
-                                                                    /
-                                                                    {{ $cc->currency_symbol }}
-                                                                    {{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
-                                                                @else
-                                                                    <span
-                                                                        style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
-                                                                        ${{ $item->total_price + $item->shipping_price }}</span>
-                                                                    /
-                                                                    ${{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
-                                                                @endif
-                                                            @endif
-                                                    </div>
-                                                    <div class="action-item">
-                                                        @if ($item->payment_method == 1 && $item->status == 0)
-                                                            @if (is_null($item->manual_file))
-                                                                <button type="button" class="btn btn-success"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal"
-                                                                    data-id="{{ $item->id }}"
-                                                                    data-manual_payment_id="{{ $item->manual_payment_id }}"
-                                                                    data-shipping_price="{{ $item->shipping_price }}"
-                                                                    data-shipping_method="{{ $item->shipping_method }}"
-                                                                    data-total_price_after_disc="{{ $item->total_price_after_disc }}">
-                                                                    Manual Transaction
-                                                                </button>
-                                                            @else
-                                                                <button type="button" class="btn btn-success"
-                                                                    disabled>
-                                                                    ✓
-                                                                </button>
-                                                            @endif
-                                                        @endif
-
-                                                        <button type="button" class="button button-text"
-                                                            data-bs-toggle="modal" data-bs-target="#seeDetailModal"
-                                                            data-id='{{ $item->id }}'
-                                                            data-user_id='{{ $item->user_id }}'
-                                                            data-kode_transaksi="{{ $item->kode_transaksi }}"
-                                                            data-date="{{ $item->date }}"
-                                                            @if ($item->payment_method == 1) data-total_price="{{ $item->total_price }}"
-                                                            data-total_price_after_disc="{{ $item->total_price_after_disc }}"
-                                                            data-shipping_price="{{ $item->shipping_price }}"
-                                                            data-tax="{{ $item->tax }}"
-                                                            data-currency_symbol="{{ $cc->currency_symbol }}"
-                                                            @else
-                                                            data-total_price="{{ $item->total_price }}"
-                                                            data-total_price_after_disc="{{ $item->total_price_after_disc }}"
-                                                            data-shipping_price="{{ $item->shipping_price }}"
-                                                            data-tax="{{ $item->tax }}"
-                                                            data-currency_symbol="$" @endif
-                                                            data-status="{{ $item->status }}"
-                                                            data-payment_method="
-                                                                            @if ($item->payment_method == 1) {{ 'MANUAL TRANSFER' }}
-                                                            @elseif($item->payment_method == 2)
-                                                                {{ 'PAYPAL' }}
-                                                            @else
-                                                                {{ 'STRIPE' }} @endif"
-                                                            data-currency="{{ $item->currency }}"
-                                                            data-tax="{{ $item->tax }}"
-                                                            data-no_resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
-                                                            data-hasPaid="{{ $item->hasPaid }}"
-                                                            data-discount="{{ $item->discount }}"
-                                                            data-discount_code="{{ $item->discount_code }}"
-                                                            data-nama_penerima="{{ $item->nama_penerima }}"
-                                                            data-alamat_penerima="{{ $item->alamat_penerima }}"
-                                                            data-email_penerima="{{ $item->email_penerima }}"
-                                                            data-negara_tujuan="{{ $item->negara_tujuan }}"
-                                                            data-provinsi_tujuan="{{ $item->provinsi_tujuan }}"
-                                                            data-kota_tujuan="{{ $item->kota_tujuan }}"
-                                                            data-shipping_method="{{ $item->shipping_method }}"
-                                                            data-zipcode="{{ $item->zipcode }}">
-                                                            See Details
-                                                        </button>
-                                                        <button type="button" class="button button-outline-primary"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#trackTransaksiModal"
-                                                            data-alamat_penerima="{{ $item->alamat_penerima }}"
-                                                            data-nama_penerima="{{ $item->nama_penerima }}"
-                                                            data-resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
-                                                            data-status="{{ $item->status }}">
-                                                            Track Order
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-
-                            <div class="tab-pane fade" id="nav-failed" role="tabpanel"
-                                aria-labelledby="nav-failed-tab">
-                                <input type="hidden" name="id_selected" id="id_selected">
-                                <input type="hidden" name="total_selected" id="total_selected">
-                                @foreach (App\Models\Order::where(['user_id' => Auth::id()])->where('status','<',0)->get() as $item)
-                                    <div class="history-item">
-                                        <div class="head-item">
-                                            <div class="icon">
-                                                <img src="{{ url('assets_user/img/icon/icon-history-transaksi.svg') }}"
-                                                    alt="">
-                                            </div>
-                                            <div class="date">{{ $item->date }}</div>
-                                            @if ($item->status < 0)
-                                                <div class="status danger">
-                                                    Failed
-                                                </div>
-                                            @elseif($item->status == 5)
-                                                <div class="status success">
-                                                    Done
-                                                </div>
-                                            @elseif($item->status >= 0)
-                                                <div class="status success">
-                                                    Proccess
-                                                </div>
-                                            @endif
-                                            <div class="id-transaksi">{{ $item->kode_transaksi }}</div>
-                                        </div>
-                                        <div class="body-item">
-                                            <div class="image-item">
-                                                <img src="{{ Auth::user()->thumb }}" alt="">
-                                            </div>
-                                            <div class="detail-item">
-                                                <a href="#" class="name-item">{{ $item->nama_penerima }}</a>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">
-                                                        <span>
-                                                            @if ($item->total_price == $item->total_price_after_disc)
-                                                                @if ($item->payment_method == 1)
-                                                                    @php
-                                                                        $cc = DB::table('credit_cards')
-                                                                            ->where('id', $item->manual_payment_id)
-                                                                            ->first();
-                                                                    @endphp
-
-                                                                    {{ $cc->currency_symbol }}
-                                                                    {{ $item->total_price_after_disc + $item->shipping_price }}
-                                                                @else
-                                                                    ${{ $item->total_price_after_disc + $item->shipping_price }}
-                                                                @endif
-                                                            @else
-                                                                @if ($item->payment_method == 1)
-                                                                    @php
-                                                                        $cc = DB::table('credit_cards')
-                                                                            ->where('id', $item->manual_payment_id)
-                                                                            ->first();
-                                                                    @endphp
-                                                                    <span
-                                                                        style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
-                                                                        {{ $cc->currency_symbol }}
-                                                                        {{ $item->total_price + $item->shipping_price }}</span>
-                                                                    /
-                                                                    {{ $cc->currency_symbol }}
-                                                                    {{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
-                                                                @else
-                                                                    <span
-                                                                        style="text-decoration-line: line-through;text-decoration-thickness: 3px;">
-                                                                        ${{ $item->total_price + $item->shipping_price }}</span>
-                                                                    /
-                                                                    ${{ $item->total_price_after_disc + $item->tax + $item->shipping_price }}
-                                                                @endif
-                                                            @endif
-                                                    </div>
-                                                    <div class="action-item">
-                                                        @if ($item->payment_method == 1 && $item->status == 0)
-                                                            @if (is_null($item->manual_file))
-                                                                <button type="button" class="btn btn-success"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal"
-                                                                    data-id="{{ $item->id }}"
-                                                                    data-manual_payment_id="{{ $item->manual_payment_id }}"
-                                                                    data-shipping_price="{{ $item->shipping_price }}"
-                                                                    data-shipping_method="{{ $item->shipping_method }}"
-                                                                    data-total_price_after_disc="{{ $item->total_price_after_disc }}">
-                                                                    Manual Transaction
-                                                                </button>
-                                                            @else
-                                                                <button type="button" class="btn btn-success"
-                                                                    disabled>
-                                                                    ✓
-                                                                </button>
-                                                            @endif
-                                                        @endif
-
-                                                        <button type="button" class="button button-text"
-                                                            data-bs-toggle="modal" data-bs-target="#seeDetailModal"
-                                                            data-id='{{ $item->id }}'
-                                                            data-user_id='{{ $item->user_id }}'
-                                                            data-kode_transaksi="{{ $item->kode_transaksi }}"
-                                                            data-date="{{ $item->date }}"
-                                                            @if ($item->payment_method == 1) data-total_price="{{ $item->total_price }}"
-                                                            data-total_price_after_disc="{{ $item->total_price_after_disc }}"
-                                                            data-shipping_price="{{ $item->shipping_price }}"
-                                                            data-tax="{{ $item->tax }}"
-                                                            data-currency_symbol="{{ $cc->currency_symbol }}"
-                                                            @else
-                                                            data-total_price="{{ $item->total_price }}"
-                                                            data-total_price_after_disc="{{ $item->total_price_after_disc }}"
-                                                            data-shipping_price="{{ $item->shipping_price }}"
-                                                            data-tax="{{ $item->tax }}"
-                                                            data-currency_symbol="$" @endif
-                                                            data-status="{{ $item->status }}"
-                                                            data-payment_method="
-                                                                            @if ($item->payment_method == 1) {{ 'MANUAL TRANSFER' }}
-                                                            @elseif($item->payment_method == 2)
-                                                                {{ 'PAYPAL' }}
-                                                            @else
-                                                                {{ 'STRIPE' }} @endif"
-                                                            data-currency="{{ $item->currency }}"
-                                                            data-tax="{{ $item->tax }}"
-                                                            data-no_resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
-                                                            data-hasPaid="{{ $item->hasPaid }}"
-                                                            data-discount="{{ $item->discount }}"
-                                                            data-discount_code="{{ $item->discount_code }}"
-                                                            data-nama_penerima="{{ $item->nama_penerima }}"
-                                                            data-alamat_penerima="{{ $item->alamat_penerima }}"
-                                                            data-email_penerima="{{ $item->email_penerima }}"
-                                                            data-negara_tujuan="{{ $item->negara_tujuan }}"
-                                                            data-provinsi_tujuan="{{ $item->provinsi_tujuan }}"
-                                                            data-kota_tujuan="{{ $item->kota_tujuan }}"
-                                                            data-shipping_method="{{ $item->shipping_method }}"
-                                                            data-zipcode="{{ $item->zipcode }}">
-                                                            See Details
-                                                        </button>
-                                                        <button type="button" class="button button-outline-primary"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#trackTransaksiModal"
-                                                            data-alamat_penerima="{{ $item->alamat_penerima }}"
-                                                            data-nama_penerima="{{ $item->nama_penerima }}"
-                                                            data-resi="{{ $item->no_resi ? $item->no_resi : 'No Resi Belum Tersedia.' }}"
-                                                            data-status="{{ $item->status }}">
-                                                            Track Order
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
                         </div>
                     </div>
-                </section>
-            </div>
-        </div>
-    </main>
-
-    <!--Modal Track Order-->
-    <div class="modal fade modal-tracking" id="trackTransaksiModal" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="trackTransaksiModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" id="tracking-body">
-                <div class="modal-body">
-                    Loading ...
                 </div>
+        </div>
+        @endforeach
+    </div>
+    </div>
+    </div>
+    </section>
+    </div>
+    </div>
+</main>
+
+<!--Modal Track Order-->
+<div class="modal fade modal-tracking" id="trackTransaksiModal" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="trackTransaksiModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="tracking-body">
+            <div class="modal-body">
+                Loading ...
             </div>
         </div>
     </div>
+</div>
 
-    <!--Modal See Detail-->
-    <div class="modal fade modal-detail" id="seeDetailModal" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="seeDetailModalLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content" id="details-order">
-                <div class="modal-body">
-                    Loading ...
-                </div>
+<!--Modal See Detail-->
+<div class="modal fade modal-detail" id="seeDetailModal" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="seeDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content" id="details-order">
+            <div class="modal-body">
+                Loading ...
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" id="modal-manual-content">
-                <div class="modal-body">
-                    Loading ...
-                </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="modal-manual-content">
+            <div class="modal-body">
+                Loading ...
             </div>
         </div>
     </div>
+</div>
 
-    <div style="display: hidden;" id="listItem"></div>
+<div style="display: hidden;" id="listItem"></div>
 
-    <footer>
-        <div class="footer__container">
-          <div class="footer__content">
-            <div class="footer__brand">
-              <h1 class="footer__logo">FloraTrade</h1>
-              <p class="footer__tagline">
-                Bringing Nature Closer to You with the Best Plants, the Best
-                Prices, and the Best Care.
-                <br />
-                Your satisfaction and comfort is our priority.
-              </p>
+
+
+<div class="modal fade" id="reviewModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <form action="{{ route('review.store') }}" method="POST">
+        @csrf
+        <input type="hidden" name="plant_id" id="modalPlantId">
+        <input type="hidden" name="order_id" id="modalOrderId">
+        <div class="modal-content" style="border: 2px solid #4CAF50; border-radius: 15px;">
+            <div class="modal-header" style="background-color: #e8f5e9;">
+                <h5 class="modal-title text-success">Beri Ulasan Tanaman</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-      
-            <nav class="footer__links">
-              <a href="#" class="footer__link">Home</a>
-              <a href="#" class="footer__link">About FloraTrade</a>
-              <a href="#" class="footer__link">Explore Plants</a>
-              <a href="#" class="footer__link">Price List</a>
-              <a href="#" class="footer__link">FAQ</a>
-              <a href="#" class="footer__link">Terms &amp; Condition</a>
-            </nav>
-      
-            <div class="footer__contact">
-              <h3 class="footer__contact-title">Contact Us</h3>
-              
-              <div class="footer__contact-item">
-                <img src="{{ url('assets_user/img/icon/telephone-handle-silhouette 1.png') }}" alt="">
-                <span class="footer__contact-text">+6280123719310</span>
-              </div>
-      
-              <div class="footer__contact-item">
-                <img src="{{ url('assets_user/img/icon/email 2.png') }}" alt="">
-                <span class="footer__contact-text">floratrade9@gmail.com</span>
-              </div>
-      
-              <div class="footer__contact-item">
-                <img src="{{ url('assets_user/img/icon/pin (1).png') }}" alt="" >
-                <span class="footer__contact-text">Curug Mekar - Bogor Barat, Bogor, Jawa Barat</span>
-              </div>
+            <div class="modal-body" id="plantList" style="max-height: 400px; overflow-y: auto;">
+                <div class="text-center text-muted">Memuat daftar tanaman...</div>
             </div>
-          </div>
+            <div class="modal-body border-top">
+                <label class="form-label text-success">Komentar</label>
+                <textarea class="form-control" name="comment" required placeholder="Tulis ulasan Anda..." rows="3"></textarea>
+
+                <label class="form-label mt-3 text-success">Rating</label>
+                <select name="rate" class="form-select" required>
+                    <option value="5">★★★★★</option>
+                    <option value="4">★★★★☆</option>
+                    <option value="3">★★★☆☆</option>
+                    <option value="2">★★☆☆☆</option>
+                    <option value="1">★☆☆☆☆</option>
+                </select>
+            </div>
+            <div class="modal-footer" style="background-color: #e8f5e9;">
+                <button type="submit" class="btn btn-success">Kirim Ulasan</button>
+            </div>
         </div>
-    </footer>
+    </form>
+  </div>
+</div>
+
+
 @endsection
 
 @section('js')
@@ -1180,7 +1160,6 @@
                                         </ul>
                                     </div>
                                 </div>
-
                                 <form id="add_bukti_pembayaran" action="{{ route('add-bukti-pembayaran') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" name="id" value="${$('#id_selected').val()}" required />
@@ -1191,7 +1170,6 @@
                                         </button>
                                 </form>
                             </div>`;
-
                         $("#modal-manual-content").html(html);
                         $('.dropify').dropify();
                     }
@@ -1231,7 +1209,6 @@
                                 </div>
                                 `;
                         });
-
                         var html = `<div class="modal-header">
                             <h5 class="modal-title" id="seeDetailModalLabel">
                                 Transaction
@@ -1420,30 +1397,113 @@
     </script>
 
     @if (!is_null(Session::get('message')))
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        Swal.fire({
-            position: 'center',
-            icon: @json(Session::get('status')),
-            title: @json(Session::get('status')),
-            html: @json(Session::get('message')),
-            showConfirmButton: false,
-            timer: 4000
-        })
-    </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: @json(Session::get('status')),
+                title: @json(Session::get('status')),
+                html: @json(Session::get('message')),
+                showConfirmButton: false,
+                timer: 4000
+            })
+        </script>
     @endif
 
     @if (isset($_GET['message']))
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'success',
-            html: @json($_GET['message']),
-            showConfirmButton: false,
-            timer: 4000
-        })
-    </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'success',
+                html: @json($_GET['message']),
+                showConfirmButton: false,
+                timer: 4000
+            })
+        </script>
     @endif
+
+   
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const reviewModal = document.getElementById('reviewModal');
+
+    let selectedCard = null;
+
+    reviewModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const orderId = button.getAttribute('data-order-id');
+        document.getElementById('modalOrderId').value = orderId;
+        document.getElementById('modalPlantId').value = "";
+
+        selectedCard = null;
+
+        fetch(`/order/${orderId}/plants`)
+            .then(response => response.json())
+            .then(data => {
+                const plantList = document.getElementById('plantList');
+                plantList.innerHTML = '';
+
+                data.forEach(plant => {
+                    const card = document.createElement('div');
+                    card.className = 'card mb-2';
+                    card.setAttribute('data-plant-id', plant.id);
+                    card.style.border = plant.sudah_review ? '1px solid #ccc' : '1px solid #e0e0e0';
+                    card.style.cursor = plant.sudah_review ? 'not-allowed' : 'pointer';
+                    card.style.transition = 'border 0.3s ease';
+
+                    card.innerHTML = `
+                        <div class="row g-0 align-items-center">
+                            <div class="col-md-2 p-2">
+                                <img src="${plant.image_url}" class="img-fluid rounded" alt="${plant.name}">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body py-2">
+                                    <h6 class="card-title mb-1">${plant.name}</h6>
+                                    ${plant.sudah_review ?
+                                        '<span class="badge bg-secondary">Sudah Direview</span>' :
+                                        '<span class="badge bg-success">Belum Direview</span>'
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    if (!plant.sudah_review) {
+                        card.addEventListener('click', function () {
+                            if (selectedCard === card) {
+                                // toggle off
+                                card.style.border = '1px solid #e0e0e0';
+                                document.getElementById('modalPlantId').value = "";
+                                selectedCard = null;
+                            } else {
+                                // unselect yang lain
+                                if (selectedCard) {
+                                    selectedCard.style.border = '1px solid #e0e0e0';
+                                }
+                                card.style.border = '2px solid #4CAF50';
+                                document.getElementById('modalPlantId').value = plant.id;
+                                selectedCard = card;
+
+                                // Scroll ke bawah ke form ulasan
+                                document.querySelector('#reviewModal .border-top').scrollIntoView({
+                                    behavior: 'smooth'
+                                });
+                            }
+                        });
+                    }
+
+                    plantList.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.error(error);
+                document.getElementById('plantList').innerHTML = `<div class="text-danger">Gagal memuat tanaman.</div>`;
+            });
+    });
+});
+</script>
+
+
 @endsection

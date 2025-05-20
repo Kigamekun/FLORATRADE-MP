@@ -121,8 +121,7 @@
                                     aria-labelledby="nav-review-tab">
 
                                     <div class="d-flex review">
-                                        @foreach (DB::table('comments')->where('plant_id', $data->id)->get()
-        as $item)
+                                        @foreach (DB::table('comments')->where('plant_id', $data->id)->get() as $item)
                                             <div class="account d-flex align-items-center">
                                                 <img class="img-icon-profile"
                                                     src="{{ url('assets_user/img/icon/profile_icon.svg') }}" alt="">
