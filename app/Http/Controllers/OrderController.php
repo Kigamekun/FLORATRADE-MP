@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Order,Cart,Plant};
+use App\Models\{Order,Cart,Plant,Comment};
 use App\Mail\NotificationMail;
 use Illuminate\Support\Facades\Mail;
 class OrderController extends Controller
@@ -237,5 +237,28 @@ class OrderController extends Controller
     }
 
 
+
+    public function getPlants($orderId)
+{
+    $order = Order::with('orderItems.plant')->findOrFail($orderId);
+
+    $plants = $order->orderItems->map(function ($item) {
+        $plant = $item->plant;
+
+           if ($plant->thumb != null) {
+                $thumb = json_decode($plant->thumb , TRUE);
+                $plant->image_url = env('APP_URL').'/thumbPlant/'.$thumb[0];
+            }else {
+                $plant->image_url = NULL;
+            }
+
+        $plant->sudah_review = Comment::where('user_id', auth()->id())
+                            ->where('plant_id', $plant->id)
+                            ->exists();
+        return $plant;
+    });
+
+    return response()->json($plants);
+}
 
 }

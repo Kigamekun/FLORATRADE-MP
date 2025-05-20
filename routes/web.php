@@ -257,260 +257,263 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','checkIsAdmin'])->gro
 
 
 
+    Route::post('/review', [\App\Http\Controllers\ReviewController::class, 'store'])->name('review.store');
+
+    
 
 
-Route::post('create-payment', function (Request $request) {
+    Route::post('create-payment', function (Request $request) {
 
-    // ✅ Validasi input
-    if (!is_string($request->checkoutInformation) || empty($request->checkoutInformation)) {
-        return response()->json(['error' => 'Invalid checkout information'], 400);
-    }
+        // ✅ Validasi input
+        if (!is_string($request->checkoutInformation) || empty($request->checkoutInformation)) {
+            return response()->json(['error' => 'Invalid checkout information'], 400);
+        }
 
-    parse_str(urldecode($request->checkoutInformation), $checkoutInfo);
-    $shipping = explode('-', $request->ship);
+        parse_str(urldecode($request->checkoutInformation), $checkoutInfo);
+        $shipping = explode('-', $request->ship);
 
-    $info = $checkoutInfo;
-    $item = array_filter(explode('|', $info['item']));
+        $info = $checkoutInfo;
+        $item = array_filter(explode('|', $info['item']));
 
-    // ✅ Cek apakah user login atau buat akun baru
-    if ($request->userId == NULL) {
-        $name = explode(' ', $info['name']);
-        $img = "https://ui-avatars.com/api/?name=" . ($name[0] ?? '') . "+" . ($name[1] ?? '') . "&color=7F9CF5&background=EBF4FF";
+        // ✅ Cek apakah user login atau buat akun baru
+        if ($request->userId == NULL) {
+            $name = explode(' ', $info['name']);
+            $img = "https://ui-avatars.com/api/?name=" . ($name[0] ?? '') . "+" . ($name[1] ?? '') . "&color=7F9CF5&background=EBF4FF";
 
-        $cart = json_decode(Cookie::get('cart'), true) ?? [];
-        $new_item = [];
+            $cart = json_decode(Cookie::get('cart'), true) ?? [];
+            $new_item = [];
 
-        $user = User::create([
-            'name' => $info['name'],
-            'email' => $info['email'],
-            'thumb' => $img,
-            'password' => Hash::make($info['password']),
-            'address' => $info['address'],
-            'phone' => $info['phone'],
-        ]);
+            $user = User::create([
+                'name' => $info['name'],
+                'email' => $info['email'],
+                'thumb' => $img,
+                'password' => Hash::make($info['password']),
+                'address' => $info['address'],
+                'phone' => $info['phone'],
+            ]);
 
-        Auth::login($user);
+            Auth::login($user);
+
+            foreach ($item as $value) {
+                if (isset($cart[$value])) {
+                    $cartsId = Cart::insertGetId([
+                        'user_id' => Auth::user()->id,
+                        'plant_id' => $value,
+                        'qty' => $cart[$value]['qty'],
+                        'total' => Plant::find($value)->price * $cart[$value]['qty'],
+                        'has_paid' => false,
+                    ]);
+                    $new_item[] = $cartsId;
+                }
+            }
+            $item = $new_item;
+        } else {
+            $user = User::find($request->userId);
+        }
+
+        $kode_transaksi = 'MTPLC-PLT-#' . Str::upper(Str::random(10) . '-' . time());
+
+        // ✅ Cek diskon voucher
+        $voucher = DB::table('vouchers')->where('code', $info['voucher_code'])->first();
+        $disc = $voucher ? $voucher->disc : 0;
+
+        // ✅ Setup PayPal API Context
+        $apiContext = new ApiContext(
+            new OAuthTokenCredential(
+                env('PAYPAL_SANDBOX_CLIENT_ID'),
+                env('PAYPAL_SANDBOX_CLIENT_SECRET')
+            )
+        );
+
+        $payer = new Payer();
+        $payer->setPaymentMethod("paypal");
+
+        $total = 0;
+        $all_item = [];
 
         foreach ($item as $value) {
-            if (isset($cart[$value])) {
-                $cartsId = Cart::insertGetId([
-                    'user_id' => Auth::user()->id,
-                    'plant_id' => $value,
-                    'qty' => $cart[$value]['qty'],
-                    'total' => Plant::find($value)->price * $cart[$value]['qty'],
-                    'has_paid' => false,
-                ]);
-                $new_item[] = $cartsId;
+            $cartItem = Cart::find($value);
+            if ($cartItem) {
+                $plant = Plant::find($cartItem->plant_id);
+
+                if ($plant) {
+                    $price = ($cartItem->total / $cartItem->qty) - (($cartItem->total / $cartItem->qty) * $disc / 100);
+                    $subitem = new Item();
+                    $subitem->setName($plant->name)
+                        ->setCurrency('USD')
+                        ->setQuantity($cartItem->qty)
+                        ->setSku($cartItem->id . $plant->id . $cartItem->qty)
+                        ->setPrice($price);
+
+                    $total += $price * $cartItem->qty;
+                    $all_item[] = $subitem;
+                }
             }
         }
-        $item = $new_item;
-    } else {
-        $user = User::find($request->userId);
-    }
 
-    $kode_transaksi = 'MTPLC-PLT-#' . Str::upper(Str::random(10) . '-' . time());
+        // ✅ Pastikan $all_item tidak kosong sebelum setItems()
+        if (empty($all_item)) {
+            return response()->json(['error' => 'Cart is empty'], 400);
+        }
 
-    // ✅ Cek diskon voucher
-    $voucher = DB::table('vouchers')->where('code', $info['voucher_code'])->first();
-    $disc = $voucher ? $voucher->disc : 0;
+        if (!is_array($all_item) || empty($all_item)) {
+            return response()->json(['error' => 'Cart is empty or invalid'], 400);
+        }
 
-    // ✅ Setup PayPal API Context
-    $apiContext = new ApiContext(
-        new OAuthTokenCredential(
-            env('PAYPAL_SANDBOX_CLIENT_ID'),
-            env('PAYPAL_SANDBOX_CLIENT_SECRET')
-        )
-    );
+        $itemList = new ItemList();
+        $itemList->setItems(array_values($all_item)); // Pastikan array valid
 
-    $payer = new Payer();
-    $payer->setPaymentMethod("paypal");
 
-    $total = 0;
-    $all_item = [];
+        $details = new Details();
+        $details->setShipping($shipping[1])
+            ->setTax($total * 0.05)
+            ->setSubtotal($total);
 
-    foreach ($item as $value) {
-        $cartItem = Cart::find($value);
-        if ($cartItem) {
-            $plant = Plant::find($cartItem->plant_id);
+        $amount = new Amount();
+        $amount->setCurrency("USD")
+            ->setTotal($total + $shipping[1] + ($total * 0.05))
+            ->setDetails($details);
 
-            if ($plant) {
-                $price = ($cartItem->total / $cartItem->qty) - (($cartItem->total / $cartItem->qty) * $disc / 100);
-                $subitem = new Item();
-                $subitem->setName($plant->name)
-                    ->setCurrency('USD')
-                    ->setQuantity($cartItem->qty)
-                    ->setSku($cartItem->id . $plant->id . $cartItem->qty)
-                    ->setPrice($price);
+        $transaction = new Transaction();
+        $transaction->setAmount($amount)
+            ->setItemList($itemList)
+            ->setDescription("Payment description")
+            ->setInvoiceNumber(uniqid());
 
-                $total += $price * $cartItem->qty;
-                $all_item[] = $subitem;
+        $redirectUrls = new RedirectUrls();
+        $redirectUrls->setReturnUrl(route('my-cart'))
+            ->setCancelUrl(route('cancel-payment-paypal'));
+
+        // ✅ Setup NO SHIPPING option
+        $inputFields = new InputFields();
+        // $inputFields->setNoShipping(1);
+
+        $webProfile = new WebProfile();
+        $webProfile->setName(env('APP_NAME') . uniqid())->setInputFields($inputFields);
+
+        $webProfileId = $webProfile->create($apiContext)->getId();
+
+        $payment = new Payment();
+        $payment->setExperienceProfileId($webProfileId);
+        $payment->setIntent("sale")
+            ->setPayer($payer)
+            ->setRedirectUrls($redirectUrls)
+            ->setTransactions([$transaction]);
+
+        try {
+            $payment->create($apiContext);
+        } catch (\Exception $ex) {
+            return response()->json(['error' => $ex->getMessage()], 500);
+        }
+
+        return response()->json([
+            'id' => $payment->getId(),
+            'new_item' => implode("|", $item),
+        ]);
+    })->name('create-payment');
+
+
+
+
+
+    Route::post('execute-payment', function (Request $request) {
+        $apiContext = new \PayPal\Rest\ApiContext(
+            new \PayPal\Auth\OAuthTokenCredential(
+                env('PAYPAL_SANDBOX_CLIENT_ID'),     // ClientID
+                env('PAYPAL_SANDBOX_CLIENT_SECRET')      // ClientSecret
+            )
+        );
+
+
+        $paymentId = $request->paymentID;
+        $payment = Payment::get($paymentId, $apiContext);
+
+        $shipping = explode('-',$request->ship);
+
+        $execution = new PaymentExecution();
+        $execution->setPayerId($request->payerID);
+
+        try {
+            $result = $payment->execute($execution, $apiContext);
+        } catch (Exception $ex) {
+            echo $ex;
+            exit(1);
+        }
+
+        parse_str(urldecode($request->checkoutInformation),$checkoutInfo);
+        $info = $checkoutInfo;
+
+        $user = User::where('id',Auth::id())->first();
+
+        $kode_transaksi = 'MTPLC-PLT-#'.Str::upper(Str::random(3).time());
+
+
+        if (!is_null(DB::table('vouchers')->where('code',$info['voucher_code'])->first())) {
+            $disc = DB::table('vouchers')->where('code',$info['voucher_code'])->first()->disc;
+            $id = Order::insertGetId([
+                'user_id' => $user->id,
+                'kode_transaksi' => $kode_transaksi,
+                'date'=>date('Y-m-d'),
+                'total_price' => $info['total'],
+                'total_price_after_disc' => $info['total'] - ($info['total'] * $disc/100),
+                'tax' => ($info['total'] - ($info['total'] * $disc/100)) * 5/100,
+                'status' => 1,
+                'payment_method' => 2,
+                'currency'=>"USD",
+                'hasPaid'=>0,
+                'discount' => $disc,
+                'discount_code' => $info['voucher_code'],
+                'nama_penerima' => $user->name,
+                'alamat_penerima' => $info['address'],
+                'email_penerima' => $user->email,
+                'negara_tujuan' => $info['country'],
+                'provinsi_tujuan' => $info['province'],
+                'kota_tujuan' => $info['city'],
+                'zipcode' => $info['zipcode'],
+                'shipping_method' => $shipping[0],
+                'shipping_price' => $shipping[1]
+            ]);
+
+        }
+
+        else {
+            $id = Order::insertGetId([
+                'user_id' => $user->id,
+                'kode_transaksi' => $kode_transaksi,
+                'date'=>date('Y-m-d'),
+                'total_price' => $info['total'],
+                'total_price_after_disc' => $info['total'],
+                'tax' => $info['total'] * 5/100,
+                'status' => 1,
+                'payment_method' => 2,
+                'currency'=>"USD",
+                'hasPaid'=>0,
+                'discount' => 0,
+                'discount_code' => NULL,
+                'nama_penerima' => $user->name,
+                'alamat_penerima' => $info['address'],
+                'email_penerima' => $user->email,
+                'negara_tujuan' => $info['country'],
+                'provinsi_tujuan' => $info['province'],
+                'kota_tujuan' => $info['city'],
+                'zipcode' => $info['zipcode'],
+                'shipping_method' => $shipping[0],
+                'shipping_price' => $shipping[1]
+            ]);
+        }
+
+        $item = explode('|',$info['item']);
+        $item = array_filter($item);
+            foreach ($item as $key => $value) {
+                Cart::where('id',$value)->update(['order_id'=>$id]);
+                $itm = Cart::where('id',$value)->first();
+                Plant::where('id',$itm->plant_id)->decrement('stock', $itm->qty);
+
             }
-        }
-    }
+        Cookie::queue(Cookie::forget('cart'));
 
-    // ✅ Pastikan $all_item tidak kosong sebelum setItems()
-    if (empty($all_item)) {
-        return response()->json(['error' => 'Cart is empty'], 400);
-    }
-
-    if (!is_array($all_item) || empty($all_item)) {
-        return response()->json(['error' => 'Cart is empty or invalid'], 400);
-    }
-
-    $itemList = new ItemList();
-    $itemList->setItems(array_values($all_item)); // Pastikan array valid
-
-
-    $details = new Details();
-    $details->setShipping($shipping[1])
-        ->setTax($total * 0.05)
-        ->setSubtotal($total);
-
-    $amount = new Amount();
-    $amount->setCurrency("USD")
-        ->setTotal($total + $shipping[1] + ($total * 0.05))
-        ->setDetails($details);
-
-    $transaction = new Transaction();
-    $transaction->setAmount($amount)
-        ->setItemList($itemList)
-        ->setDescription("Payment description")
-        ->setInvoiceNumber(uniqid());
-
-    $redirectUrls = new RedirectUrls();
-    $redirectUrls->setReturnUrl(route('my-cart'))
-        ->setCancelUrl(route('cancel-payment-paypal'));
-
-    // ✅ Setup NO SHIPPING option
-    $inputFields = new InputFields();
-    // $inputFields->setNoShipping(1);
-
-    $webProfile = new WebProfile();
-    $webProfile->setName(env('APP_NAME') . uniqid())->setInputFields($inputFields);
-
-    $webProfileId = $webProfile->create($apiContext)->getId();
-
-    $payment = new Payment();
-    $payment->setExperienceProfileId($webProfileId);
-    $payment->setIntent("sale")
-        ->setPayer($payer)
-        ->setRedirectUrls($redirectUrls)
-        ->setTransactions([$transaction]);
-
-    try {
-        $payment->create($apiContext);
-    } catch (\Exception $ex) {
-        return response()->json(['error' => $ex->getMessage()], 500);
-    }
-
-    return response()->json([
-        'id' => $payment->getId(),
-        'new_item' => implode("|", $item),
-    ]);
-})->name('create-payment');
-
-
-
-
-
-Route::post('execute-payment', function (Request $request) {
-    $apiContext = new \PayPal\Rest\ApiContext(
-        new \PayPal\Auth\OAuthTokenCredential(
-            env('PAYPAL_SANDBOX_CLIENT_ID'),     // ClientID
-            env('PAYPAL_SANDBOX_CLIENT_SECRET')      // ClientSecret
-        )
-    );
-
-
-    $paymentId = $request->paymentID;
-    $payment = Payment::get($paymentId, $apiContext);
-
-    $shipping = explode('-',$request->ship);
-
-    $execution = new PaymentExecution();
-    $execution->setPayerId($request->payerID);
-
-    try {
-        $result = $payment->execute($execution, $apiContext);
-    } catch (Exception $ex) {
-        echo $ex;
-        exit(1);
-    }
-
-    parse_str(urldecode($request->checkoutInformation),$checkoutInfo);
-    $info = $checkoutInfo;
-
-    $user = User::where('id',Auth::id())->first();
-
-    $kode_transaksi = 'MTPLC-PLT-#'.Str::upper(Str::random(3).time());
-
-
-    if (!is_null(DB::table('vouchers')->where('code',$info['voucher_code'])->first())) {
-        $disc = DB::table('vouchers')->where('code',$info['voucher_code'])->first()->disc;
-        $id = Order::insertGetId([
-            'user_id' => $user->id,
-            'kode_transaksi' => $kode_transaksi,
-            'date'=>date('Y-m-d'),
-            'total_price' => $info['total'],
-            'total_price_after_disc' => $info['total'] - ($info['total'] * $disc/100),
-            'tax' => ($info['total'] - ($info['total'] * $disc/100)) * 5/100,
-            'status' => 1,
-            'payment_method' => 2,
-            'currency'=>"USD",
-            'hasPaid'=>0,
-            'discount' => $disc,
-            'discount_code' => $info['voucher_code'],
-            'nama_penerima' => $user->name,
-            'alamat_penerima' => $info['address'],
-            'email_penerima' => $user->email,
-            'negara_tujuan' => $info['country'],
-            'provinsi_tujuan' => $info['province'],
-            'kota_tujuan' => $info['city'],
-            'zipcode' => $info['zipcode'],
-            'shipping_method' => $shipping[0],
-            'shipping_price' => $shipping[1]
-        ]);
-
-    }
-
-    else {
-        $id = Order::insertGetId([
-            'user_id' => $user->id,
-            'kode_transaksi' => $kode_transaksi,
-            'date'=>date('Y-m-d'),
-            'total_price' => $info['total'],
-            'total_price_after_disc' => $info['total'],
-            'tax' => $info['total'] * 5/100,
-            'status' => 1,
-            'payment_method' => 2,
-            'currency'=>"USD",
-            'hasPaid'=>0,
-            'discount' => 0,
-            'discount_code' => NULL,
-            'nama_penerima' => $user->name,
-            'alamat_penerima' => $info['address'],
-            'email_penerima' => $user->email,
-            'negara_tujuan' => $info['country'],
-            'provinsi_tujuan' => $info['province'],
-            'kota_tujuan' => $info['city'],
-            'zipcode' => $info['zipcode'],
-            'shipping_method' => $shipping[0],
-            'shipping_price' => $shipping[1]
-        ]);
-    }
-
-    $item = explode('|',$info['item']);
-    $item = array_filter($item);
-        foreach ($item as $key => $value) {
-            Cart::where('id',$value)->update(['order_id'=>$id]);
-            $itm = Cart::where('id',$value)->first();
-            Plant::where('id',$itm->plant_id)->decrement('stock', $itm->qty);
-
-        }
-    Cookie::queue(Cookie::forget('cart'));
-
-    return $result;
-})->name('execute-payment');
+        return $result;
+    })->name('execute-payment');
 
 
 Route::get('stripe', [StripePaymentController::class, 'stripe']);
@@ -525,3 +528,5 @@ Route::get('/about', function () {
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 });
 
+
+Route::get('/order/{order}/plants', [OrderController::class, 'getPlants']);
