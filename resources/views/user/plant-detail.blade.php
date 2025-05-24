@@ -4,6 +4,7 @@
 @section('css')
     <link rel="stylesheet" href="{{ url('assets_user/css/detailProduct.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 @endsection
 
 @section('content')
@@ -46,7 +47,7 @@
                                     <div class="wrapper-rating">
                                         <div class="data-terjual">
                                             <p>Terjual</p>
-                                            <span>{{ DB::table('carts')->where('plant_id',$data->id)->where('order_id','!=',NULL)->sum('qty') }}</span>
+                                            <span>{{ DB::table('carts')->where('plant_id', $data->id)->where('order_id', '!=', null)->sum('qty') }}</span>
                                         </div>
                                         <div class="rating-product">
                                             <div class="icon">
@@ -80,8 +81,8 @@
                                     data-bs-target="#nav-detail" type="button" role="tab" aria-controls="nav-detail"
                                     aria-selected="true">Detail</button>
                                 <button class="nav-link" id="nav-shipping-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-shipping" type="button" role="tab" aria-controls="nav-shipping"
-                                    aria-selected="false">Shipping</button>
+                                    data-bs-target="#nav-shipping" type="button" role="tab"
+                                    aria-controls="nav-shipping" aria-selected="false">Shipping</button>
                                 <button class="nav-link" id="nav-revi1ew-tab" data-bs-toggle="tab"
                                     data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review"
                                     aria-selected="false">Review</button>
@@ -120,31 +121,35 @@
                                 <div class="tab-pane fade" id="nav-review" role="tabpanel"
                                     aria-labelledby="nav-review-tab">
 
-                                    <div class="d-flex review">
+                                    <div class="row">
                                         @foreach (DB::table('comments')->where('plant_id', $data->id)->get() as $item)
-                                            <div class="account d-flex align-items-center">
-                                                <img class="img-icon-profile"
-                                                    src="{{ url('assets_user/img/icon/profile_icon.svg') }}" alt="">
-                                                <h6 class="ms-2">{{ DB::table('users')->where('id', $item->user_id)->first()->name }}
-                                                </h6>
-                                            </div>
-                                            <div class="comment ms-3">
-                                                <div class="star d-flex">
-                                                    @for ($i = 0; $i < $item->rate; $i++)
-                                                        <div class="icon">
-                                                            <img src="{{ url('assets_user/img/icon/star_icon.svg') }}"
-                                                                alt="">
+                                            @php
+                                                $user = DB::table('users')->where('id', $item->user_id)->first();
+                                            @endphp
+                                            <div class="col-12 mb-4">
+                                                <div class="card shadow-sm border-0">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <img src="{{ url('assets_user/img/icon/profile_icon.svg') }}"
+                                                                class="rounded-circle me-3" alt="Profile"
+                                                                style="width: 40px; height: 40px;">
+                                                            <h6 class="mb-0">{{ $user->name }}</h6>
                                                         </div>
-                                                    @endfor
-                                                </div>
-                                                <div class="desc">
-                                                    <p class="text-desc">
-                                                        {{ $item->comment }}
-                                                    </p>
+                                                        <div class="mb-2">
+                                                            @for ($i = 0; $i < $item->rate; $i++)
+                                                                <i class="bi bi-star-fill text-warning"></i>
+                                                            @endfor
+                                                            @for ($i = $item->rate; $i < 5; $i++)
+                                                                <i class="bi bi-star text-warning"></i>
+                                                            @endfor
+                                                        </div>
+                                                        <p class="mb-0 text-muted">{{ $item->comment }}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endforeach
                                     </div>
+
                                     {{-- <hr> --}}
 
                                 </div>
@@ -224,45 +229,45 @@
     </div>
     <footer>
         <div class="footer__container">
-          <div class="footer__content">
-            <div class="footer__brand">
-              <h1 class="footer__logo">FloraTrade</h1>
-              <p class="footer__tagline">
-                Bringing Nature Closer to You with the Best Plants, the Best
-                Prices, and the Best Care.
-                <br />
-                Your satisfaction and comfort is our priority.
-              </p>
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <h1 class="footer__logo">FloraTrade</h1>
+                    <p class="footer__tagline">
+                        Bringing Nature Closer to You with the Best Plants, the Best
+                        Prices, and the Best Care.
+                        <br />
+                        Your satisfaction and comfort is our priority.
+                    </p>
+                </div>
+
+                <nav class="footer__links">
+                    <a href="#" class="footer__link">Home</a>
+                    <a href="#" class="footer__link">About FloraTrade</a>
+                    <a href="#" class="footer__link">Explore Plants</a>
+                    <a href="#" class="footer__link">Price List</a>
+                    <a href="#" class="footer__link">FAQ</a>
+                    <a href="#" class="footer__link">Terms &amp; Condition</a>
+                </nav>
+
+                <div class="footer__contact">
+                    <h3 class="footer__contact-title">Contact Us</h3>
+
+                    <div class="footer__contact-item">
+                        <img src="{{ url('assets_user/img/icon/telephone-handle-silhouette 1.png') }}" alt="">
+                        <span class="footer__contact-text">+6280123719310</span>
+                    </div>
+
+                    <div class="footer__contact-item">
+                        <img src="{{ url('assets_user/img/icon/email 2.png') }}" alt="">
+                        <span class="footer__contact-text">floratrade9@gmail.com</span>
+                    </div>
+
+                    <div class="footer__contact-item">
+                        <img src="{{ url('assets_user/img/icon/pin (1).png') }}" alt="">
+                        <span class="footer__contact-text">Curug Mekar - Bogor Barat, Bogor, Jawa Barat</span>
+                    </div>
+                </div>
             </div>
-      
-            <nav class="footer__links">
-              <a href="#" class="footer__link">Home</a>
-              <a href="#" class="footer__link">About FloraTrade</a>
-              <a href="#" class="footer__link">Explore Plants</a>
-              <a href="#" class="footer__link">Price List</a>
-              <a href="#" class="footer__link">FAQ</a>
-              <a href="#" class="footer__link">Terms &amp; Condition</a>
-            </nav>
-      
-            <div class="footer__contact">
-              <h3 class="footer__contact-title">Contact Us</h3>
-              
-              <div class="footer__contact-item">
-                <img src="{{ url('assets_user/img/icon/telephone-handle-silhouette 1.png') }}" alt="">
-                <span class="footer__contact-text">+6280123719310</span>
-              </div>
-      
-              <div class="footer__contact-item">
-                <img src="{{ url('assets_user/img/icon/email 2.png') }}" alt="">
-                <span class="footer__contact-text">floratrade9@gmail.com</span>
-              </div>
-      
-              <div class="footer__contact-item">
-                <img src="{{ url('assets_user/img/icon/pin (1).png') }}" alt="" >
-                <span class="footer__contact-text">Curug Mekar - Bogor Barat, Bogor, Jawa Barat</span>
-              </div>
-            </div>
-          </div>
         </div>
     </footer>
 @endsection
