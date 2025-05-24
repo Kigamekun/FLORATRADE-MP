@@ -292,9 +292,9 @@
                         alt="Best Offer" class="product-grid__icon" />
                     <p style="font-size: 2em; font-weight: bold; white-space: nowrap;">List Plant</p>
                 </a>
-                <div class="product-grid__row d-flex justify-center">
+                <div class="gap-3 d-flex justify-center">
                             <!-- Loop through plants and display them -->
-                     @foreach (DB::table('plants')->where('status', 1)->get() as $item)
+                     @foreach (DB::table('plants')->where('status', 1)->limit(8)->get() as $item)
                                 @php
                                     $thumb = json_decode($item->thumb, true);
                                     $imageSrc = isset($thumb[0]) ? url('thumbPlant/' . $thumb[0]) : '';
