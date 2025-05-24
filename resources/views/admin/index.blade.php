@@ -75,6 +75,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
 
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.fullscreen/Control.FullScreen.css" />
 
 
     <style>
@@ -711,10 +712,10 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="card mb-4">
-                    <div class="card-header">
-                        <h6>Geographic Order Distribution</h6>
+                    <div class="card-header" style="display: flex; justify-content: start;">
+                        <h6>Geographic Map</h6>
                         <div class="dropdown">
-                            <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="mapViewDropdown"
+                            <button class="btn btn-sm btn-light dropdown-toggle ms-5" type="button" id="mapViewDropdown"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-layer-group"></i> Map View
                             </button>
@@ -730,19 +731,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body p-0">
-                        <div id="map"></div>
-                        <div class="map-controls" style="width: 450px">
-                            <button class="map-control-btn active" data-filter="all">All Orders</button>
-                            <button class="map-control-btn" data-filter="waiting approval">Waiting Approval</button>
-                            <button class="map-control-btn" data-filter="order processed">Order Processed</button>
-                            <button class="map-control-btn" data-filter="quarantine process">Quarantine Process</button>
-                            <button class="map-control-btn" data-filter="order shipped">Order Shipped</button>
-                            <button class="map-control-btn" data-filter="shipped">Shipped</button>
-                            <button class="map-control-btn" data-filter="review">Review</button>
-                        </div>
-
-                    </div>
+                    <br>
+                    <div class="card-body p-0" style="position: relative;">
+    <div id="map">
+        <div class="map-controls" style="width: 500px">
+            <!-- tombol-tombol filter -->
+            <button class="map-control-btn active" data-filter="all">All Orders</button>
+            <button class="map-control-btn" data-filter="waiting approval">Waiting Approval</button>
+            <button class="map-control-btn" data-filter="order processed">Order Processed</button>
+            <button class="map-control-btn" data-filter="quarantine process">Quarantine Process</button>
+            <button class="map-control-btn" data-filter="order shipped">Order Shipped</button>
+            <button class="map-control-btn" data-filter="shipped">Shipped</button>
+            <button class="map-control-btn" data-filter="review">Review</button>
+        </div>
+    </div>
+</div>
 
                     <div class="card-footer">
                         <div class="geo-stats">
@@ -970,7 +973,8 @@
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-measure@3.1.0/dist/leaflet-measure.css" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet-measure@3.1.0/dist/leaflet-measure.min.js"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script>
+  <script src="https://unpkg.com/leaflet.fullscreen/Control.FullScreen.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -1021,16 +1025,30 @@
 
 
             // Initialize Leaflet map
-            var map = L.map('map').setView([0, 0], 2);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
+            // var map = L.map('map').setView([0, 0], 2);
+            // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            //     attribution: '&copy; OpenStreetMap contributors'
+            // }).addTo(map);
+
+             var map = L.map('map', {
+            fullscreenControl: true, // Aktifkan tombol fullscreen
+            fullscreenControlOptions: {
+                position: 'topleft'
+            }
+        }).setView([0, 0], 2);
+
+        // Tambahkan Tile Layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+
 
             const geocoder = L.Control.geocoder({
                 defaultMarkGeocode: false,
                 position: 'topleft',
                 geocoder: L.Control.Geocoder.nominatim({
-                    serviceUrl: 'https://nominatim.openstreetmap.org/search'
+                    serviceUrl: 'https://nominatim.openstreetmap.org/'
                 })
             }).addTo(map);
 
@@ -1084,6 +1102,7 @@
                 secondaryLengthUnit: 'kilometers',
                 primaryAreaUnit: 'sqmeters'
             }).addTo(map);
+
             // Style tambahan
             const style = document.createElement('style');
             style.innerHTML = `
