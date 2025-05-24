@@ -224,11 +224,17 @@
                             </div>
                             {{-- <form action="{{ route('add-to-cart', ['id' => $data->id]) }}" method="post">
                                 @csrf --}}
-                            <button data-url="{{ route('add-to-cart', ['id' => $data->id]) }}" id="add-to-cart"
+
+                                @if($data->stock > 0)
+                                   <button data-url="{{ route('add-to-cart', ['id' => $data->id]) }}" id="add-to-cart"
                                 class="button button-primary w-100">
                                 <img src="{{ url('assets_user/img/icon/shopping-cart-white.svg') }}" alt="">
                                 Add To Cart
                             </button>
+                                @else
+                                    <button type="button" class="btn btn-danger w-100" disabled>Out of Stock</button>
+                                @endif
+
                             {{-- </form> --}}
                         </div>
                     </div>
