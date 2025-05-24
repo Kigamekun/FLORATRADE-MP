@@ -254,6 +254,7 @@ class OrderController extends Controller
 
         $plant->sudah_review = Comment::where('user_id', auth()->id())
                             ->where('plant_id', $plant->id)
+                            ->where('order_id', $item->order_id)
                             ->exists();
         return $plant;
     });
