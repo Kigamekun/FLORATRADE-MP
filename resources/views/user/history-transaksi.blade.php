@@ -414,7 +414,7 @@
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-All-tab" data-bs-toggle="tab" data-bs-target="#nav-All"
                             type="button" role="tab" aria-controls="nav-All" aria-selected="true">All</button>
-                       
+
                         <button class="nav-link" id="nav-proccess-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-proccess" type="button" role="tab" aria-controls="nav-proccess"
                             aria-selected="false">Proccess</button>
@@ -716,9 +716,22 @@
                                             See Details
                                         </button>
                                         @php
+                                        // $sudah_review = \App\Models\Comment::where('user_id', auth()->id())
+                                        // ->where('plant_id', $item->id)
+                                        // ->where('order_id',$item->id)// ganti jika `plant_id` bukan ID order
+                                        // ->exists();
+
+                                        // Ambil semua plant_id dari tabel carts dengan order_id yang sesuai
+                                        $plantIds = DB::table('carts')
+                                            ->where('order_id', $item->id)
+                                            ->pluck('plant_id');
+
+                                        // Cek apakah user sudah membuat komentar untuk salah satu plant_id di atas
                                         $sudah_review = \App\Models\Comment::where('user_id', auth()->id())
-                                        ->where('plant_id', $item->id) // ganti jika `plant_id` bukan ID order
-                                        ->exists();
+                                            ->whereIn('plant_id', $plantIds)
+                                            ->where('order_id', $item->id) // pastikan order_id juga cocok
+                                            ->exists();
+
                                         @endphp
                                         @if (!$sudah_review)
                                         <button type="button" class="button button-outline-success"
@@ -976,7 +989,7 @@
                                 <button type="button" class="button button-text" data-bs-toggle="modal"
                                     data-bs-target="#seeDetailModal" data-id='{{ $item->id }}'
                                     data-user_id='{{ $item->user_id }}'
-                                    data-kode_transaksi="{{ $item->kode_transaksi }}" data-date="{{ $item->date }}" 
+                                    data-kode_transaksi="{{ $item->kode_transaksi }}" data-date="{{ $item->date }}"
                                     @if($item->payment_method == 1)
                                     data-total_price="{{ $item->total_price }}"
                                     data-total_price_after_disc="{{ $item->total_price_after_disc }}"
@@ -1424,7 +1437,7 @@
         </script>
     @endif
 
-   
+
     <script>
 document.addEventListener('DOMContentLoaded', function () {
     const reviewModal = document.getElementById('reviewModal');
