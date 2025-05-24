@@ -44,6 +44,14 @@
                             <div class="col-12 col-lg-7">
                                 <div class="wrapper-detail-product">
                                     <h1 class="name-product">{{ $data->name }}</h1>
+                                    <p>
+                                        Stock : <span class="primary-text">
+                                            @if ($data->stock > 0)
+                                                {{ $data->stock }}
+                                            @else
+                                                Out of Stock
+                                            @endif
+                                    </p>
                                     <div class="wrapper-rating">
                                         <div class="data-terjual">
                                             <p>Terjual</p>
@@ -91,6 +99,7 @@
                                 <div class="tab-pane fade show active" id="nav-detail" role="tabpanel"
                                     aria-labelledby="nav-detail-tab">
                                     <p>Plant Name : <span class="primary-text">{{ $data->name }}</span></p>
+
                                     <p>Varietas Name : <span
                                             class="primary-text">{{ DB::table('base_plants')->where('id', $data->category_id)->first()->name_latin }}</span>
                                     </p>
