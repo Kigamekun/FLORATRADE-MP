@@ -292,7 +292,7 @@
                         alt="Best Offer" class="product-grid__icon" />
                     <p style="font-size: 2em; font-weight: bold; white-space: nowrap;">List Plant</p>
                 </a>
-                <div class="gap-3 d-flex justify-center">
+                <div class="gap-3 d-flex justify-center flex-wrap">
                             <!-- Loop through plants and display them -->
                      @foreach (DB::table('plants')->where('status', 1)->limit(8)->get() as $item)
                                 @php
