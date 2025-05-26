@@ -978,8 +978,8 @@
 
     <script>
         $(document).ready(function() {
+            const myAPIKey = "3683694c43d1498d95c56706e0f3ceac";
             const orderData = @json($orderDataArray);
-
             $('#daterange').daterangepicker({
                 startDate: moment().subtract(29, 'days'),
                 endDate: moment(),
@@ -993,20 +993,14 @@
                         'month').endOf('month')]
                 }
             });
-
-
             const statusChartData = {
                 labels: {!! json_encode(array_keys($orderStatuses)) !!},
                 data: {!! json_encode(array_values($orderStatuses)) !!}
             };
-
-            // Data untuk revenue chart
             const revenueData = {
                 labels: {!! json_encode($monthlyRevenue->pluck('month')) !!},
                 current: {!! json_encode($monthlyRevenue->pluck('revenue')) !!}
             };
-
-            // Data untuk inventory
             const inventoryData = {
                 labels: {!! json_encode(
                     $plants->groupBy('category.name')->map(function ($item, $key) {
@@ -1019,30 +1013,32 @@
                     }),
                 ) !!}
             };
-
-
-
-
-
-            // Initialize Leaflet map
-            // var map = L.map('map').setView([0, 0], 2);
-            // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            //     attribution: '&copy; OpenStreetMap contributors'
-            // }).addTo(map);
-
-             var map = L.map('map', {
+        var map = L.map('map', {
             fullscreenControl: true, // Aktifkan tombol fullscreen
             fullscreenControlOptions: {
                 position: 'topleft'
             }
         }).setView([0, 0], 2);
 
-        // Tambahkan Tile Layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
 
+
+            const homeLatLng = [-6.595038, 106.816635]; // Koordinat Bogor
+
+            const homeIcon = L.icon({
+                    iconUrl: `https://api.geoapify.com/v2/icon/?type=awesome&color=red&size=42&icon=home&contentSize=15&scaleFactor=2&apiKey=3683694c43d1498d95c56706e0f3ceac`,
+                    iconSize: [31, 46], // size of the icon
+                    iconAnchor: [15.5, 42], // point of the icon which will correspond to marker's location
+                    popupAnchor: [0, -45] // point from which the popup should open relative to the iconAnchor
+                    });
+
+            // Tambahkan marker Home (warna kuning)
+            const homeMarker = L.marker(homeLatLng, {
+                icon: homeIcon,
+            }).bindPopup("<strong>Home Location</strong><br>Bogor, Jawa Barat").addTo(map);
 
             const geocoder = L.Control.geocoder({
                 defaultMarkGeocode: false,
@@ -1060,22 +1056,19 @@
                     .addTo(map);
             });
 
-
-
-            // Tambahkan title dan description
             const infoControl = L.control({
-                position: 'bottomright'
-            });
-            infoControl.onAdd = function(map) {
-                this._div = L.DomUtil.create('div', 'map-info');
-                this.update();
-                return this._div;
-            };
-            infoControl.update = function() {
-                this._div.innerHTML = `
-        <h4 class="map-title">Order Distribution Analysis</h4>
-        <p class="map-description">Visualisasi distribusi order berdasarkan lokasi pelanggan</p>
-    `;
+                        position: 'bottomright'
+                    });
+                        infoControl.onAdd = function(map) {
+                            this._div = L.DomUtil.create('div', 'map-info');
+                            this.update();
+                            return this._div;
+                        };
+                        infoControl.update = function() {
+                            this._div.innerHTML = `
+                    <h4 class="map-title">Order Distribution Analysis</h4>
+                    <p class="map-description">Visualisasi distribusi order berdasarkan lokasi pelanggan</p>
+                `;
             };
             infoControl.addTo(map);
 
@@ -1086,12 +1079,12 @@
             sliderControl.onAdd = function(map) {
                 this._div = L.DomUtil.create('div', 'slider-filter');
                 this._div.innerHTML = `
-        <div class="slider-container">
-            <label>Filter by Amount:</label>
-            <input type="range" id="amountSlider" min="0" max="1000" value="0" class="form-control-range">
-            <span id="sliderValue">0</span>
-        </div>
-    `;
+                    <div class="slider-container">
+                        <label>Filter by Amount:</label>
+                        <input type="range" id="amountSlider" min="0" max="1000" value="0" class="form-control-range">
+                        <span id="sliderValue">0</span>
+                    </div>
+                `;
                 return this._div;
             };
             sliderControl.addTo(map);
@@ -1106,36 +1099,36 @@
             // Style tambahan
             const style = document.createElement('style');
             style.innerHTML = `
-    .map-info {
-        background: white;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 1px 5px rgba(0,0,0,0.4);
-    }
-    .map-title {
-        margin: 0 0 5px 0;
-        font-size: 16px;
-    }
-    .map-description {
-        margin: 0;
-        font-size: 12px;
-        color: #666;
-    }
-    .slider-filter {
-        background: white;
-        padding: 10px;
-        border-radius: 5px;
-        margin-top: 10px;
-        box-shadow: 0 1px 5px rgba(0,0,0,0.4);
-    }
-    .slider-container {
-        width: 200px;
-    }
-    #sliderValue {
-        margin-left: 10px;
-        font-weight: bold;
-    }
-`;
+                .map-info {
+                    background: white;
+                    padding: 10px;
+                    border-radius: 5px;
+                    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+                }
+                .map-title {
+                    margin: 0 0 5px 0;
+                    font-size: 16px;
+                }
+                .map-description {
+                    margin: 0;
+                    font-size: 12px;
+                    color: #666;
+                }
+                .slider-filter {
+                    background: white;
+                    padding: 10px;
+                    border-radius: 5px;
+                    margin-top: 10px;
+                    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+                }
+                .slider-container {
+                    width: 200px;
+                }
+                #sliderValue {
+                    margin-left: 10px;
+                    font-weight: bold;
+                }
+            `;
             document.head.appendChild(style);
 
             // Implementasi filter amount
@@ -1223,59 +1216,107 @@
 
             // Function to update markers on the map
             function updateMarkers(orders) {
-                // Clear existing markers
-                markersLayer.clearLayers();
-                clusterLayer.clearLayers();
+    // Clear existing markers
+    markersLayer.clearLayers();
+    clusterLayer.clearLayers();
+    arrowsLayer.clearLayers(); // 🧼 Hapus semua garis putus-putus
 
-                // If heatLayer exists, remove it
-                if (heatLayer && map.hasLayer(heatLayer)) {
-                    map.removeLayer(heatLayer);
-                }
+    if (heatLayer && map.hasLayer(heatLayer)) {
+        map.removeLayer(heatLayer);
+    }
 
-                // Current view mode
-                const currentView = $('.map-view-option.active').data('view') || 'markers';
+    const currentView = $('.map-view-option.active').data('view') || 'markers';
 
-                // Heat map points
-                let heatPoints = [];
+    let heatPoints = [];
 
-                orders.forEach(order => {
-                    const amount = parseFloat(order.amount.replace(/[^0-9.]/g, ''));
-                    const marker = L.marker([order.lat, order.lng], {
-                        icon: getMarkerIcon(order.status.toLowerCase())
-                    }).bindPopup(`
+    const statusStyleMap = {
+        'Waiting Approval': {
+            color: '#FFA500', icon: 'clock'
+        },
+        'Order Processed': {
+            color: '#1E90FF', icon: 'cogs'
+        },
+        'Quarantine Process': {
+            color: '#800080', icon: 'shield-virus'
+        },
+        'Order Shipped': {
+            color: '#00CED1', icon: 'truck-loading'
+        },
+        'Shipped': {
+            color: '#32CD32', icon: 'truck'
+        },
+        'Review': {
+            color: '#FFD700', icon: 'star'
+        }
+    };
+
+    orders.forEach(order => {
+        const style = statusStyleMap[order.status] || {
+            color: '#808080',
+            icon: 'question-circle'
+        };
+
+        const markerIcon = L.icon({
+            iconUrl: `https://api.geoapify.com/v2/icon/?type=awesome&color=${encodeURIComponent(style.color)}&size=42&icon=${style.icon}&contentSize=15&scaleFactor=2&apiKey=3683694c43d1498d95c56706e0f3ceac`,
+            iconSize: [31, 46],
+            iconAnchor: [15.5, 42],
+            popupAnchor: [0, -45]
+        });
+
+        const amount = parseFloat(order.amount.replace(/[^0-9.]/g, ''));
+        const marker = L.marker([order.lat, order.lng], {
+            icon: markerIcon
+        }).bindPopup(`
             <strong>Order #${order.id}</strong><br>
             Customer: ${order.customer}<br>
-            Status: <span class="badge status-badge ${order.status.toLowerCase()}">${order.status}</span><br>
+            Status: <span class="badge status-badge ${order.status.toLowerCase().replace(/\s/g, '-')}">${order.status}</span><br>
             Amount: ${formatCurrency(amount)}<br>
             Location: ${order.city}, ${order.country}<br>
             Date: ${order.date}
         `);
 
-                    // Add to appropriate layer
-                    if (currentView === 'markers') {
-                        marker.addTo(markersLayer);
-                    } else if (currentView === 'cluster') {
-                        clusterLayer.addLayer(marker);
-                    }
+        // Buat polyline dan tambahkan ke arrowsLayer, bukan langsung ke map
+        const arrow = L.polyline([homeLatLng, [order.lat, order.lng]], {
+            color: 'orange',
+            weight: 4,
+            dashArray: '5, 10',
+            opacity: 1
+        });
 
-                    // Add point for heat map
-                    heatPoints.push([order.lat, order.lng, 1]);
-                });
+        arrow.addTo(arrowsLayer);
 
-                // Apply appropriate view
-                if (currentView === 'cluster') {
-                    map.addLayer(clusterLayer);
-                } else if (currentView === 'heatmap') {
-                    heatLayer = L.heatLayer(heatPoints, {
-                        radius: 25,
-                        blur: 15,
-                        maxZoom: 10
-                    }).addTo(map);
-                }
-            }
+        if (arrow.arrowheads) {
+            arrow.arrowheads({ size: '10px', frequency: 'endonly', fill: true });
+        }
+
+        if (currentView === 'markers') {
+            marker.addTo(markersLayer);
+        } else if (currentView === 'cluster') {
+            clusterLayer.addLayer(marker);
+        }
+
+        heatPoints.push([order.lat, order.lng, 1]);
+    });
+
+    // Tampilkan layer view yang aktif
+    if (currentView === 'cluster') {
+        map.addLayer(clusterLayer);
+    } else if (currentView === 'heatmap') {
+        heatLayer = L.heatLayer(heatPoints, {
+            radius: 25,
+            blur: 15,
+            maxZoom: 10
+        }).addTo(map);
+    }
+}
+
+            const arrowsLayer = L.layerGroup().addTo(map); // global, hanya sekali buat
+
 
             // Initial map update
             updateMarkers(orderData);
+
+
 
             // Map control filter buttons
             $('.map-control-btn').on('click', function() {

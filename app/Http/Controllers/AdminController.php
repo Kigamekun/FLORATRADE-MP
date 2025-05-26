@@ -30,6 +30,7 @@ class AdminController extends Controller
             ->get();
 
 
+
             $chartData = [
                 'labels' => $plants->map(function($plant) {
                     return $plant->name . ' (' . $plant->category->name . ')';
