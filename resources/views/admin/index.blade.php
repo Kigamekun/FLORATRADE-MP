@@ -66,6 +66,7 @@
 
 @section('content')
     <!-- Font Awesome 6 Free (official CDN) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" />
 
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css">
@@ -963,8 +964,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script> --}}
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    {{-- <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> --}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js"></script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -1093,7 +1097,8 @@
                 position: 'bottomleft',
                 primaryLengthUnit: 'meters',
                 secondaryLengthUnit: 'kilometers',
-                primaryAreaUnit: 'sqmeters'
+                primaryAreaUnit: 'sqmeters',
+                autoPan : false,
             }).addTo(map);
 
             // Style tambahan
@@ -1216,99 +1221,114 @@
 
             // Function to update markers on the map
             function updateMarkers(orders) {
-    // Clear existing markers
-    markersLayer.clearLayers();
-    clusterLayer.clearLayers();
-    arrowsLayer.clearLayers(); // 🧼 Hapus semua garis putus-putus
+                // Clear existing markers
+                markersLayer.clearLayers();
+                clusterLayer.clearLayers();
+                arrowsLayer.clearLayers(); // 🧼 Hapus semua garis putus-putus
 
-    if (heatLayer && map.hasLayer(heatLayer)) {
-        map.removeLayer(heatLayer);
-    }
+                if (heatLayer && map.hasLayer(heatLayer)) {
+                    map.removeLayer(heatLayer);
+                }
 
-    const currentView = $('.map-view-option.active').data('view') || 'markers';
+                const currentView = $('.map-view-option.active').data('view') || 'markers';
 
-    let heatPoints = [];
+                let heatPoints = [];
 
-    const statusStyleMap = {
-        'Waiting Approval': {
-            color: '#FFA500', icon: 'clock'
-        },
-        'Order Processed': {
-            color: '#1E90FF', icon: 'cogs'
-        },
-        'Quarantine Process': {
-            color: '#800080', icon: 'shield-virus'
-        },
-        'Order Shipped': {
-            color: '#00CED1', icon: 'truck-loading'
-        },
-        'Shipped': {
-            color: '#32CD32', icon: 'truck'
-        },
-        'Review': {
-            color: '#FFD700', icon: 'star'
-        }
-    };
+                const statusStyleMap = {
+                    'Waiting Approval': {
+                        color: '#FFA500', icon: 'clock'
+                    },
+                    'Order Processed': {
+                        color: '#1E90FF', icon: 'cogs'
+                    },
+                    'Quarantine Process': {
+                        color: '#800080', icon: 'shield-virus'
+                    },
+                    'Order Shipped': {
+                        color: '#00CED1', icon: 'truck-loading'
+                    },
+                    'Shipped': {
+                        color: '#32CD32', icon: 'truck'
+                    },
+                    'Review': {
+                        color: '#FFD700', icon: 'star'
+                    }
+                };
 
-    orders.forEach(order => {
-        const style = statusStyleMap[order.status] || {
-            color: '#808080',
-            icon: 'question-circle'
-        };
+                orders.forEach(order => {
+                    const style = statusStyleMap[order.status] || {
+                        color: '#808080',
+                        icon: 'question-circle'
+                    };
 
-        const markerIcon = L.icon({
-            iconUrl: `https://api.geoapify.com/v2/icon/?type=awesome&color=${encodeURIComponent(style.color)}&size=42&icon=${style.icon}&contentSize=15&scaleFactor=2&apiKey=3683694c43d1498d95c56706e0f3ceac`,
-            iconSize: [31, 46],
-            iconAnchor: [15.5, 42],
-            popupAnchor: [0, -45]
-        });
+                    const markerIcon = L.icon({
+                        iconUrl: `https://api.geoapify.com/v2/icon/?type=awesome&color=${encodeURIComponent(style.color)}&size=42&icon=${style.icon}&contentSize=15&scaleFactor=2&apiKey=3683694c43d1498d95c56706e0f3ceac`,
+                        iconSize: [31, 46],
+                        iconAnchor: [15.5, 42],
+                        popupAnchor: [0, -45]
+                    });
 
-        const amount = parseFloat(order.amount.replace(/[^0-9.]/g, ''));
-        const marker = L.marker([order.lat, order.lng], {
-            icon: markerIcon
-        }).bindPopup(`
-            <strong>Order #${order.id}</strong><br>
-            Customer: ${order.customer}<br>
-            Status: <span class="badge status-badge ${order.status.toLowerCase().replace(/\s/g, '-')}">${order.status}</span><br>
-            Amount: ${formatCurrency(amount)}<br>
-            Location: ${order.city}, ${order.country}<br>
-            Date: ${order.date}
-        `);
+                    const amount = parseFloat(order.amount.replace(/[^0-9.]/g, ''));
+                    const marker = L.marker([order.lat, order.lng], {
+                        icon: markerIcon
+                    }).bindPopup(`
+                        <strong>Order #${order.id}</strong><br>
+                        Customer: ${order.customer}<br>
+                        Status: <span class="badge status-badge ${order.status.toLowerCase().replace(/\s/g, '-')}">${order.status}</span><br>
+                        Amount: ${formatCurrency(amount)}<br>
+                        Location: ${order.city}, ${order.country}<br>
+                        Date: ${order.date}
+                    `);
 
-        // Buat polyline dan tambahkan ke arrowsLayer, bukan langsung ke map
-        const arrow = L.polyline([homeLatLng, [order.lat, order.lng]], {
-            color: 'orange',
-            weight: 4,
-            dashArray: '5, 10',
-            opacity: 1
-        });
+                    // Buat polyline dan tambahkan ke arrowsLayer, bukan langsung ke map
+                    const arrow = L.polyline([homeLatLng, [order.lat, order.lng]], {
+                        color: 'orange',
+                        weight: 4,
+                        dashArray: '5, 10',
+                        opacity: 1
+                    });
 
-        arrow.addTo(arrowsLayer);
+                    // arrow.addTo(arrowsLayer);
 
-        if (arrow.arrowheads) {
-            arrow.arrowheads({ size: '10px', frequency: 'endonly', fill: true });
-        }
+                    // Hitung jarak dalam kilometer
+                    const distance = map.distance(homeLatLng, [order.lat, order.lng]) / 1000; // hasil dalam kilometer
+                    const distanceText = `Jarak: ${distance.toFixed(2)} km`;
 
-        if (currentView === 'markers') {
-            marker.addTo(markersLayer);
-        } else if (currentView === 'cluster') {
-            clusterLayer.addLayer(marker);
-        }
+                    // Tambahkan event click pada garis
+                    arrow.on('click', function (e) {
+                        L.popup()
+                            .setLatLng(e.latlng)
+                            .setContent(distanceText)
+                            .openOn(map);
+                    });
 
-        heatPoints.push([order.lat, order.lng, 1]);
-    });
+                    arrow.addTo(arrowsLayer);
 
-    // Tampilkan layer view yang aktif
-    if (currentView === 'cluster') {
-        map.addLayer(clusterLayer);
-    } else if (currentView === 'heatmap') {
-        heatLayer = L.heatLayer(heatPoints, {
-            radius: 25,
-            blur: 15,
-            maxZoom: 10
-        }).addTo(map);
-    }
-}
+
+                    if (arrow.arrowheads) {
+                        arrow.arrowheads({ size: '10px', frequency: 'endonly', fill: true });
+                    }
+
+                    if (currentView === 'markers') {
+                        marker.addTo(markersLayer);
+                    } else if (currentView === 'cluster') {
+                        clusterLayer.addLayer(marker);
+                    }
+
+                    heatPoints.push([order.lat, order.lng, 1]);
+                });
+
+                // Tampilkan layer view yang aktif
+                if (currentView === 'cluster') {
+                    map.addLayer(clusterLayer);
+                } else if (currentView === 'heatmap') {
+                    heatLayer = L.heatLayer(heatPoints, {
+                        radius: 25,
+                        blur: 15,
+                        maxZoom: 10
+                    }).addTo(map);
+                }
+            }
 
             const arrowsLayer = L.layerGroup().addTo(map); // global, hanya sekali buat
 

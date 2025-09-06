@@ -87,7 +87,7 @@ class AdminController extends Controller
         // Mapping payment method
         $paymentData = [
             'Credit Card' => [
-                'methods' => [3], // Sesuaikan dengan ID payment method di database
+                'methods' => [1], // Sesuaikan dengan ID payment method di database
                 'subtext' => ' Manual Payment',
                 'count' => 0
             ],
@@ -97,7 +97,7 @@ class AdminController extends Controller
                 'count' => 0
             ],
             'Bank Transfer' => [
-                'methods' => [1],
+                'methods' => [3],
                 'subtext' => 'STRIPE Payment',
                 'count' => 0
             ],
