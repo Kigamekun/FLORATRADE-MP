@@ -11,8 +11,8 @@ services:
     volumes:
       - .:/var/www
     networks:
-      - laravel  # pakai network sama dengan MySQL lama
+      - floratrade-eks_laravel  # pakai network yang sama dengan MySQL lama
 
 networks:
-  laravel:
+  floratrade-eks_laravel:
     external: true
