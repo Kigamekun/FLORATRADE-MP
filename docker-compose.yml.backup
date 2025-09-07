@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app_mp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel-mp-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    networks:
+      - floratrade-eks_laravel  # pakai network yang sama dengan MySQL lama
+
+networks:
+  floratrade-eks_laravel:
+    external: true
